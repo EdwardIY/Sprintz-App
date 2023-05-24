@@ -1,4 +1,6 @@
 import React from 'react';
+import * as Icon from 'react-bootstrap-icons';
+import Navbar from './comps/Navbar';
 
 
 export default function App() {
@@ -22,27 +24,13 @@ export default function App() {
 }
 
 
-function Navbar() {
-  
-  return (
-    <div className="Container--col NavBar">
-      <span>ICON</span>
-      <span>ICON</span>
-      <span>ICON</span>
-      <span>ICON</span>
-      <span>ICON</span>
-      <span>ICON</span>
-    </div>
-  )
-}
-
 function Welcome() {
   
   return (
     <div className="Container--col Header__Welcome">
-      <h1>Helo Weemfed</h1>
+      {/* <h1>Helo Weemfed</h1>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum exercitationem hic odio eligendi sunt corrupti? Repellendus unde quisquam tempore sequi!</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum exercitationem hic odio eligendi sunt corrupti? Repellendus unde quisquam tempore sequi!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum exercitationem hic odio eligendi sunt corrupti? Repellendus unde quisquam tempore sequi!</p> */}
     </div>
   )
 }
@@ -71,9 +59,9 @@ function Options() {
   
   return (
     <div className="Container--col Main__Options">
-      <h2>Create TASK</h2>
+      {/* <h2>Create TASK</h2>
       <h2>Create Group</h2>
-      <h2>Create Sprint</h2>
+      <h2>Create Sprint</h2> */}
     </div>
   )
 }

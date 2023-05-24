@@ -1,1 +1,51 @@
+.NavBar {
+    position: fixed;
+    top: 0;
+    left:0;
+    padding: 1em 2em 0em 1em ;
+    height: 100vh;
+    width: 250px;
+    box-shadow: 3px 1px 22px 0px rgba(0,0,0,0.58);
+    transition: .3s;
+    background-color: white;
+}
+.Navbar__OpenNav,
+.Navbar__CloseNav {
+    font-size: 25px;
+    opacity: .4;  
+}
+.Navbar__OpenNav {
+    position: fixed;
+    left: 2em;
+    top:1em;
+}
+.Navbar__CloseNav {
+    position: absolute;
+    right:1em;
+}
+.Navbar__OpenNav:hover,
+.Navbar__CloseNav:hover {
+    opacity: 1;
 
+}
+.Navbar__Item {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap:20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.355);
+    padding: 1em 0em;
+    font-size: 20px;
+    cursor: pointer;
+}
+.Navbar__Item:hover {
+    opacity: .6;
+}
+.Navbar__Score {
+    border: 1px solid red;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: auto;
+}

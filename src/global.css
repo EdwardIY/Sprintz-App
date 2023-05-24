@@ -12,10 +12,20 @@ body {
 img{
     max-width: 100%;
 }
+svg {
+    cursor: pointer;
+}
 
-.Container {
+.Container--row {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+}
+.Container--col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
