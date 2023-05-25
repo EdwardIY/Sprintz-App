@@ -1,0 +1,3 @@
+ - only update date if the current date weekday doesnt include
+the new date weekday at days?
+- how can you make the author name dynamic?

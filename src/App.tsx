@@ -1,15 +1,18 @@
 import React from 'react';
 import * as Icon from 'react-bootstrap-icons';
 import Navbar from './comps/Navbar';
+import Agenda from './comps/Agenda';
+import Time from './comps/Time';
 
 
 export default function App() {
   return (
     <div className="App">
+      <Welcome />
       <Navbar />
 
       <div className="Container--row Header">
-          <Welcome />
+          <Agenda/>
           <Time />
       </div>
 
@@ -28,20 +31,13 @@ function Welcome() {
   
   return (
     <div className="Container--col Header__Welcome">
-      {/* <h1>Helo Weemfed</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum exercitationem hic odio eligendi sunt corrupti? Repellendus unde quisquam tempore sequi!</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum exercitationem hic odio eligendi sunt corrupti? Repellendus unde quisquam tempore sequi!</p> */}
-    </div>
-  )
-}
-function Time() {
-  
-  return (
-    <div className="Container--col Header__Time">
      
     </div>
   )
 }
+
+
+
 
 function Tasks() {
   

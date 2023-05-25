@@ -1,3 +1,6 @@
+
+
+/* NavBar */
 .NavBar {
     position: fixed;
     top: 0;
@@ -49,3 +52,42 @@
     border-radius: 50%;
     margin: auto;
 }
+
+
+/* Header */
+
+.Header {
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.212);
+}
+
+
+/* Agenda */
+.Agenda {
+    padding: 1em;
+    width: 75%;
+}
+.Agenda__Quote {
+    position: relative;
+    width: max-content;
+}
+.Agenda__Quote::after {
+    content: '-Marcus Aurelius';
+    position: relative;
+    left:80%;
+    width: 200px;
+    display:block;
+    font-size: initial;
+}
+
+
+
+/* Time */
+.Time {
+    padding: 1em;
+    font-size: 20px;
+    align-items: start;
+    border-left: 1px solid rgba(0, 0, 0, 0.212);
+    width: 25%;
+}
+
