@@ -4,22 +4,23 @@
 .NavBar {
     position: fixed;
     top: 0;
-    left:0;
+    right:0;
     padding: 1em 2em 0em 1em ;
     height: 100vh;
     width: 250px;
     box-shadow: 3px 1px 22px 0px rgba(0,0,0,0.58);
     transition: .3s;
     background-color: white;
+    z-index: 1;
 }
 .Navbar__OpenNav,
 .Navbar__CloseNav {
     font-size: 25px;
-    opacity: .4;  
+    opacity: .4; 
 }
 .Navbar__OpenNav {
     position: fixed;
-    left: 2em;
+    right: 2em;
     top:1em;
 }
 .Navbar__CloseNav {
@@ -68,7 +69,6 @@
     width: 75%;
 }
 .Agenda__Quote {
-    position: relative;
     width: max-content;
 }
 .Agenda__Quote::after {
@@ -89,5 +89,75 @@
     align-items: start;
     border-left: 1px solid rgba(0, 0, 0, 0.212);
     width: 25%;
+}
+
+
+/* Tasks */
+.Main {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.212);
+}
+.Main__Tasks {
+    height: 55vh;
+    width: 70%;
+    padding: 1em;
+    position: relative;
+    justify-content: start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap:0em 1em;
+}
+.Task {
+    width: 200px;
+    min-height: 90px;
+    border:1px solid rgba(0, 0, 0, 0.212);
+    border-radius: 5px;
+    justify-content: flex-start;
+}
+.TaskCategory {
+    padding: .5em;
+    border-radius: 5px;
+    width: 100%;
+
+}
+.Task--group > .TaskCategory {
+    background-color: rgba(0, 0, 255, 0.73);
+}
+.Task--sprint > .TaskCategory {
+    background-color: rgba(255, 0, 0, 0.73);
+}
+.TaskDescription {
+    padding: .5em;
+    width: 100%;
+}
+.TaskControls {
+    width: 100%;
+    justify-content: flex-start;
+    gap:20px;
+    padding: .3em;
+    border-top: 1px solid rgba(0, 0, 0, 0.212);
+    border-radius: 5px;
+    opacity: .5;
+}
+.TaskControls:hover {
+    opacity:1;
+}
+.Main__Tasks__AddContainer {
+    position: absolute;
+    gap:50px;
+    text-align: center;
+    font-size: 18px;
+}
+.Main__Tasks__AddOption {
+    opacity: .5;
+    cursor: pointer;
+}
+.Main__Tasks__AddOption:hover {
+    opacity: 1;
+}
+.Main__Options {
+    height: 55vh;
+    width: 30%;
+    border-left: 1px solid rgba(0, 0, 0, 0.212);
+    padding: 1em;
 }
 

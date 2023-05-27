@@ -9,7 +9,7 @@ export default function Navbar() {
     return (
         <>
             <Icon.List className='Navbar__OpenNav'  onClick={()=> setActive(!active)}/>
-         <ul style={{left: active ? '0px' : '-255px' }} className="NavBar">
+         <ul style={{right: active ? '0px' : '-255px' }} className="NavBar">
             <Icon.XLg  className='Navbar__CloseNav'  onClick={()=> setActive(!active)}/>
             
         {/* <li className="Navbar__Item"><Time/></li> */}
