@@ -76,34 +76,6 @@ function Tasks() {
           <Icon.XLg />
         </span>
       </div>
-      <div className="Task Task--sprint Container--col">
-        <span className="TaskCategory">From Sprint 2</span>
-        <span className="TaskDescription"> Complete Brochure</span>
-        <span className="TaskControls Container--row">
-          <Icon.Pencil />
-          <Icon.Check2 />
-          <Icon.XLg />
-        </span>
-      </div>
-      <div className="Task Task--sprint Container--col">
-        <span className="TaskCategory">From Sprint 2</span>
-        <span className="TaskDescription"> Complete Brochure</span>
-        <span className="TaskControls Container--row">
-          <Icon.Pencil />
-          <Icon.Check2 />
-          <Icon.XLg />
-        </span>
-      </div>
-      <div className="Task Task--sprint Container--col">
-        <span className="TaskCategory">From Sprint 2</span>
-        <span className="TaskDescription"> Complete Brochure</span>
-        <span className="TaskControls Container--row">
-          <Icon.Pencil />
-          <Icon.Check2 />
-          <Icon.XLg />
-        </span>
-      </div>
-
     </div>
   )
 }
@@ -112,9 +84,18 @@ function Options() {
   
   return (
     <div className="Container--col Main__Options">
-      {/* <h2>Create TASK</h2>
-      <h2>Create Group</h2>
-      <h2>Create Sprint</h2> */}
+      <div className="Main__Options__Option Container--col">
+        <h2 className="Options__Option__Title">Create Task</h2>
+          <span className="Options__Option__Description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione beatae at natus odio consequatur nemo?</span>
+      </div>
+      <div className="Main__Options__Option Container--col">
+        <h2 className="Options__Option__Title">Create Group</h2>
+          <span className="Options__Option__Description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione beatae at natus odio consequatur nemo?</span>
+      </div>
+      <div className="Main__Options__Option Container--col">
+        <h2 className="Options__Option__Title">Create Sprint</h2>
+          <span className="Options__Option__Description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione beatae at natus odio consequatur nemo?</span>
+      </div>
     </div>
   )
 }

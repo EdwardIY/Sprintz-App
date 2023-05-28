@@ -154,10 +154,42 @@
 .Main__Tasks__AddOption:hover {
     opacity: 1;
 }
+
+
+/* Options */
 .Main__Options {
     height: 55vh;
     width: 30%;
     border-left: 1px solid rgba(0, 0, 0, 0.212);
     padding: 1em;
+    gap: 2em;
+}
+.Main__Options__Option {
+    align-items: flex-start;
+    gap:.5em;
+}
+.Options__Option__Title {
+    text-decoration: underline;
+    cursor: pointer;
+}
+.Options__Option__Title:hover {
+    opacity: .6;
+    transform: scale(1.01);
+}
+.Options__Option__Description{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Options__Option__Description::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    left:-8px;
+    top:12px;
 }
 
