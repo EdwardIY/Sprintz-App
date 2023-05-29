@@ -27,7 +27,7 @@ export function ProgressCircle({value,size, root_color,progress_color,value_colo
 
 
     return (
-        <div className="ProgressCircle Container--row">
+        <div className="ProgressCircle Container--col">
             <div
                 style={{
                     background: `conic-gradient(${progress_color} ${progressValue}%, ${root_color} 0deg)`,
@@ -44,12 +44,14 @@ export function ProgressCircle({value,size, root_color,progress_color,value_colo
                     borderRadius: '50%',
                     background: `${value_color}`,
                     fontSize: `${fontSize}px`,
-                    fontWeight: 'bold'
+                    fontWeight: '600',
+                    boxShadow: '0px 0px 56px 0px #a2a8d3',
+                    fontStyle:'italic'
                 }} className="ProgressCircle__Value Container--col">
-                    {progressValue}
-                    <span style={{fontSize:'9px'}}>{note && note}</span>
+                    {progressValue}%
                 </div>
             </div>
+            <span style={{fontSize:'16px'}}>{note && note}</span>
         </div>
     )
 }

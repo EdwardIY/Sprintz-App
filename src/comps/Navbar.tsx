@@ -21,9 +21,9 @@ export default function Navbar() {
             size={100}
             root_color='#e3e3e3'
             progress_color='#a2a8d3'
-            value_color='white'
-            note='Completion Rate'
-            fontSize={25}
+            value_color='#121212'
+            note='Sprintz Rating'
+            fontSize={24}
           />  
         <li className="Navbar__Item Navbar__AddTask ">
           <Icon.CardText/>
@@ -42,6 +42,10 @@ export default function Navbar() {
         <li className="Navbar__Item Navbar__Profile">
           <Icon.PersonCircle />
           <span>Profile</span>
+        </li>
+        <li className="Navbar__Item Navbar__Profile">
+          <Icon.Gear />
+          <span>Settings</span>
         </li>
       </ul>
         </>

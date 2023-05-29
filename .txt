@@ -1,3 +1,7 @@
  - only update date if the current date weekday doesnt include
 the new date weekday at days?
 - how can you make the author name dynamic?
+- time remaing feature on cards
+- on create task/group/sprint popup you should have the ability to search for past sprints/tasks/groups
+- taks from sprints dont negatively affect your rating utill the sprint duration is over unlike regular tasks
+- 
