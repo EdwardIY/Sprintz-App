@@ -35,4 +35,28 @@ svg {
 }
 
 
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px; /* Adjust the value to change the shape */
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  /* Track (background) color of the scrollbar */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle (thumb) color of the scrollbar */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* On hover, the handle (thumb) color of the scrollbar */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 /* Colors */

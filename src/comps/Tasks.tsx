@@ -67,6 +67,34 @@ export default function Tasks() {
           </div>
 
         </div>
+
+        <div className="Task Task--group Container--col">
+          <span className="TaskCategory">From Group <span>'Yard Work'</span></span>
+          <span className="TaskDescription"> Clean the garden</span>
+
+          <div className="Container--col TaskInfo">
+          <span className="TaskControls Container--row">
+            <Icon.Pencil />
+            <Icon.Check2 />
+            <Icon.XLg />
+            </span>
+            <span className='TaskTime'> Due in 1day(s)</span>
+          </div>
+
+        </div>        <div className="Task Task--group Container--col">
+          <span className="TaskCategory">From Group <span>'Yard Work'</span></span>
+          <span className="TaskDescription"> Clean the garden</span>
+
+          <div className="Container--col TaskInfo">
+          <span className="TaskControls Container--row">
+            <Icon.Pencil />
+            <Icon.Check2 />
+            <Icon.XLg />
+            </span>
+            <span className='TaskTime'> Due in 1day(s)</span>
+          </div>
+
+        </div>
         
       </div>
     )

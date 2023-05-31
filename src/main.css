@@ -10,7 +10,7 @@
     width: 250px;
     box-shadow: 3px 1px 22px 0px rgba(0,0,0,0.58);
     transition: .3s;
-    background-color: var(--colorA);
+    background-color: var(--colorC);
     z-index: 1;
 }
 .Navbar__OpenNav,
@@ -51,7 +51,7 @@
 
 .Header {
     justify-content: space-between;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.212);
+    border-bottom: 1px solid var(--secondaryColor);
 }
 
 
@@ -78,7 +78,7 @@
     padding: 1em;
     font-size: 20px;
     align-items: start;
-    border-left: 1px solid rgba(0, 0, 0, 0.212);
+    border-left: 1px solid var(--secondaryColor);
     width: 25%;
 }
 
@@ -95,7 +95,7 @@
     align-items: flex-start;
     flex-wrap: wrap;
     gap:1em 1em;
-    background: var(--colorA);
+    background: var(--colorC);
     box-shadow: inset -4px 1px 12px 8px rgba(0, 0, 0, 0.67);
     overflow-y: scroll;
 }
@@ -103,7 +103,6 @@
     min-width: 300px;
     max-width: 600px;
     min-height: 90px;
-    border:2px solid black;
     justify-content: flex-start;
 }
 .TaskCategory {
@@ -118,25 +117,32 @@
     background: var(--colorB);
 }
 .Task--sprint > .TaskCategory {
-    background: var(--primaryColor);
+    background: black;
 }
 .TaskDescription {
     padding: .5em;
     width: 100%;
+    border-left:1px solid black;
+    border-right:1px solid black;
+
+
 }
 .TaskInfo {
     width:100%;
     justify-content: space-between;
     flex-direction: column-reverse;
+    border-left:1px solid black;
+    border-right:1px solid black;
+    border-bottom:1px solid black;
     /* padding: .5em; */
 }
 .TaskControls {
     align-self: flex-start;
     gap:20px;
     padding: .5em;
-    padding-right: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.212);
-    border-radius: 5px;
+    /* border-top: 2px solid black;
+    border-right: 2px solid  black; */
+    /* border-radius: 5px; */
     opacity: .5;
 }
 .TaskTime {
@@ -210,6 +216,8 @@
     justify-content: space-evenly;
     padding: 1em;
     align-items: flex-start;
+    height: max-content;
+    /* border-top: 1px solid var(--secondaryColor); */
 }
 .Sprints__Sprint{
     line-height: 1.3em;
@@ -220,7 +228,15 @@
     max-width: 350px;
     margin-bottom: 1em;
 }
-
+.Sprints__Add {
+    opacity: .5;
+    cursor: pointer;
+    height: 20vh;
+    text-align: center;
+}
+.Sprints__Add:hover {
+    opacity: 1;
+}
 
 /* Progress Circle */
 .ProgressCircle__Parent {

@@ -20,7 +20,7 @@ export default function Navbar() {
             value={x}
             size={100}
             root_color='#e3e3e3'
-            progress_color='#a2a8d3'
+            progress_color='black'
             value_color='#121212'
             note='Sprintz Rating'
             fontSize={24}
