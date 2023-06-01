@@ -2,9 +2,11 @@ import * as Icon from 'react-bootstrap-icons';
 import { useState, useRef } from 'react';
 import { ProgressCircle } from './ProgressCircle';
 
-export default function Navbar() {
+interface NavBar__Inputs {
+  setViewCreateTask:Function
+}
+export default function Navbar({setViewCreateTask}:NavBar__Inputs) {
     const [active, setActive] = useState<boolean>(false);
-  const [x, setX] = useState(10);
   
 
 
@@ -17,7 +19,7 @@ export default function Navbar() {
             
         {/* <li className="Navbar__Item"><Time/></li> */}
           <ProgressCircle
-            value={x}
+            value={10}
             size={100}
             root_color='#e3e3e3'
             progress_color='black'
@@ -25,7 +27,7 @@ export default function Navbar() {
             note='Sprintz Rating'
             fontSize={24}
           />  
-        <li className="Navbar__Item Navbar__AddTask ">
+        <li onClick={()=> setViewCreateTask(true)} className="Navbar__Item Navbar__AddTask ">
           <Icon.CardText/>
           <span>Create Task</span>
         </li>

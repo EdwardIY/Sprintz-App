@@ -10,7 +10,7 @@
     width: 250px;
     box-shadow: 3px 1px 22px 0px rgba(0,0,0,0.58);
     transition: .3s;
-    background-color: var(--colorC);
+    background-color: var(--colorA);
     z-index: 1;
 }
 .Navbar__OpenNav,
@@ -85,19 +85,21 @@
 
 /* Tasks */
 .Main {
+    width: 100vw;
 }
 .Main__Tasks {
     height: 55vh;
-    width: 70%;
+    width: 100%;
     padding: 1em;
     position: relative;
     justify-content: start;
     align-items: flex-start;
     flex-wrap: wrap;
     gap:1em 1em;
-    background: var(--colorC);
+    background: var(--colorA);
     box-shadow: inset -4px 1px 12px 8px rgba(0, 0, 0, 0.67);
     overflow-y: scroll;
+    transition: 1s;
 }
 .Task {
     min-width: 300px;
@@ -108,6 +110,7 @@
 .TaskCategory {
     padding: .5em;
     width: 100%;
+    height: 40px;
 }
 .TaskCategory span {
     font-style: italic;
@@ -117,13 +120,16 @@
     background: var(--colorB);
 }
 .Task--sprint > .TaskCategory {
-    background: black;
+    background: var(--primaryColor);
+}
+.Task--reg > .TaskCategory {
+    background: var(--colorC);
 }
 .TaskDescription {
     padding: .5em;
     width: 100%;
-    border-left:1px solid black;
-    border-right:1px solid black;
+    border-left:2px solid black;
+    border-right:2px solid black;
 
 
 }
@@ -131,9 +137,9 @@
     width:100%;
     justify-content: space-between;
     flex-direction: column-reverse;
-    border-left:1px solid black;
-    border-right:1px solid black;
-    border-bottom:1px solid black;
+    border-left:2px solid black;
+    border-right:2px solid black;
+    border-bottom:2px solid black;
     /* padding: .5em; */
 }
 .TaskControls {
@@ -176,10 +182,14 @@
 /* Options */
 .Main__Options {
     height: 55vh;
-    width: 30%;
+    width: 600px;
     border-left: 1px solid rgba(0, 0, 0, 0.212);
     padding: 1em;
     gap: 2em;
+    background-color: var(--colorA);
+    transition: 1s;
+    position: relative;
+    margin-right: -615px;
 }
 .Main__Options__Option {
     align-items: flex-start;
@@ -199,15 +209,15 @@
     align-items: center;
     justify-content: center;
 }
-.Options__Option__Description::before {
-    content: '';
-    width: 5px;
-    height: 5px;
-    background-color: black;
-    border-radius: 50%;
+.Main__Options__Close--toggle {
     position: absolute;
-    left:-8px;
-    top:12px;
+    top:1em;
+    right:1em;
+    font-size: 25px;
+    opacity: .6;
+}
+.Main__Options__Close--toggle:hover {
+    opacity: 1;
 }
 
 
@@ -240,5 +250,70 @@
 
 /* Progress Circle */
 .ProgressCircle__Parent {
+}
+
+
+/* PopUp */
+
+.PopUp {
+    position: fixed;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    border: 3px solid var(--secondaryColor);
+    background: var(--primaryColor);
+    height: 500px;
+    width: 500px;
+    top:5em;
+    z-index: 1;
+    transition: .3s;
+}
+.PopUp.CreateTask {
+    width: max-content;
+    height: max-content;
+    align-items: flex-start;
+    gap:2em;
+    padding: 3em;
+}
+.PopUp--CreateTask__Description {
+    background: transparent;
+    width: 450px;
+    height: 200px;
+    padding: .5em;
+}
+.PopUp--CreateTask__DueDate {
+    gap:1em;
+    border: 2px solid var(--secondaryColor);
+    padding: .5em;
+}
+.PopUp--CreateTask__DateTitle {
+    font-size: 22px;
+}
+.PopUp--CreateTask__DateInput {
+    border: none;
+    outline: none;
+    border: 1px solid var(--secondaryColor);
+    color: var(--primaryColor);
+    padding: .2em;
+
+}
+.PopUp--CreateTask__Buttons{
+    gap:15px;
+}
+.PopUp--CreateTask__Button {
+    all:initial;
+    font-family: inherit;
+    text-align: center;
+    border: none;
+    outline: none;
+    color: var(--primaryColor);
+    background: var(--secondaryColor);
+    padding: .5em 0em;
+    width: 100px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
 }
 

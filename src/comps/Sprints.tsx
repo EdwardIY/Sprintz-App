@@ -6,8 +6,8 @@ export default function Sprints() {
   
     return (
         <div className="Container--row Sprints">
-          <span className="Sprints__Add Container--col">Create Sprint <br /> <Icon.PlusCircleFill/> </span>
-            {/* <div className="Sprints__Sprint Container--col">
+          {/* <span className="Sprints__Add Container--col">Create Sprint <br /> <Icon.PlusCircleFill/> </span> */}
+            <div className="Sprints__Sprint Container--col">
                 <h2 className="Sprints__Sprint__Title">Medium LeetCode Problems</h2>
                 <ProgressCircle
                     value={30}
@@ -45,7 +45,7 @@ export default function Sprints() {
                     fontSize={24}
                 />
                 <span className="Sprints__Sprint__TimeRemaining">3 day(s) left</span>
-            </div> */}
+            </div>
       </div>
     )
   }

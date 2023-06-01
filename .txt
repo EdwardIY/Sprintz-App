@@ -4,4 +4,10 @@ the new date weekday at days?
 - time remaing feature on cards
 - on create task/group/sprint popup you should have the ability to search for past sprints/tasks/groups
 - taks from sprints dont negatively affect your rating utill the sprint duration is over unlike regular tasks
-- 
+
+- convert the given days and hours into miliseconds add add to new Date(new Date().getTime() + value)
+this will give you a date string that is in the future when the task will be due
+from this date string get the time from it with .toLocalTimeString() and get the day/mounth/year
+from it with .toLocalDateString(). These to values will be th due value of each task. Inorder to check if it is due
+you wil get the current .toLocalDateString() and .toLocalTimeString() and compare it to 
+the two on the object if it matches that means it is due and up.
