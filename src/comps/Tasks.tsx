@@ -34,7 +34,7 @@ export default function Tasks({tasks,setTasks,full,setFull}:Task_Intputs) {
                         </div>}
         {tasks.length && <Icon.ChevronLeft onClick={() => setFull(!full)} style={{ opacity: full ? '1' : '0', pointerEvents: full ? 'initial' : 'none' }} className='Main__Options__Close--toggle' />}
         {tasks.length && tasks.map((task) => {
-                            return <div key={task.id} className={`Task Container--col ${task.category ? 'Task--' + task.category.type : '' } `}>
+                            return <div key={task.id} className={`Task Container--col ${task.category ? 'Task--' + task.category.type : 'Task--reg' } `}>
                                       <span className="TaskCategory">{task.category ? 'From ' + task.category.type  + ' "' + task.category.name + '"' : ''  }</span>
                                       <span className="TaskDescription">{task.description}</span>
                                       <div className="Container--col TaskInfo">

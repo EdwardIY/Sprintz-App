@@ -1,33 +1,13 @@
 import { useState,useEffect } from 'react';
-const days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-];
-const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-  ];
+
+
 
 interface TimeDetails {
     time: string,
-    date: string
-  }
-export default function Time() {
+    date: string,
+}
+  
+export default function Time({DateCollection} : any) {
     const [details, setDetails] = useState<TimeDetails>();
 
     useEffect(() => {
@@ -45,8 +25,8 @@ export default function Time() {
             }).join(' ')
         
         let datestring = '';
-        datestring += days[new Date().getDay()] + ' ';
-        datestring += months[new Date().getMonth()] + ' ';
+        datestring += DateCollection.days[new Date().getDay()] + ' ';
+        datestring += DateCollection.months[new Date().getMonth()] + ' ';
         datestring += new Date().getDate() + ', ';
         datestring += new Date().getFullYear();
 

@@ -8,12 +8,31 @@ import Options  from './comps/Options';
 import Tasks from './comps/Tasks';
 import CreateTask from './comps/PopUps/CreateTask';
 
-interface Task {
-  id: Number,
-  description: String,
-  category?: Object,
-  due:Object
 
+const DateCollection = {
+  days: [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+],
+months: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ]
  }
 
 export default function App() {
@@ -28,7 +47,7 @@ export default function App() {
       },
       due: {
         date: "2023-06-02",
-        dateString: "Thursday June 1, 2023"
+        dateString: "June 1, 2023"
       }
     },
     {
@@ -40,7 +59,7 @@ export default function App() {
       },
       due: {
         date: "2023-10-02",
-        dateString: "Thursday June 10, 2023"
+        dateString: "June 10, 2023"
       }
     },
   ])
@@ -51,13 +70,16 @@ export default function App() {
 
   return (
     <div className="App">
-      <CreateTask viewCreateTask={viewCreateTask} setViewCreateTask={setViewCreateTask} />
+      {/* PopUps */}
+      <CreateTask viewCreateTask={viewCreateTask} setViewCreateTask={setViewCreateTask} tasks={tasks} setTasks={setTasks} DateCollection={DateCollection} />
       <Welcome />
+
+      {/* Layout */}
       <Navbar setViewCreateTask={setViewCreateTask } />
 
       <div className="Container--row Header">
           <Agenda/>
-          <Time />
+          <Time DateCollection={DateCollection} />
       </div>
 
         <div className="Container--row Main">
