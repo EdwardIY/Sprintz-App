@@ -11,3 +11,6 @@ from this date string get the time from it with .toLocalTimeString() and get the
 from it with .toLocalDateString(). These to values will be th due value of each task. Inorder to check if it is due
 you wil get the current .toLocalDateString() and .toLocalTimeString() and compare it to 
 the two on the object if it matches that means it is due and up.
+
+- alot of simlarities with the css and jsx of the popUps
+maybe make it a little more modular and have less repeated code

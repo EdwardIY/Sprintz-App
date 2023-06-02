@@ -264,18 +264,17 @@
     text-align: center;
     border: 3px solid var(--secondaryColor);
     background: var(--primaryColor);
-    height: 500px;
-    width: 500px;
-    top:5em;
-    z-index: 1;
-    transition: .3s;
-}
-.PopUp.CreateTask {
     width: max-content;
     height: max-content;
     align-items: flex-start;
     gap:2em;
     padding: 3em;
+    top:5em;
+    z-index: 1;
+    transition: .3s;
+}
+.PopUp.CreateTask {
+
 }
 .PopUp--CreateTask__Description {
     background: transparent;
@@ -303,6 +302,35 @@
     gap:15px;
 }
 .PopUp--CreateTask__Button {
+    all:initial;
+    font-family: inherit;
+    text-align: center;
+    border: none;
+    outline: none;
+    color: var(--primaryColor);
+    background: var(--secondaryColor);
+    padding: .5em 0em;
+    width: 100px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+.PopUp.DeleteTask {}
+.PopUp--DeleteTask__Title{}
+.PopUp--DeleteTask__Description{
+    width: 400px;
+    padding: 1em;
+    background: var(--colorC);
+    background-blend-mode: overlay;
+    text-align: start;
+    border-radius: 10px;
+}
+.PopUp--DeleteTask__Buttons{
+    gap:15px;
+}
+.PopUp--DeleteTask__Button {
     all:initial;
     font-family: inherit;
     text-align: center;

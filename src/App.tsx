@@ -7,6 +7,7 @@ import Sprints  from './comps/Sprints';
 import Options  from './comps/Options';
 import Tasks from './comps/Tasks';
 import CreateTask from './comps/PopUps/CreateTask';
+import DeleteTask from './comps/PopUps/DeleteTask';
 
 
 const DateCollection = {
@@ -37,40 +38,18 @@ months: [
 
 export default function App() {
   const [full, setFull] = useState(false);
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      description: 'Workout at 10am',
-      category: {
-        type: 'group',
-        name: 'Health'
-      },
-      due: {
-        date: "2023-06-02",
-        dateString: "June 1, 2023"
-      }
-    },
-    {
-      id: 2,
-      description: 'Clean at 10am',
-      category: {
-        type: 'sprint',
-        name: 'Hygeine'
-      },
-      due: {
-        date: "2023-10-02",
-        dateString: "June 10, 2023"
-      }
-    },
-  ])
+  const [taskID, setTaskID] = useState(null);
+  const [tasks, setTasks] = useState([])
   const [viewCreateTask,setViewCreateTask] = useState(false)
   const [viewCreateGroup,setViewCreateGroup] = useState(false)
   const [viewCreateSprint,setViewCreateSprint] = useState(false)
-  const [viewConfirm,setViewConfirm] = useState(false)
+  const [viewConfirm, setViewConfirm] = useState(false)
+  const [viewDeleteTask, setViewDeleteTask] = useState(true)
 
   return (
     <div className="App">
       {/* PopUps */}
+      <DeleteTask taskID={taskID} setTaskID={setTaskID} tasks={tasks} setTasks={setTasks} viewDeleteTask={viewDeleteTask} setViewDeleteTask={setViewDeleteTask} />
       <CreateTask viewCreateTask={viewCreateTask} setViewCreateTask={setViewCreateTask} tasks={tasks} setTasks={setTasks} DateCollection={DateCollection} />
       <Welcome />
 
@@ -83,7 +62,7 @@ export default function App() {
       </div>
 
         <div className="Container--row Main">
-        <Tasks tasks={tasks} setTasks={setTasks} full={full } setFull={setFull} />
+        <Tasks tasks={tasks} setTasks={setTasks} setTaskID={setTaskID} setViewDeleteTask={setViewDeleteTask} setViewCreateTask={setViewCreateTask} full={full } setFull={setFull} />
         < Options setViewCreateTask={setViewCreateTask} full={full } setFull={setFull}/>
         </div>
 
