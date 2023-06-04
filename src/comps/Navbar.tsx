@@ -3,9 +3,10 @@ import { useState, useRef } from 'react';
 import { ProgressCircle } from './ProgressCircle';
 
 interface NavBar__Inputs {
-  setViewCreateTask:Function
+  taskPopUpState:any
+  setTaskPopUpState:Function
 }
-export default function Navbar({setViewCreateTask}:NavBar__Inputs) {
+export default function Navbar({ setTaskPopUpState, taskPopUpState}:NavBar__Inputs) {
     const [active, setActive] = useState<boolean>(false);
   
 
@@ -27,7 +28,7 @@ export default function Navbar({setViewCreateTask}:NavBar__Inputs) {
             note='Sprintz Rating'
             fontSize={24}
           />  
-        <li onClick={()=> setViewCreateTask(true)} className="Navbar__Item Navbar__AddTask ">
+        <li onClick={()=>  setTaskPopUpState({...taskPopUpState, viewCreateTask: true})} className="Navbar__Item Navbar__AddTask ">
           <Icon.CardText/>
           <span>Create Task</span>
         </li>

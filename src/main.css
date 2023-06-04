@@ -273,75 +273,52 @@
     z-index: 1;
     transition: .3s;
 }
-.PopUp.CreateTask {
-
-}
-.PopUp--CreateTask__Description {
+.PopUp__TextArea {
     background: transparent;
     width: 450px;
     height: 200px;
     padding: .5em;
 }
-.PopUp--CreateTask__DueDate {
+.PopUp__Buttons{
+    gap:15px;
+}
+.PopUp__Button {
+    font-family: inherit;
+    text-align: center;
+    border: none;
+    outline: none;
+    color: var(--primaryColor);
+    background: var(--secondaryColor);
+    padding: .5em 0em;
+    width: 100px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+}
+.PopUp__DueDate {
     gap:1em;
     border: 2px solid var(--secondaryColor);
     padding: .5em;
 }
-.PopUp--CreateTask__DateTitle {
+.PopUp__DateTitle {
     font-size: 22px;
 }
-.PopUp--CreateTask__DateInput {
+.PopUp__DateInput {
     border: none;
     outline: none;
     border: 1px solid var(--secondaryColor);
     color: var(--primaryColor);
     padding: .2em;
-
-}
-.PopUp--CreateTask__Buttons{
-    gap:15px;
-}
-.PopUp--CreateTask__Button {
-    all:initial;
-    font-family: inherit;
-    text-align: center;
-    border: none;
-    outline: none;
-    color: var(--primaryColor);
-    background: var(--secondaryColor);
-    padding: .5em 0em;
-    width: 100px;
-    font-weight: 600;
-    font-size: 16px;
-    cursor: pointer;
 }
 
-
-.PopUp.DeleteTask {}
-.PopUp--DeleteTask__Title{}
-.PopUp--DeleteTask__Description{
-    width: 400px;
-    padding: 1em;
+.PopUp--DeleteTask__Description,
+.PopUp--CompletedTask__Description{
     background: var(--colorC);
-    background-blend-mode: overlay;
+    width: 400px;
+    padding: .5em;
+    border-radius: 5px;
     text-align: start;
-    border-radius: 10px;
 }
-.PopUp--DeleteTask__Buttons{
-    gap:15px;
-}
-.PopUp--DeleteTask__Button {
-    all:initial;
-    font-family: inherit;
-    text-align: center;
-    border: none;
-    outline: none;
-    color: var(--primaryColor);
-    background: var(--secondaryColor);
-    padding: .5em 0em;
-    width: 100px;
-    font-weight: 600;
-    font-size: 16px;
-    cursor: pointer;
-}
+
+
 

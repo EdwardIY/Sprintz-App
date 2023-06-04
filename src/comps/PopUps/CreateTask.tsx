@@ -1,12 +1,22 @@
 import {useRef} from 'react'
 
 interface CreateTask_Inputs {
-    viewCreateTask: Boolean,
-    setViewCreateTask: Function
-    tasks:(any)[]
-    setTasks: Function
+    setTaskID: Function
+    tasksToday:(any)[]
+    setTasksToday: Function
+    taskPopUpState: any,
+    setTaskPopUpState: Function
+    createDueDateObject: Function
+    validateDate: Function
     DateCollection:any
 }
+// setTaskID={setTaskID}
+// tasksToday={tasksToday}
+// setTasksTodayToday={setTasksTodayToday}
+// taskPopUpState={taskPopUpState}
+// setTaskPopUpState={setTaskPopUpState}
+// createDueDateObject={createDueDateObject}
+// DateCollection={DateCollection} /> 
 
 interface Task_Interface {
     id: number
@@ -21,59 +31,58 @@ interface Task_Interface {
     }
   
   }
-export default function CreateTask({ viewCreateTask, setViewCreateTask,tasks, setTasks,DateCollection }: CreateTask_Inputs) {
+export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasksToday, setTasksToday,setTaskID, createDueDateObject,validateDate,DateCollection }: CreateTask_Inputs) {
     const descriptionValue = useRef<HTMLTextAreaElement>(null);
     const dueDateValue = useRef<HTMLInputElement>(null);
     
     function handleAdd(e:any) {
-        e.preventDefault();
-        if (descriptionValue.current && dueDateValue.current) {
-            let task: Task_Interface = {
-                id: NaN,
-                description: '',
-                due: {
-                  date: '',
-                  dateString:''
-                }
-                
+      e.preventDefault();
+      if (descriptionValue.current && dueDateValue.current) {
+        console.log(dueDateValue.current.value)
+        console.log( new Date(dueDateValue.current.value))
+        console.log(  new Date())
+
+        if (validateDate(dueDateValue.current.value)) {
+          let task: Task_Interface = {
+            id: NaN,
+            description: '',
+            due: {
+              date: '',
+              dateString:''
             }
+      }
+         let dueObject = createDueDateObject(dueDateValue.current.value)
 
-            let dateDraft:string[] | number[]  | string = dueDateValue.current.value.split('-');
-            [dateDraft[0], dateDraft[2]] = [dateDraft[2], dateDraft[0]];
-            [dateDraft[0], dateDraft[1]] = [dateDraft[1], dateDraft[0]];
-            dateDraft = dateDraft.map((x)=> +x)
-            dateDraft = dateDraft.join('/');
-            let dateStringDraft = `${DateCollection.months[+(dateDraft.split('/')[0]) - 1]} ${dateDraft.split('/')[1]}, ${dateDraft.split('/')[2]}`;
+        task.id = Math.round(Math.random() * 10000);
+        task.description = descriptionValue.current.value;
+        task.due.date = dueObject.dateDraft;
+        task.due.dateString = dueObject.dateStringDraft;
 
-            task.id = Math.round(Math.random() * 10000);
-            task.description = descriptionValue.current.value;
-            task.due.date = dateDraft;
-            task.due.dateString = dateStringDraft
-            setTasks([...tasks,task])
-            setViewCreateTask(false)
-        }
-        
-
-
-
-        }
-        
-
-    
-    function handleCancel() {
-        setViewCreateTask(false)
+        setTasksToday([...tasksToday,task])
+        setTaskPopUpState({...taskPopUpState, viewCreateTask: false})
     }
+         }
+        else {}
+
+        
+        }
+         
+    function handleCancel() {
+        console.log('canceled')
+        setTaskPopUpState({...taskPopUpState, viewCreateTask: false})
+        setTaskID(null)
+      }
     return <form onSubmit={handleAdd} style={{
-        opacity: viewCreateTask ? '1' : '0', pointerEvents: viewCreateTask ? 'initial' : 'none'}} className="PopUp CreateTask Container--col">
-        <h2 className="PopUp--CreateTask__Title">Create Task</h2>
-        <textarea ref={descriptionValue} required placeholder="Description" className="PopUp--CreateTask__Description"></textarea>
-        <div className="PopUp--CreateTask__DueDate Container--row">
-        <span className="PopUp--CreateTask__DateTitle">Add Due Date:</span>
-        <input ref={dueDateValue} required className="PopUp--CreateTask__DateInput" type="date" />
+        opacity: taskPopUpState.viewCreateTask ? '1' : '0', pointerEvents: taskPopUpState.viewCreateTask ? 'initial' : 'none'}} className="PopUp CreateTask Container--col">
+        <h2 className="">Create Task</h2>
+        <textarea ref={descriptionValue} required placeholder="Description" className="PopUp__TextArea"></textarea>
+        <div className="PopUp__DueDate Container--row">
+        <span className="PopUp__DateTitle">Add Due Date:</span>
+        <input ref={dueDateValue} required className="PopUp__DateInput" type="date" />
         </div>
-        <div className="PopUp--CreateTask__Buttons Container--row">
-        <button className="PopUp--CreateTask__Button">ADD</button>
-        <div onClick={handleCancel} className="PopUp--CreateTask__Button">CANCEL</div>
+        <div className="PopUp__Buttons Container--row">
+        <button className="PopUp__Button">ADD</button>
+        <div onClick={()=> handleCancel()} className="PopUp__Button">CANCEL</div>
         </div>
 
     </form>

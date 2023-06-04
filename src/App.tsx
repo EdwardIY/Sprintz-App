@@ -8,6 +8,8 @@ import Options  from './comps/Options';
 import Tasks from './comps/Tasks';
 import CreateTask from './comps/PopUps/CreateTask';
 import DeleteTask from './comps/PopUps/DeleteTask';
+import EditTask from './comps/PopUps/EditTask';
+import CompletedTask from './comps/PopUps/CompletedTask';
 
 
 const DateCollection = {
@@ -39,31 +41,90 @@ months: [
 export default function App() {
   const [full, setFull] = useState(false);
   const [taskID, setTaskID] = useState(null);
-  const [tasks, setTasks] = useState([])
-  const [viewCreateTask,setViewCreateTask] = useState(false)
+  const [tasksToday, setTasksToday] = useState([])
+  const [taskPopUpState, setTaskPopUpState] = useState({
+    viewCreateTask: false,
+    viewDeleteTask: false,
+    viewEditTask: false,
+    viewCompletedTask: true
+  })
   const [viewCreateGroup,setViewCreateGroup] = useState(false)
   const [viewCreateSprint,setViewCreateSprint] = useState(false)
   const [viewConfirm, setViewConfirm] = useState(false)
-  const [viewDeleteTask, setViewDeleteTask] = useState(true)
+  // const [viewCreateTask,setViewCreateTask] = useState(false)
+  // const [viewDeleteTask, setViewDeleteTask] = useState(false)
+  // const [viewEditTask, setViewEditTask] = useState(false)
+  // const [viewCompletedTask, setViewCompletedTask] = useState(false)
 
   return (
     <div className="App">
       {/* PopUps */}
-      <DeleteTask taskID={taskID} setTaskID={setTaskID} tasks={tasks} setTasks={setTasks} viewDeleteTask={viewDeleteTask} setViewDeleteTask={setViewDeleteTask} />
-      <CreateTask viewCreateTask={viewCreateTask} setViewCreateTask={setViewCreateTask} tasks={tasks} setTasks={setTasks} DateCollection={DateCollection} />
+      <CreateTask
+        setTaskID={setTaskID}
+        tasksToday={tasksToday}
+        setTasksToday={setTasksToday}
+        taskPopUpState={taskPopUpState}
+        setTaskPopUpState={setTaskPopUpState}
+        createDueDateObject={createDueDateObject}
+        DateCollection={DateCollection}
+        validateDate={validateDate} /> 
+      
+      <EditTask
+        taskID={taskID}
+        setTaskID={setTaskID}
+        tasksToday={tasksToday}
+        setTasksToday={setTasksToday}
+        taskPopUpState={taskPopUpState}
+        setTaskPopUpState={setTaskPopUpState}
+        createDueDateObject={createDueDateObject}
+        validateDate={validateDate} /> 
+        
+      
+      <DeleteTask
+        taskID={taskID}
+        setTaskID={setTaskID}
+        tasksToday={tasksToday}
+        setTasksToday={setTasksToday}
+        taskPopUpState={taskPopUpState}
+        setTaskPopUpState={setTaskPopUpState} />
+      
+      <CompletedTask
+        taskID={taskID}
+        setTaskID={setTaskID}
+        tasksToday={tasksToday}
+        setTasksToday={setTasksToday}
+        taskPopUpState={taskPopUpState}
+        setTaskPopUpState={setTaskPopUpState} />
+      
+      
+      
       <Welcome />
 
       {/* Layout */}
-      <Navbar setViewCreateTask={setViewCreateTask } />
+      <Navbar
+        taskPopUpState={taskPopUpState}
+        setTaskPopUpState={setTaskPopUpState} />
 
       <div className="Container--row Header">
-          <Agenda/>
-          <Time DateCollection={DateCollection} />
+        <Agenda/>
+        <Time
+          DateCollection={DateCollection} />
       </div>
 
         <div className="Container--row Main">
-        <Tasks tasks={tasks} setTasks={setTasks} setTaskID={setTaskID} setViewDeleteTask={setViewDeleteTask} setViewCreateTask={setViewCreateTask} full={full } setFull={setFull} />
-        < Options setViewCreateTask={setViewCreateTask} full={full } setFull={setFull}/>
+        <Tasks
+          tasksToday={tasksToday}
+          setTaskID={setTaskID}
+          taskPopUpState={taskPopUpState}
+          setTaskPopUpState={setTaskPopUpState}
+          full={full}
+          setFull={setFull} />
+
+        < Options
+          taskPopUpState={taskPopUpState }
+          setTaskPopUpState={setTaskPopUpState}
+          full={full}
+          setFull={setFull} />
         </div>
 
       <Sprints />
@@ -79,6 +140,20 @@ function Welcome() {
      
     </div>
   )
+}
+
+function createDueDateObject(dueDateValue:any) {
+  let dateDraft:any = dueDateValue.split('-');
+  [dateDraft[0], dateDraft[2]] = [dateDraft[2], dateDraft[0]];
+  [dateDraft[0], dateDraft[1]] = [dateDraft[1], dateDraft[0]];
+  dateDraft = dateDraft.map((x:any)=> +x)
+  dateDraft = dateDraft.join('/');
+  let dateStringDraft = `${DateCollection.months[+(dateDraft.split('/')[0]) - 1]} ${dateDraft.split('/')[1]}, ${dateDraft.split('/')[2]}`;
+
+  return {dateDraft,dateStringDraft}
+}
+function validateDate(dueDateValue:any) {
+  return new Date(dueDateValue) >= new Date()
 }
 
 
