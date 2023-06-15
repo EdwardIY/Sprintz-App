@@ -6,10 +6,11 @@ import Time from './comps/Time';
 import Sprints  from './comps/Sprints';
 import Options  from './comps/Options';
 import Tasks from './comps/Tasks';
-import CreateTask from './comps/PopUps/CreateTask';
-import DeleteTask from './comps/PopUps/DeleteTask';
-import EditTask from './comps/PopUps/EditTask';
-import CompletedTask from './comps/PopUps/CompletedTask';
+import CreateTask from './comps/PopUps/Tasks/CreateTask';
+import DeleteTask from './comps/PopUps/Tasks/DeleteTask';
+import EditTask from './comps/PopUps/Tasks/EditTask';
+import CompletedTask from './comps/PopUps/Tasks/CompletedTask';
+import CreateGroup from './comps/PopUps/Groups/CreateGroup';
 
 
 const DateCollection = {
@@ -46,15 +47,18 @@ export default function App() {
     viewCreateTask: false,
     viewDeleteTask: false,
     viewEditTask: false,
-    viewCompletedTask: true
+    viewCompletedTask: false
+  })
+  const [groupPopUpState, setGroupPopUpState] = useState({
+    viewCreateGroup: false,
+    viewDeleteGroup: false,
+    viewEditGroup: false,
+    viewCompletedGroup: false
   })
   const [viewCreateGroup,setViewCreateGroup] = useState(false)
   const [viewCreateSprint,setViewCreateSprint] = useState(false)
   const [viewConfirm, setViewConfirm] = useState(false)
-  // const [viewCreateTask,setViewCreateTask] = useState(false)
-  // const [viewDeleteTask, setViewDeleteTask] = useState(false)
-  // const [viewEditTask, setViewEditTask] = useState(false)
-  // const [viewCompletedTask, setViewCompletedTask] = useState(false)
+
 
   return (
     <div className="App">
@@ -96,6 +100,10 @@ export default function App() {
         taskPopUpState={taskPopUpState}
         setTaskPopUpState={setTaskPopUpState} />
       
+      <CreateGroup
+        groupPopUpState={groupPopUpState}
+        setGroupPopUpState={setGroupPopUpState} />
+      
       
       
       <Welcome />
@@ -103,7 +111,9 @@ export default function App() {
       {/* Layout */}
       <Navbar
         taskPopUpState={taskPopUpState}
-        setTaskPopUpState={setTaskPopUpState} />
+        setTaskPopUpState={setTaskPopUpState}
+        groupPopUpState={groupPopUpState}
+        setGroupPopUpState={setGroupPopUpState}/>
 
       <div className="Container--row Header">
         <Agenda/>
@@ -117,12 +127,16 @@ export default function App() {
           setTaskID={setTaskID}
           taskPopUpState={taskPopUpState}
           setTaskPopUpState={setTaskPopUpState}
+          groupPopUpState={groupPopUpState}
+          setGroupPopUpState={setGroupPopUpState}
           full={full}
           setFull={setFull} />
 
         < Options
           taskPopUpState={taskPopUpState }
           setTaskPopUpState={setTaskPopUpState}
+          groupPopUpState={groupPopUpState}
+          setGroupPopUpState={setGroupPopUpState}
           full={full}
           setFull={setFull} />
         </div>
@@ -152,8 +166,16 @@ function createDueDateObject(dueDateValue:any) {
 
   return {dateDraft,dateStringDraft}
 }
-function validateDate(dueDateValue:any) {
-  return new Date(dueDateValue) >= new Date()
+function validateDate(dueDateValue: any) {
+  let string = dueDateValue.split('-').map((num:string,i:number) => {
+    if (i == 2)
+      return +num + 1;
+    return +num
+  }).join('-')
+  console.log(string)
+  console.log(new Date(string))
+  console.log(new Date())
+  return new Date(string) >= new Date()
 }
 
 

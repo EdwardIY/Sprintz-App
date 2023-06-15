@@ -4,9 +4,11 @@ import { ProgressCircle } from './ProgressCircle';
 
 interface NavBar__Inputs {
   taskPopUpState:any
-  setTaskPopUpState:Function
+  setTaskPopUpState: Function
+  groupPopUpState:any
+  setGroupPopUpState: Function
 }
-export default function Navbar({ setTaskPopUpState, taskPopUpState}:NavBar__Inputs) {
+export default function Navbar({ setTaskPopUpState, taskPopUpState,groupPopUpState,setGroupPopUpState}:NavBar__Inputs) {
     const [active, setActive] = useState<boolean>(false);
   
 
@@ -33,7 +35,7 @@ export default function Navbar({ setTaskPopUpState, taskPopUpState}:NavBar__Inpu
           <span>Create Task</span>
         </li>
   
-        <li className="Navbar__Item Navbar__AddGroup ">
+        <li onClick={()=> setGroupPopUpState({...groupPopUpState, viewCreateGroup: true})} className="Navbar__Item Navbar__AddGroup ">
           <Icon.CardChecklist />
           <span>Create Group</span>
         </li>

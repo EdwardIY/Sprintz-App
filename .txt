@@ -14,3 +14,9 @@ the two on the object if it matches that means it is due and up.
 
 - alot of simlarities with the css and jsx of the popUps
 maybe make it a little more modular and have less repeated code
+
+- remove due options on tasks and reserve it for sprint
+ - tasksgroupsprint all have due date the diff is that group can hold multiple tasks and 
+ sprint can hold multiple groups but task can only hold one task
+
+ - add id to each task and add delete icon to task

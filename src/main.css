@@ -272,6 +272,7 @@
     top:5em;
     z-index: 1;
     transition: .3s;
+    /* opacity: 1 !important; */
 }
 .PopUp__TextArea {
     background: transparent;
@@ -310,15 +311,59 @@
     color: var(--primaryColor);
     padding: .2em;
 }
-
 .PopUp--DeleteTask__Description,
-.PopUp--CompletedTask__Description{
+.PopUp--CompletedTask__Description {
     background: var(--colorC);
     width: 400px;
     padding: .5em;
     border-radius: 5px;
     text-align: start;
 }
+.PopUp .AddTaskContainer--group{
+    gap: 1em;
+    align-items: flex-start;
+}
+
+.AddTaskContainer--group__Add {
+    gap: 1em;
+}
+.TaskList--group__Title {
+    background-color: transparent;
+    outline: transparent;
+    padding: 10px 5px;
+    /* border: 1px solid var(--secondaryColor); */
+    width: 90%;
+    /* margin-top: 40px; */
+    font-size: 20px;
+    font-style: italic;
+    align-self: flex-start;
+}
+.TaskList--group {
+    align-self: stretch;
+    gap:1em;
+}
+.TaskList--group__List {
+    height: 300px;
+    list-style-type:circle;
+    width: 400px;
+    border: 2px solid var(--secondaryColor);
+    text-align: start;
+    padding: 2em;
+    position: relative;
+    margin-top: 40px;
+}
+.TaskList--group__List__Message {
+    position: absolute;
+    left:0;
+    top:40%;
+    margin: auto;
+    font-size: 25px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    opacity: .6;
+}
+
 
 
 

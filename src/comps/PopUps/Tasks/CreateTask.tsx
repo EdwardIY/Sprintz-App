@@ -38,9 +38,9 @@ export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasksToda
     function handleAdd(e:any) {
       e.preventDefault();
       if (descriptionValue.current && dueDateValue.current) {
-        console.log(dueDateValue.current.value)
-        console.log( new Date(dueDateValue.current.value))
-        console.log(  new Date())
+        // console.log(dueDateValue.current.value)
+        // console.log( new Date(dueDateValue.current.value))
+        // console.log(  new Date())
 
         if (validateDate(dueDateValue.current.value)) {
           let task: Task_Interface = {
