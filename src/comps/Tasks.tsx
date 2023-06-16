@@ -46,7 +46,7 @@ export default function Tasks({ tasksToday,setTaskID,taskPopUpState,setTaskPopUp
         <Icon.ChevronLeft onClick={() => setFull(!full)} style={{ display: full ? 'initial' : 'none' }} className='Main__Options__Close--toggle' />
         {tasksToday.length > 0 && tasksToday.map((task:any) => {
                             return <div key={task.id} className={`Task Container--col ${task.category ? 'Task--' + task.category.type : 'Task--reg' } `}>
-                                      <span className="TaskCategory">{task.category ? 'From ' + task.category.type  + ' "' + task.category.name + '"' : ''  }</span>
+                                      <span className="TaskCategory">{task.category ? 'From ' + task.category.type  + ' "' + task.category.title + '"' : ''  }</span>
                                       <span className="TaskDescription">{task.description}</span>
                                       <div className="Container--col TaskInfo">
                                         <span className="TaskControls Container--row">

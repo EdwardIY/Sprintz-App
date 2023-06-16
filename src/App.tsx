@@ -55,7 +55,6 @@ export default function App() {
     viewEditGroup: false,
     viewCompletedGroup: false
   })
-  const [viewCreateGroup,setViewCreateGroup] = useState(false)
   const [viewCreateSprint,setViewCreateSprint] = useState(false)
   const [viewConfirm, setViewConfirm] = useState(false)
 
@@ -101,8 +100,12 @@ export default function App() {
         setTaskPopUpState={setTaskPopUpState} />
       
       <CreateGroup
+        tasksToday={tasksToday}
+        setTasksToday={setTasksToday}
         groupPopUpState={groupPopUpState}
-        setGroupPopUpState={setGroupPopUpState} />
+        setGroupPopUpState={setGroupPopUpState}
+        createDueDateObject={createDueDateObject}
+        validateDate={validateDate}/>
       
       
       
@@ -172,9 +175,6 @@ function validateDate(dueDateValue: any) {
       return +num + 1;
     return +num
   }).join('-')
-  console.log(string)
-  console.log(new Date(string))
-  console.log(new Date())
   return new Date(string) >= new Date()
 }
 

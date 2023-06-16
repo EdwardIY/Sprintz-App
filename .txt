@@ -15,8 +15,13 @@ the two on the object if it matches that means it is due and up.
 - alot of simlarities with the css and jsx of the popUps
 maybe make it a little more modular and have less repeated code
 
-- remove due options on tasks and reserve it for sprint
  - tasksgroupsprint all have due date the diff is that group can hold multiple tasks and 
  sprint can hold multiple groups but task can only hold one task
 
  - add id to each task and add delete icon to task
+ - need to have a feature where when a group is created a unique card pops up
+    but has the same features as a regular task card. Need to add a unique id to each group
+- Need to review and update CSS/folder stucture and components. Alot of the comps can
+be resused like the basic title des and two buttons. Also need to make the edit/complete/delete
+task componets resusable so I can use them for group and sprint
+ 

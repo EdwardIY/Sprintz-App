@@ -351,18 +351,52 @@
     padding: 2em;
     position: relative;
     margin-top: 40px;
+    overflow-y: scroll;
+}
+.TaskList--group__List__Item {
+    position: relative;
+    justify-content: flex-start;
+    background-color: var(--colorC);
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    /* gap:10px; */
+}
+.TaskList--group__List__Item .PopUp__Button {
+    display: inline;
+    padding: 1px 4px;
+    font-size: 13px;
+    border-radius: 10px;
+    margin-left: 5px;
+    /* font-weight: initial; */
 }
 .TaskList--group__List__Message {
     position: absolute;
     left:0;
-    top:40%;
+    top:0;
+    /* top:40%; */
     margin: auto;
     font-size: 25px;
     width: 100%;
     height: 100%;
     text-align: center;
     opacity: .6;
+    z-index: 1;
+    background-color: black;
+    pointer-events: none;
 }
+.CreateTitle {
+    padding: 5em;
+    gap:2em
+}
+.CreateTitle__Input {
+    padding:.5em;
+    width: 300px;
+    font-size: 18px;
+    font-style: italic;
+    background-color: transparent;
+}
+
 
 
 
