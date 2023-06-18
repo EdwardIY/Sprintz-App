@@ -1,4 +1,4 @@
-import { ProgressCircle } from "./ProgressCircle";
+import { ProgressCircle } from "../Util/ProgressCircle";
 import * as Icon from 'react-bootstrap-icons';
 
 

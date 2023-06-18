@@ -8,6 +8,19 @@ interface CreateGroup__Inputs {
     createDueDateObject:Function
     validateDate: Function
 }
+interface Group_Interface {
+    id: string
+    category?: {
+        type: string
+        title: string
+      }
+    tasksList: any[]
+    due: {
+        date: string
+        dateString: string
+    }
+    
+}
 
 
 export default function CreateGroup({tasksToday,setTasksToday,groupPopUpState, setGroupPopUpState,createDueDateObject,validateDate}: CreateGroup__Inputs) {
@@ -60,23 +73,20 @@ export default function CreateGroup({tasksToday,setTasksToday,groupPopUpState, s
             console.log(title.current.value)
             if (validateDate(dueDateValue.current.value)) {
                 const dueObject = createDueDateObject(dueDateValue.current.value)
-
-                tasks.forEach((task) => {
-                    console.log(task)
-                    const newTask = {
-                        id: task.id,
-                        description: task.value,
-                        category: {
-                            type: 'group',
-                            title: title.current ? title.current.value : ''
-                        },
+                const newGroup: Group_Interface =  {
+                    id: (Math.random() * 10000).toString(),
+                    category: {
+                        type: 'category',
+                        title: title.current.value
+                     },
+                        tasksList: tasks,
                         due: {
                             date: dueObject.dateDraft,
                             dateString: dueObject.dateStringDraft
                         }
-                    }
-                    setTasksToday([...tasksToday,newTask])
-                })
+                }
+                setTasksToday([...tasksToday,newGroup])
+
             }
             else {}
 
