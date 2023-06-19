@@ -1,6 +1,6 @@
 import * as Icon from 'react-bootstrap-icons';
 import { useState, useRef } from 'react';
-import { ProgressCircle } from '../Util/ProgressCircle';
+import { ProgressCircle } from '../comps/Util/ProgressCircle';
 
 interface NavBar__Inputs {
   taskPopUpState:any

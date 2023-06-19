@@ -25,4 +25,6 @@ maybe make it a little more modular and have less repeated code
 be resused like the basic title des and two buttons. Also need to make the edit/complete/delete
 task componets resusable so I can use them for group and sprint
 - Figure out the right way to do the popups/make group and task popups all resusable?
+
+- Need to create edit comp for group
  

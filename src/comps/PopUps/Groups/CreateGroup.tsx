@@ -14,7 +14,7 @@ interface Group_Interface {
         type: string
         title: string
       }
-    tasksList: any[]
+    list: any[]
     due: {
         date: string
         dateString: string
@@ -76,16 +76,21 @@ export default function CreateGroup({tasksToday,setTasksToday,groupPopUpState, s
                 const newGroup: Group_Interface =  {
                     id: (Math.random() * 10000).toString(),
                     category: {
-                        type: 'category',
+                        type: 'group',
                         title: title.current.value
                      },
-                        tasksList: tasks,
+                        list: tasks,
                         due: {
                             date: dueObject.dateDraft,
                             dateString: dueObject.dateStringDraft
                         }
                 }
-                setTasksToday([...tasksToday,newGroup])
+                setTasksToday([...tasksToday, newGroup])
+                setListDone(false);
+                setGroupPopUpState({ ...groupPopUpState, viewCreateGroup: false, })
+                dueDateValue.current.value = ''
+                setTasks([])
+
 
             }
             else {}

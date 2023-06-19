@@ -1,15 +1,15 @@
 import React from 'react';
 import {useState} from 'react'
-import Navbar from './comps/Layout/Navbar';
-import Agenda from './comps/Layout/Agenda';
-import Time from './comps/Layout/Time';
-import Sprints  from './comps/Layout/Sprints';
-import Options  from './comps/Layout/Options';
-import Tasks from './comps/Layout/Today';
+import Navbar from './Layout/Navbar';
+import Agenda from './Layout/Agenda';
+import Time from './Layout/Time';
+import Sprints  from './Layout/Sprints';
+import Options  from './Layout/Options';
+import Today from './Layout/Today';
 import CreateTask from './comps/PopUps/Tasks/CreateTask';
-import DeleteTask from './comps/PopUps/Tasks/DeleteTask';
+import Delete from './comps/PopUps/Delete';
+import Completed from './comps/PopUps/Completed';
 import EditTask from './comps/PopUps/Tasks/EditTask';
-import CompletedTask from './comps/PopUps/Tasks/CompletedTask';
 import CreateGroup from './comps/PopUps/Groups/CreateGroup';
 
 
@@ -41,29 +41,38 @@ months: [
 
 export default function App() {
   const [full, setFull] = useState(false);
-  const [taskID, setTaskID] = useState(null);
   const [tasksToday, setTasksToday] = useState([])
   const [taskPopUpState, setTaskPopUpState] = useState({
     viewCreateTask: false,
-    viewDeleteTask: false,
     viewEditTask: false,
-    viewCompletedTask: false
+    // viewDeleteTask: false,
+    // viewCompletedTask: false
   })
   const [groupPopUpState, setGroupPopUpState] = useState({
     viewCreateGroup: false,
-    viewDeleteGroup: false,
     viewEditGroup: false,
-    viewCompletedGroup: false
+    // viewDeleteGroup: false,
+    // viewCompletedGroup: false
   })
-  const [viewCreateSprint,setViewCreateSprint] = useState(false)
-  const [viewConfirm, setViewConfirm] = useState(false)
-
+  const [selectedItemState, setSelectedItemState] = useState<any>({
+    selectedItem: null,
+    viewCompleted: false,
+    viewDelete: false,
+    selectedCategoryList: null,
+    updateSelectedCategory:null
+  });
+  // const [updateSelectedCategory,setUpdateSelectedCategory] = useState<null|Function>(null)
+  // const [itemPopUpState, setItemPopUpState] = useState({
+  //   viewCompleted: false,
+  //   viewDelete: false
+  // })
 
   return (
     <div className="App">
       {/* PopUps */}
       <CreateTask
-        setTaskID={setTaskID}
+       selectedItemState={selectedItemState}
+       setSelectedItemState={setSelectedItemState}
         tasksToday={tasksToday}
         setTasksToday={setTasksToday}
         taskPopUpState={taskPopUpState}
@@ -73,8 +82,8 @@ export default function App() {
         validateDate={validateDate} /> 
       
       <EditTask
-        taskID={taskID}
-        setTaskID={setTaskID}
+        selectedItemState={selectedItemState}
+        setSelectedItemState={setSelectedItemState}
         tasksToday={tasksToday}
         setTasksToday={setTasksToday}
         taskPopUpState={taskPopUpState}
@@ -83,21 +92,6 @@ export default function App() {
         validateDate={validateDate} /> 
         
       
-      <DeleteTask
-        taskID={taskID}
-        setTaskID={setTaskID}
-        tasksToday={tasksToday}
-        setTasksToday={setTasksToday}
-        taskPopUpState={taskPopUpState}
-        setTaskPopUpState={setTaskPopUpState} />
-      
-      <CompletedTask
-        taskID={taskID}
-        setTaskID={setTaskID}
-        tasksToday={tasksToday}
-        setTasksToday={setTasksToday}
-        taskPopUpState={taskPopUpState}
-        setTaskPopUpState={setTaskPopUpState} />
       
       <CreateGroup
         tasksToday={tasksToday}
@@ -105,7 +99,20 @@ export default function App() {
         groupPopUpState={groupPopUpState}
         setGroupPopUpState={setGroupPopUpState}
         createDueDateObject={createDueDateObject}
-        validateDate={validateDate}/>
+        validateDate={validateDate} />
+      
+
+
+
+      <Delete
+        selectedItemState={selectedItemState}
+        setSelectedItemState={setSelectedItemState}
+      />
+      
+      <Completed
+       selectedItemState={selectedItemState}
+        setSelectedItemState={setSelectedItemState}
+      />
       
       
       
@@ -125,9 +132,11 @@ export default function App() {
       </div>
 
         <div className="Container--row Main">
-        <Tasks
+        <Today
           tasksToday={tasksToday}
-          setTaskID={setTaskID}
+          selectedItemState={selectedItemState}
+          setSelectedItemState={setSelectedItemState}
+          setTasksToday={setTasksToday}
           taskPopUpState={taskPopUpState}
           setTaskPopUpState={setTaskPopUpState}
           groupPopUpState={groupPopUpState}

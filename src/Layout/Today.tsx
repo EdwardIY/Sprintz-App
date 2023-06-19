@@ -1,8 +1,10 @@
 import * as Icon from 'react-bootstrap-icons';
 
 interface Task_Intputs {
+  selectedItemState:any
+  setSelectedItemState: Function
+  setTasksToday:Function
   tasksToday: (any)[],
-  setTaskID:Function
   taskPopUpState: any
   setTaskPopUpState: Function
   groupPopUpState:any
@@ -12,23 +14,38 @@ interface Task_Intputs {
 }
 
 
-export default function Tasks({ tasksToday,setTaskID,taskPopUpState,setTaskPopUpState,groupPopUpState,setGroupPopUpState, full, setFull }: Task_Intputs) {
+export default function Tasks({selectedItemState,setSelectedItemState,tasksToday,setTasksToday,taskPopUpState,setTaskPopUpState,groupPopUpState,setGroupPopUpState, full, setFull }: Task_Intputs) {
   
   
   function handleMountCreateTask() {
     setTaskPopUpState({...taskPopUpState, viewCreateTask:true});
   }
-  function handleMountDeleteTask(id: number) {
-    setTaskID(id);
-    setTaskPopUpState({...taskPopUpState, viewDeleteTask:true});
+  function handleMountDelete(type: string, task: any) {
+    if (type === 'group' || type === 'task') {
+      setSelectedItemState({
+        selectedItem: task,
+        viewCompleted: false,
+        viewDelete: true,
+        selectedCategoryList: tasksToday,
+        updateSelectedCategory: setTasksToday
+      })
+    }
+
   }
-  function handleMountEditTask(id: number) {
-    setTaskID(id);
+  function handleMountEdit(id: number) {
+    // setID(id);
     setTaskPopUpState({...taskPopUpState, viewEditTask:true});
   }
-  function handleMountCompletedTask(id: number) {
-    setTaskID(id);
-    setTaskPopUpState({...taskPopUpState, viewCompletedTask:true});
+  function handleMountCompleted(type: string, task: any) {
+    if (type === 'group' || type === 'task') {
+      setSelectedItemState({
+        selectedItem: task,
+        viewCompleted: true,
+        viewDelete: false,
+        selectedCategoryList: tasksToday,
+        updateSelectedCategory: setTasksToday
+      })
+    }
   }
 
   function handleMountCreateGroup() {
@@ -47,12 +64,12 @@ export default function Tasks({ tasksToday,setTaskID,taskPopUpState,setTaskPopUp
         {tasksToday.length > 0 && tasksToday.map((task:any) => {
                             return <div key={task.id} className={`Task Container--col ${task.category ? 'Task--' + task.category.type : 'Task--reg' } `}>
                                       <span className="TaskCategory">{task.category ? 'From ' + task.category.type  + ' "' + task.category.title + '"' : ''  }</span>
-                                      <span className="TaskDescription">{task.description}</span>
+                                      <span className="TaskDescription">{ task.category ? `This ${task.category.type} contains ${task.list.length} tasks ` : task.description}</span>
                                       <div className="Container--col TaskInfo">
                                         <span className="TaskControls Container--row">
-                                          <Icon.Pencil onClick={()=> handleMountEditTask(task.id)} />
-                                          <Icon.Check2 onClick={()=> handleMountCompletedTask(task.id)}/>
-                                          <Icon.XLg onClick={()=> handleMountDeleteTask(task.id)} />
+                                          <Icon.Pencil onClick={()=> handleMountEdit(task.id)} />
+                                          <Icon.Check2 onClick={()=> handleMountCompleted(task.category ? 'group': 'task',task)}/>
+                                          <Icon.XLg onClick={()=> handleMountDelete(task.category ? 'group': 'task',task)} />
                                         </span>
                                         <span className='TaskTime'> Due: {task.due.dateString}</span>
                                     </div>

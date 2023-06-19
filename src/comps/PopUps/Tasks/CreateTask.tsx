@@ -1,8 +1,9 @@
 import {useRef} from 'react'
 
 interface CreateTask_Inputs {
-    setTaskID: Function
-    tasksToday:(any)[]
+  selectedItemState:any
+  setSelectedItemState: Function
+  tasksToday: (any)[]
     setTasksToday: Function
     taskPopUpState: any,
     setTaskPopUpState: Function
@@ -31,7 +32,7 @@ interface Task_Interface {
     }
   
   }
-export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasksToday, setTasksToday,setTaskID, createDueDateObject,validateDate,DateCollection }: CreateTask_Inputs) {
+export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasksToday, setTasksToday,setSelectedItemState,selectedItemState, createDueDateObject,validateDate,DateCollection }: CreateTask_Inputs) {
     const descriptionValue = useRef<HTMLTextAreaElement>(null);
     const dueDateValue = useRef<HTMLInputElement>(null);
     
@@ -70,8 +71,13 @@ export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasksToda
     function handleCancel() {
         console.log('canceled')
         setTaskPopUpState({...taskPopUpState, viewCreateTask: false})
-        setTaskID(null)
-      }
+      setSelectedItemState({
+        ...selectedItemState,
+          selectedItem: null,
+          viewDelete: false,
+          selectedCategoryList: null,
+          updateSelectedCategory:null
+      })      }
     return <form onSubmit={handleAdd} style={{
         opacity: taskPopUpState.viewCreateTask ? '1' : '0', pointerEvents: taskPopUpState.viewCreateTask ? 'initial' : 'none'}} className="PopUp CreateTask Container--col">
         <h2 className="">Create Task</h2>

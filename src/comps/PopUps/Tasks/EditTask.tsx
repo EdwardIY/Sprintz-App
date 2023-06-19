@@ -1,8 +1,8 @@
 import { useRef } from "react"
 
 interface EditTask__Inputs {
-    taskID: number | null
-    setTaskID: Function
+    selectedItemState:any
+    setSelectedItemState:Function 
     tasksToday: (any)[]
     setTasksToday: Function 
     taskPopUpState: any
@@ -11,7 +11,7 @@ interface EditTask__Inputs {
     validateDate: Function
 }
 
-export default function EditTask({tasksToday,setTasksToday,taskID, taskPopUpState,setTaskPopUpState,setTaskID,createDueDateObject,validateDate}:EditTask__Inputs) {
+export default function EditTask({tasksToday,setTasksToday, taskPopUpState,setTaskPopUpState,setSelectedItemState,selectedItemState,createDueDateObject,validateDate}:EditTask__Inputs) {
     const descriptionValue = useRef<HTMLTextAreaElement>(null);
     const dueDateValue = useRef<HTMLInputElement>(null);
 
@@ -22,7 +22,7 @@ export default function EditTask({tasksToday,setTasksToday,taskID, taskPopUpStat
             if (validateDate(dueDateValue.current.value)) {
                 let dueObject = createDueDateObject(dueDateValue.current.value);
                 setTasksToday(tasksToday.map((task) => {
-                    if (task.id === taskID && descriptionValue.current !== null) {
+                    if (task.id === selectedItemState.item.id && descriptionValue.current !== null) {
                         task.description = descriptionValue.current.value
                         task.due.date = dueObject.dateDraft;
                         task.due.dateString = dueObject.dateStringDraft;
@@ -36,7 +36,13 @@ export default function EditTask({tasksToday,setTasksToday,taskID, taskPopUpStat
     }
     function handleClose() {
         setTaskPopUpState({...taskPopUpState, viewEditTask: false,})
-        setTaskID(null)
+        setSelectedItemState({
+            ...selectedItemState,
+            selectedItem: null,
+            viewDelete: false,
+            selectedCategoryList: null,
+            updateSelectedCategory:null
+        })
     }
 
     return <form onSubmit={handleEdit} style={{
