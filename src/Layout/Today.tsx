@@ -32,9 +32,14 @@ export default function Tasks({selectedItemState,setSelectedItemState,tasksToday
     }
 
   }
-  function handleMountEdit(id: number) {
-    // setID(id);
-    setTaskPopUpState({...taskPopUpState, viewEditTask:true});
+  function handleMountEdit(type: string, task: any) {
+    let info = { ...taskPopUpState }
+    info.selectedItem = task
+    info.viewEditTask = true
+    info.list = tasksToday
+    info.updateList = setTasksToday
+  
+    setTaskPopUpState({...info});
   }
   function handleMountCompleted(type: string, task: any) {
     if (type === 'group' || type === 'task') {
@@ -67,7 +72,7 @@ export default function Tasks({selectedItemState,setSelectedItemState,tasksToday
                                       <span className="TaskDescription">{ task.category ? `This ${task.category.type} contains ${task.list.length} tasks ` : task.description}</span>
                                       <div className="Container--col TaskInfo">
                                         <span className="TaskControls Container--row">
-                                          <Icon.Pencil onClick={()=> handleMountEdit(task.id)} />
+                                          <Icon.Pencil onClick={()=> handleMountEdit(task.category ? 'group': 'task',task)} />
                                           <Icon.Check2 onClick={()=> handleMountCompleted(task.category ? 'group': 'task',task)}/>
                                           <Icon.XLg onClick={()=> handleMountDelete(task.category ? 'group': 'task',task)} />
                                         </span>

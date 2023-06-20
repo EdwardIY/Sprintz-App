@@ -26,5 +26,8 @@ be resused like the basic title des and two buttons. Also need to make the edit/
 task componets resusable so I can use them for group and sprint
 - Figure out the right way to do the popups/make group and task popups all resusable?
 
-- Need to create edit comp for group
+- Need to create edit comp for group and clean up props for comps because of last update
+- Made edit task dynamic and resuable, with the plan of being able to use it when creating a group(worked) or editing(working on) a Group
+still need to clean up props and types, maybe create a few interfaces next is to create edit group and check
+maybe remove check for groups and just have a x and check option for them.
  

@@ -43,16 +43,21 @@ export default function App() {
   const [full, setFull] = useState(false);
   const [tasksToday, setTasksToday] = useState([])
   const [taskPopUpState, setTaskPopUpState] = useState({
+    selectedItem:null,
+    setSelectedItem:null,
     viewCreateTask: false,
     viewEditTask: false,
-    // viewDeleteTask: false,
-    // viewCompletedTask: false
+    list: null,
+    updateList: null,
+    date:true
   })
   const [groupPopUpState, setGroupPopUpState] = useState({
     viewCreateGroup: false,
     viewEditGroup: false,
-    // viewDeleteGroup: false,
-    // viewCompletedGroup: false
+    selectedItem:null,
+    setSelectedItem:null,
+    list: null,
+    updateList:null
   })
   const [selectedItemState, setSelectedItemState] = useState<any>({
     selectedItem: null,
@@ -81,7 +86,7 @@ export default function App() {
         DateCollection={DateCollection}
         validateDate={validateDate} /> 
       
-      <EditTask
+      {/* <EditTask
         selectedItemState={selectedItemState}
         setSelectedItemState={setSelectedItemState}
         tasksToday={tasksToday}
@@ -89,17 +94,29 @@ export default function App() {
         taskPopUpState={taskPopUpState}
         setTaskPopUpState={setTaskPopUpState}
         createDueDateObject={createDueDateObject}
-        validateDate={validateDate} /> 
+        validateDate={validateDate} />  */}
+      
+ 
         
       
       
       <CreateGroup
         tasksToday={tasksToday}
         setTasksToday={setTasksToday}
+        taskPopUpState={taskPopUpState}
+        setTaskPopUpState={setTaskPopUpState}
         groupPopUpState={groupPopUpState}
         setGroupPopUpState={setGroupPopUpState}
         createDueDateObject={createDueDateObject}
         validateDate={validateDate} />
+      
+
+
+      <EditTask
+        taskPopUpState={taskPopUpState}
+        setTaskPopUpState={setTaskPopUpState}
+        createDueDateObject={createDueDateObject}
+        validateDate={validateDate} /> 
       
 
 
@@ -139,6 +156,8 @@ export default function App() {
           setTasksToday={setTasksToday}
           taskPopUpState={taskPopUpState}
           setTaskPopUpState={setTaskPopUpState}
+          // groupkPopUpState={groupPopUpState}
+          // setGroupPopUpState={setGroupPopUpState}
           groupPopUpState={groupPopUpState}
           setGroupPopUpState={setGroupPopUpState}
           full={full}

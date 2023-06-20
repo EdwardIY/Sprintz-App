@@ -1,8 +1,10 @@
 import { useState,useRef } from "react"
 import * as Icon from 'react-bootstrap-icons';
 interface CreateGroup__Inputs {
-    tasksToday:(any)[]
     setTasksToday:Function
+    tasksToday: (any)[],
+    taskPopUpState:any
+    setTaskPopUpState: Function
     groupPopUpState:any
     setGroupPopUpState: Function
     createDueDateObject:Function
@@ -23,9 +25,9 @@ interface Group_Interface {
 }
 
 
-export default function CreateGroup({tasksToday,setTasksToday,groupPopUpState, setGroupPopUpState,createDueDateObject,validateDate}: CreateGroup__Inputs) {
+export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,setTaskPopUpState,groupPopUpState, setGroupPopUpState,createDueDateObject,validateDate}: CreateGroup__Inputs) {
     const title = useRef<HTMLInputElement>(null)
-    const [tasks, setTasks] = useState<{ id: string, value: string }[]>([])
+    const [tasks, setTasks] = useState<{ id: string, description: string }[]>([])
     const dueDateValue = useRef<HTMLInputElement>(null);
     const description = useRef<HTMLTextAreaElement>(null)
     const [message, setMessage] = useState<null | string>('Empty Group')
@@ -35,7 +37,7 @@ export default function CreateGroup({tasksToday,setTasksToday,groupPopUpState, s
         e.preventDefault()
         if (description.current) {
             const id = (Math.random()*10000).toString()
-            setTasks([...tasks,{id,value:description.current.value}])
+            setTasks([...tasks,{id,description:description.current.value}])
             description.current.value = ''
             setMessage(null)
         }
@@ -65,6 +67,15 @@ export default function CreateGroup({tasksToday,setTasksToday,groupPopUpState, s
         if (title.current)
         title.current.value = ''
         
+    }
+    function handleEditTask(task: any) {
+        let info = { ...taskPopUpState }
+        info.selectedItem = task
+        info.viewEditTask = true
+        info.list = tasks
+        info.updateList = setTasks
+        info.date = false
+        setTaskPopUpState({...info})
     }
 
     function handleDone(e:any) {
@@ -117,7 +128,10 @@ export default function CreateGroup({tasksToday,setTasksToday,groupPopUpState, s
                 <ul className="TaskList--group__List">
                     {message && <span className="TaskList--group__List__Message Container--col">{message}</span>}
                     {tasks.length > 0 && (tasks.map((task) => {
-                        return <li key={task.id} className="TaskList--group__List__Item ">{task.value} <div onClick={()=> handleRemoveTask(task.id)} className="PopUp__Button">remove</div></li>
+                        return <li key={task.id} className="TaskList--group__List__Item "> {task.description}
+                            <div onClick={() => handleEditTask(task)} className="PopUp__Button">edit</div>
+                            <div onClick={() => handleRemoveTask(task.id)} className="PopUp__Button">remove</div>
+                        </li>
                     })) }
                 </ul>
                 <div className="PopUp__DueDate Container--row">

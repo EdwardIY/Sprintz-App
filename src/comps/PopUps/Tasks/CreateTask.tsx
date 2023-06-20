@@ -60,7 +60,9 @@ export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasksToda
         task.due.dateString = dueObject.dateStringDraft;
 
         setTasksToday([...tasksToday,task])
-        setTaskPopUpState({...taskPopUpState, viewCreateTask: false})
+          setTaskPopUpState({ ...taskPopUpState, viewCreateTask: false })
+          descriptionValue.current.value = '';
+          dueDateValue.current.value = ''
     }
          }
         else {}
@@ -69,15 +71,19 @@ export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasksToda
         }
          
     function handleCancel() {
-        console.log('canceled')
-        setTaskPopUpState({...taskPopUpState, viewCreateTask: false})
+      setTaskPopUpState({...taskPopUpState, viewCreateTask: false})
       setSelectedItemState({
         ...selectedItemState,
           selectedItem: null,
           viewDelete: false,
           selectedCategoryList: null,
           updateSelectedCategory:null
-      })      }
+      })
+      if (descriptionValue.current)
+        descriptionValue.current.value = '';
+      if(dueDateValue.current)
+          dueDateValue.current.value = ''
+    }
     return <form onSubmit={handleAdd} style={{
         opacity: taskPopUpState.viewCreateTask ? '1' : '0', pointerEvents: taskPopUpState.viewCreateTask ? 'initial' : 'none'}} className="PopUp CreateTask Container--col">
         <h2 className="">Create Task</h2>
