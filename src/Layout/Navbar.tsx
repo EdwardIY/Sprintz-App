@@ -30,12 +30,12 @@ export default function Navbar({ setTaskPopUpState, taskPopUpState,groupPopUpSta
             note='Sprintz Rating'
             fontSize={24}
           />  
-        <li onClick={()=>  setTaskPopUpState({...taskPopUpState, viewCreateTask: true})} className="Navbar__Item Navbar__AddTask ">
+        <li onClick={()=>  setTaskPopUpState({...taskPopUpState, viewCreateItem: true})} className="Navbar__Item Navbar__AddTask ">
           <Icon.CardText/>
           <span>Create Task</span>
         </li>
   
-        <li onClick={()=> setGroupPopUpState({...groupPopUpState, viewCreateGroup: true})} className="Navbar__Item Navbar__AddGroup ">
+        <li onClick={()=> setGroupPopUpState({...groupPopUpState, viewCreateItem: true})} className="Navbar__Item Navbar__AddGroup ">
           <Icon.CardChecklist />
           <span>Create Group</span>
         </li>

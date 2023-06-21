@@ -59,7 +59,7 @@ export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,set
         
     }
     function handleCancelGroup() {
-        setGroupPopUpState({ ...groupPopUpState, viewCreateGroup: false, })
+        setGroupPopUpState({ ...groupPopUpState, viewCreateItem: false, })
         setTasks([])
     }
     function handleCancelTitle() {
@@ -71,7 +71,7 @@ export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,set
     function handleEditTask(task: any) {
         let info = { ...taskPopUpState }
         info.selectedItem = task
-        info.viewEditTask = true
+        info.viewEditItem = true
         info.list = tasks
         info.updateList = setTasks
         info.date = false
@@ -98,7 +98,7 @@ export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,set
                 }
                 setTasksToday([...tasksToday, newGroup])
                 setListDone(false);
-                setGroupPopUpState({ ...groupPopUpState, viewCreateGroup: false, })
+                setGroupPopUpState({ ...groupPopUpState, viewCreateItem: false, })
                 dueDateValue.current.value = ''
                 setTasks([])
 
@@ -110,7 +110,7 @@ export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,set
     }
 
     return <>
-    <div style={{ display: !listDone ? 'flex' : 'none', opacity: groupPopUpState.viewCreateGroup ? '1' : '0', pointerEvents: groupPopUpState.viewCreateGroup ? 'initial' : 'none' }} className="PopUp Container--col">
+    <div style={{ display: !listDone ? 'flex' : 'none', opacity: groupPopUpState.viewCreateItem ? '1' : '0', pointerEvents: groupPopUpState.viewCreateItem ? 'initial' : 'none' }} className="PopUp Container--col">
         <div className="AddTaskContainer--group  Container--row">
         <form onSubmit={handleAddTask} className="AddTask--group">
             <div className="AddTaskContainer--group__Add Container--col">

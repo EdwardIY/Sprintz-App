@@ -60,7 +60,7 @@ export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasksToda
         task.due.dateString = dueObject.dateStringDraft;
 
         setTasksToday([...tasksToday,task])
-          setTaskPopUpState({ ...taskPopUpState, viewCreateTask: false })
+          setTaskPopUpState({ ...taskPopUpState, viewCreateItem: false })
           descriptionValue.current.value = '';
           dueDateValue.current.value = ''
     }
@@ -71,7 +71,7 @@ export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasksToda
         }
          
     function handleCancel() {
-      setTaskPopUpState({...taskPopUpState, viewCreateTask: false})
+      setTaskPopUpState({...taskPopUpState, viewCreateItem: false})
       setSelectedItemState({
         ...selectedItemState,
           selectedItem: null,
@@ -85,7 +85,7 @@ export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasksToda
           dueDateValue.current.value = ''
     }
     return <form onSubmit={handleAdd} style={{
-        opacity: taskPopUpState.viewCreateTask ? '1' : '0', pointerEvents: taskPopUpState.viewCreateTask ? 'initial' : 'none'}} className="PopUp CreateTask Container--col">
+        opacity: taskPopUpState.viewCreateItem ? '1' : '0', pointerEvents: taskPopUpState.viewCreateItem ? 'initial' : 'none'}} className="PopUp CreateTask Container--col">
         <h2 className="">Create Task</h2>
         <textarea ref={descriptionValue} required placeholder="Description" className="PopUp__TextArea"></textarea>
         <div className="PopUp__DueDate Container--row">

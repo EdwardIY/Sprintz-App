@@ -11,6 +11,7 @@ import Delete from './comps/PopUps/Delete';
 import Completed from './comps/PopUps/Completed';
 import EditTask from './comps/PopUps/Tasks/EditTask';
 import CreateGroup from './comps/PopUps/Groups/CreateGroup';
+import UpdateGroup from './comps/PopUps/Groups/UpdateGroup';
 
 
 const DateCollection = {
@@ -45,15 +46,16 @@ export default function App() {
   const [taskPopUpState, setTaskPopUpState] = useState({
     selectedItem:null,
     setSelectedItem:null,
-    viewCreateTask: false,
-    viewEditTask: false,
+    viewCreateItem: false,
+    viewEditItem: false,
     list: null,
     updateList: null,
     date:true
   })
   const [groupPopUpState, setGroupPopUpState] = useState({
-    viewCreateGroup: false,
-    viewEditGroup: false,
+    viewCreateItem: false,
+    viewEditItem: false,
+    viewUpdateItem:false,
     selectedItem:null,
     setSelectedItem:null,
     list: null,
@@ -111,7 +113,18 @@ export default function App() {
         validateDate={validateDate} />
       
 
-
+      <UpdateGroup
+        selectedItemState={selectedItemState}
+        setSelectedItemState={setSelectedItemState}
+        tasksToday={tasksToday}
+        setTasksToday={setTasksToday}
+        groupPopUpState={groupPopUpState}
+        setGroupPopUpState={setGroupPopUpState}
+        taskPopUpState={taskPopUpState}
+        setTaskPopUpState={setTaskPopUpState}
+        createDueDateObject={createDueDateObject}
+        validateDate={validateDate}
+      />
       <EditTask
         taskPopUpState={taskPopUpState}
         setTaskPopUpState={setTaskPopUpState}

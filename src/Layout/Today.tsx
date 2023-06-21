@@ -18,7 +18,10 @@ export default function Tasks({selectedItemState,setSelectedItemState,tasksToday
   
   
   function handleMountCreateTask() {
-    setTaskPopUpState({...taskPopUpState, viewCreateTask:true});
+    setTaskPopUpState({...taskPopUpState, viewCreateItem:true});
+  }
+  function handleMountCreateGroup() {
+    setGroupPopUpState({...groupPopUpState, viewCreateItem: true})
   }
   function handleMountDelete(type: string, task: any) {
     if (type === 'group' || type === 'task') {
@@ -33,16 +36,26 @@ export default function Tasks({selectedItemState,setSelectedItemState,tasksToday
 
   }
   function handleMountEdit(type: string, task: any) {
-    let info = { ...taskPopUpState }
-    info.selectedItem = task
-    info.viewEditTask = true
-    info.list = tasksToday
-    info.updateList = setTasksToday
+    if (type == 'task') {
+      let info = { ...taskPopUpState }
+      info.selectedItem = task
+      info.viewEditItem = true
+      info.list =  tasksToday
+      info.updateList = setTasksToday
+      return setTaskPopUpState({...info})
+    }
+    if (type == 'group') {
+      let info =  { ...groupPopUpState }
+      info.selectedItem = task
+      info.viewEditItem = true
+      info.list =  tasksToday
+      info.updateList = setTasksToday
+      setGroupPopUpState({...info})
+    }
   
-    setTaskPopUpState({...info});
   }
   function handleMountCompleted(type: string, task: any) {
-    if (type === 'group' || type === 'task') {
+    if (type === 'task') {
       setSelectedItemState({
         selectedItem: task,
         viewCompleted: true,
@@ -50,12 +63,20 @@ export default function Tasks({selectedItemState,setSelectedItemState,tasksToday
         selectedCategoryList: tasksToday,
         updateSelectedCategory: setTasksToday
       })
+      return;
+    }
+    if(type == 'group') {
+      let info = { ...groupPopUpState }
+      info.selectedItem = task
+      info.viewUpdateItem = true
+      info.list =  tasksToday
+      info.updateList = setTasksToday
+    
+      setGroupPopUpState({...info}) ;
     }
   }
 
-  function handleMountCreateGroup() {
-    setGroupPopUpState({...groupPopUpState, viewCreateGroup: true})
-  }
+
   
     return (
       <div style={{ justifyContent: tasksToday.length ? 'start' : 'center', alignItems: tasksToday.length ? 'start' : 'center' }} className="Container--row Main__Tasks">

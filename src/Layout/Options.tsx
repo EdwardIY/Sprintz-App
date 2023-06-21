@@ -15,11 +15,11 @@ export default function Options({full,setFull,taskPopUpState,setTaskPopUpState,g
     return (
       <div   style = {{ marginRight: full ? '-600px' : 'initial'}} className="Container--col Main__Options">
         <Icon.ChevronRight onClick={()=> setFull(!full)}  className='Main__Options__Close--toggle' />
-        <div onClick={() => setTaskPopUpState({ ...taskPopUpState, viewCreateTask: true })} className="Main__Options__Option Container--col">
+        <div onClick={() => setTaskPopUpState({ ...taskPopUpState, viewCreateItem: true })} className="Main__Options__Option Container--col">
           <h2 className="Options__Option__Title">Create Task</h2>
             <span className="Options__Option__Description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione beatae at natus odio consequatur nemo?</span>
         </div>
-        <div onClick={() => setGroupPopUpState({...groupPopUpState, viewCreateGroup: true})} className="Main__Options__Option Container--col">
+        <div onClick={() => setGroupPopUpState({...groupPopUpState, viewCreateItem: true})} className="Main__Options__Option Container--col">
           <h2 className="Options__Option__Title">Create Group</h2>
             <span className="Options__Option__Description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione beatae at natus odio consequatur nemo?</span>
         </div>

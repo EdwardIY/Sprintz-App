@@ -30,4 +30,6 @@ task componets resusable so I can use them for group and sprint
 - Made edit task dynamic and resuable, with the plan of being able to use it when creating a group(worked) or editing(working on) a Group
 still need to clean up props and types, maybe create a few interfaces next is to create edit group and check
 maybe remove check for groups and just have a x and check option for them.
+
+- Edit group is going to be identical to create group component
  
