@@ -77,8 +77,56 @@ export default function App() {
 
   return (
     <div className="App">
-      {/* PopUps */}
-      <CreateTask
+
+      
+      
+      
+      <Welcome />
+
+      {/* Layout */}
+      <Navbar
+        taskPopUpState={taskPopUpState}
+        setTaskPopUpState={setTaskPopUpState}
+        groupPopUpState={groupPopUpState}
+        setGroupPopUpState={setGroupPopUpState}/>
+
+      <div className="Container--row Header">
+        <Agenda/>
+        <Time
+          DateCollection={DateCollection} />
+      </div>
+
+        <div className="Container--row Main">
+        <Today
+          tasksToday={tasksToday}
+          selectedItemState={selectedItemState}
+          setSelectedItemState={setSelectedItemState}
+          setTasksToday={setTasksToday}
+          taskPopUpState={taskPopUpState}
+          setTaskPopUpState={setTaskPopUpState}
+          // groupkPopUpState={groupPopUpState}
+          // setGroupPopUpState={setGroupPopUpState}
+          groupPopUpState={groupPopUpState}
+          setGroupPopUpState={setGroupPopUpState}
+          full={full}
+          setFull={setFull} />
+
+        < Options
+          taskPopUpState={taskPopUpState }
+          setTaskPopUpState={setTaskPopUpState}
+          groupPopUpState={groupPopUpState}
+          setGroupPopUpState={setGroupPopUpState}
+          full={full}
+          setFull={setFull} />
+        </div>
+
+      <Sprints />
+
+
+
+
+        {/* PopUps */}
+        <CreateTask
        selectedItemState={selectedItemState}
        setSelectedItemState={setSelectedItemState}
         tasksToday={tasksToday}
@@ -155,49 +203,6 @@ export default function App() {
        selectedItemState={selectedItemState}
         setSelectedItemState={setSelectedItemState}
       />
-      
-      
-      
-      <Welcome />
-
-      {/* Layout */}
-      <Navbar
-        taskPopUpState={taskPopUpState}
-        setTaskPopUpState={setTaskPopUpState}
-        groupPopUpState={groupPopUpState}
-        setGroupPopUpState={setGroupPopUpState}/>
-
-      <div className="Container--row Header">
-        <Agenda/>
-        <Time
-          DateCollection={DateCollection} />
-      </div>
-
-        <div className="Container--row Main">
-        <Today
-          tasksToday={tasksToday}
-          selectedItemState={selectedItemState}
-          setSelectedItemState={setSelectedItemState}
-          setTasksToday={setTasksToday}
-          taskPopUpState={taskPopUpState}
-          setTaskPopUpState={setTaskPopUpState}
-          // groupkPopUpState={groupPopUpState}
-          // setGroupPopUpState={setGroupPopUpState}
-          groupPopUpState={groupPopUpState}
-          setGroupPopUpState={setGroupPopUpState}
-          full={full}
-          setFull={setFull} />
-
-        < Options
-          taskPopUpState={taskPopUpState }
-          setTaskPopUpState={setTaskPopUpState}
-          groupPopUpState={groupPopUpState}
-          setGroupPopUpState={setGroupPopUpState}
-          full={full}
-          setFull={setFull} />
-        </div>
-
-      <Sprints />
     </div>
   );
 }

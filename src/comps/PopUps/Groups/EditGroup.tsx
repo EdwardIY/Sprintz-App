@@ -137,6 +137,7 @@ export default function EditGroup({setTasksToday,tasksToday,taskPopUpState,setTa
     }
 
     return <>
+            <div style={{opacity: groupPopUpState.viewEditItem ? '1' : '0', pointerEvents: groupPopUpState.viewEditItem ? 'initial' : 'none'}} className="BLUR_BG"></div>
         <div style={{ display: !listDone ? 'flex' : 'none', opacity: groupPopUpState.viewEditItem ? '1' : '0', pointerEvents: groupPopUpState.viewEditItem ? 'initial' : 'none' }} className="PopUp Container--col">
         <h1 style={{alignSelf: 'center',marginBottom:'.5em'}} className="PopUp__Title">Edit Group</h1>
         <div className="AddTaskContainer--group  Container--row">

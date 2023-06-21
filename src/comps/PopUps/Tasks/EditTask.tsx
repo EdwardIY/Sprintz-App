@@ -62,7 +62,9 @@ export default function EditTask({taskPopUpState,setTaskPopUpState,createDueDate
           dueDateValue.current.value = ''
     }
 
-    return <form onSubmit={handleEdit} style={{
+    return <>
+                <div style={{opacity: taskPopUpState.viewEditItem ? '1' : '0', pointerEvents: taskPopUpState.viewEditItem ? 'auto' : 'none'}} className="BLUR_BG"></div>
+                 <form onSubmit={handleEdit} style={{
             opacity:  taskPopUpState.viewEditItem ? '1' : '0', pointerEvents:  taskPopUpState.viewEditItem ? 'initial' : 'none'}} className="PopUp Container--col">
                 <h2 className="">Edit Task</h2>
                 <textarea ref={descriptionValue} defaultValue={taskPopUpState.selectedItem ? taskPopUpState.selectedItem.description : ''} required placeholder="Description" className="PopUp__TextArea"></textarea>
@@ -75,4 +77,6 @@ export default function EditTask({taskPopUpState,setTaskPopUpState,createDueDate
                     <div onClick={handleClose} className="PopUp__Button">CANCEL</div>
                 </div>
         </form>
+    </>
+
 }

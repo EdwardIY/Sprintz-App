@@ -40,7 +40,9 @@ export default function Completed({ setSelectedItemState,selectedItemState}: Com
             updateSelectedCategory:null
         })
     }
-    return <div style={{
+    return <>
+        <div style={{opacity: selectedItemState.viewCompleted ? '1' : '0', pointerEvents: selectedItemState.viewCompleted ? 'initial' : 'none'}} className="BLUR_BG"></div>
+        <div style={{
         opacity: selectedItemState.viewCompleted ? '1' : '0', pointerEvents: selectedItemState.viewCompleted ? 'initial' : 'none'}} className="PopUp DeleteTask Container--col">
                 <h2 className="">{title}</h2>
                 <p className="PopUp--DeleteTask__Description">{description}</p>
@@ -49,4 +51,5 @@ export default function Completed({ setSelectedItemState,selectedItemState}: Com
                     <div onClick={handleCancel} className="PopUp__Button">CANCEL</div>
                 </div>
             </div>
+    </> 
 }

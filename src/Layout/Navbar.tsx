@@ -15,7 +15,8 @@ export default function Navbar({ setTaskPopUpState, taskPopUpState,groupPopUpSta
 
 
     return (
-        <>
+      <>
+            <div style={{opacity: active ? '1' : '0', pointerEvents: active ? 'initial' : 'none'}} className="BLUR_BG"></div>
             <Icon.List className='Navbar__OpenNav'  onClick={()=> setActive(!active)}/>
          <ul style={{right: active ? '0px' : '-255px' }} className="NavBar">
             <Icon.XLg  className='Navbar__CloseNav'  onClick={()=> setActive(!active)}/>

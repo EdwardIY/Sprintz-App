@@ -111,6 +111,7 @@ export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,set
     }
 
     return <>
+    <div style={{opacity: groupPopUpState.viewCreateItem ? '1' : '0', pointerEvents: groupPopUpState.viewCreateItem ? 'initial' : 'none'}} className="BLUR_BG"></div>
     <div style={{ display: !listDone ? 'flex' : 'none', opacity: groupPopUpState.viewCreateItem ? '1' : '0', pointerEvents: groupPopUpState.viewCreateItem ? 'initial' : 'none' }} className="PopUp Container--col">
         <h1 style={{alignSelf: 'center',marginBottom:'.5em'}} className="PopUp__Title">Create Group</h1>
         <div className="AddTaskContainer--group  Container--row">

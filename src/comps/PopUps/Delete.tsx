@@ -41,8 +41,9 @@ export default function DeleteTask({ setSelectedItemState,selectedItemState}: De
             updateSelectedCategory:null
         })
     }
-    return <div style={{
-        opacity: selectedItemState.viewDelete ? '1' : '0', pointerEvents: selectedItemState.viewDelete ? 'initial' : 'none'}} className="PopUp DeleteTask Container--col">
+    return <>
+          <div style={{opacity: selectedItemState.viewDelete ? '1' : '0', pointerEvents: selectedItemState.viewDelete ? 'auto' : 'none'}} className="BLUR_BG"></div>
+            <div style={{opacity: selectedItemState.viewDelete ? '1' : '0', pointerEvents: selectedItemState.viewDelete ? 'initial' : 'none'}} className="PopUp DeleteTask Container--col">
                 <h2 className="">{title}</h2>
                 <p className="PopUp--DeleteTask__Description">{description}</p>
                 <div className="PopUp__Buttons Container--row">
@@ -50,4 +51,5 @@ export default function DeleteTask({ setSelectedItemState,selectedItemState}: De
                     <div onClick={handleCancel} className="PopUp__Button">CANCEL</div>
                 </div>
             </div>
+    </>
 }

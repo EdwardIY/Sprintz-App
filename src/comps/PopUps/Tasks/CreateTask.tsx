@@ -84,18 +84,20 @@ export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasksToda
       if(dueDateValue.current)
           dueDateValue.current.value = ''
     }
-    return <form onSubmit={handleAdd} style={{
-        opacity: taskPopUpState.viewCreateItem ? '1' : '0', pointerEvents: taskPopUpState.viewCreateItem ? 'initial' : 'none'}} className="PopUp CreateTask Container--col">
-        <h2 className="">Create Task</h2>
-        <textarea ref={descriptionValue} required placeholder="Description" className="PopUp__TextArea"></textarea>
-        <div className="PopUp__DueDate Container--row">
-        <span className="PopUp__DateTitle">Add Due Date:</span>
-        <input ref={dueDateValue} required className="PopUp__DateInput" type="date" />
-        </div>
-        <div className="PopUp__Buttons Container--row">
-        <button className="PopUp__Button">ADD</button>
-        <div onClick={()=> handleCancel()} className="PopUp__Button">CANCEL</div>
-        </div>
+  return <>
+        <div style={{opacity: taskPopUpState.viewCreateItem ? '1' : '0', pointerEvents: taskPopUpState.viewCreateItem ? 'auto' : 'none'}} className="BLUR_BG"></div>
+     <form onSubmit={handleAdd} style={{opacity: taskPopUpState.viewCreateItem ? '1' : '0', pointerEvents: taskPopUpState.viewCreateItem ? 'initial' : 'none'}} className="PopUp CreateTask Container--col">
+    <h2 className="">Create Task</h2>
+      <textarea ref={descriptionValue} required placeholder="Description" className="PopUp__TextArea"></textarea>
+      <div className="PopUp__DueDate Container--row">
+      <span className="PopUp__DateTitle">Add Due Date:</span>
+      <input ref={dueDateValue} required className="PopUp__DateInput" type="date" />
+      </div>
+      <div className="PopUp__Buttons Container--row">
+      <button className="PopUp__Button">ADD</button>
+      <div onClick={()=> handleCancel()} className="PopUp__Button">CANCEL</div>
+      </div>
 
-    </form>
+  </form>
+    </>
 }
