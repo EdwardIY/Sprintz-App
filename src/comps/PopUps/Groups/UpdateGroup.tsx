@@ -73,7 +73,7 @@ export default function UpdateGroup({selectedItemState,setSelectedItemState,setT
         })
     }
     return <div style={{ opacity:  groupPopUpState.viewUpdateItem ? '1' : '0', pointerEvents:  groupPopUpState.viewUpdateItem ? 'initial' : 'none'}} className="PopUp Container--col">
-        <h2>Title:{groupPopUpState.selectedItem?.category.title}</h2>
+        <h2>{groupPopUpState.selectedItem?.category.title}</h2>
         <ul className="TaskList--group__List">
                     {message && <span className="TaskList--group__List__Message Container--col">{message}</span>}
                     {tasks && (tasks.map((task:any) => {

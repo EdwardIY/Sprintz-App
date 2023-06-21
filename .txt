@@ -32,4 +32,6 @@ still need to clean up props and types, maybe create a few interfaces next is to
 maybe remove check for groups and just have a x and check option for them.
 
 - Edit group is going to be identical to create group component
+- finished edit group(FYI could probleby implement the components in a more intuitive way since both the task and group
+create and edit component are almost identical so there is alot of reapeated code)
  

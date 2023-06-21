@@ -1,6 +1,6 @@
-import { useState,useRef } from "react"
+import { useState,useRef,useEffect } from "react"
 import * as Icon from 'react-bootstrap-icons';
-interface CreateGroup__Inputs {
+interface EditGroup__Inputs {
     setTasksToday:Function
     tasksToday: (any)[],
     taskPopUpState:any
@@ -26,13 +26,29 @@ interface Group_Interface {
 }
 
 
-export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,setTaskPopUpState,groupPopUpState, setGroupPopUpState,createDueDateObject,validateDate}: CreateGroup__Inputs) {
+export default function EditGroup({setTasksToday,tasksToday,taskPopUpState,setTaskPopUpState,groupPopUpState, setGroupPopUpState,createDueDateObject,validateDate}: EditGroup__Inputs) {
     const title = useRef<HTMLInputElement>(null)
     const [tasks, setTasks] = useState<{ id: string, description: string }[]>([])
     const dueDateValue = useRef<HTMLInputElement>(null);
     const description = useRef<HTMLTextAreaElement>(null)
-    const [message, setMessage] = useState<null | string>('Empty Group')
-    const [listDone,setListDone] = useState(false)
+    const [message, setMessage] = useState<null | string>(null)
+    const [listDone, setListDone] = useState(false)
+    
+
+    // useEffect(() => {
+    //     if (tasks) {
+    //         if (tasks.length == 2) {
+                // setMessage('Group cannot be empty, delete the group instead')
+                // setTimeout(() => {
+                //     setMessage(null)
+                // },2000)
+    //         }
+    //     }
+    // }, [tasks])
+    useEffect(() => {
+        if(groupPopUpState.selectedItem)
+            setTasks(groupPopUpState.selectedItem.list)
+    },[groupPopUpState])
 
     function handleAddTask(e:any) {
         e.preventDefault()
@@ -43,24 +59,30 @@ export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,set
             setMessage(null)
         }
     }
-    function handleRemoveTask(id:string) {
-        setTasks(tasks.filter((task:any)=> task.id !== id))
+    function handleRemoveTask(id: string) {
+        if (tasks.length == 1) {
+            setMessage('Group cannot be empty, complete the group instead')
+            setTimeout(() => {
+                setMessage(null)
+            },2000)
+        }
+        else setTasks(tasks.filter((task:any)=> task.id !== id))
     }
     function handleCompletedGroup(e:any) {
         e.preventDefault();
-        if (tasks.length > 1) { 
+        if (tasks.length >= 1) { 
             setListDone(true)
         }
-        else {
-            setMessage('Group must contain at least 2 tasks');
+        // else {
+        //     setMessage('Group must contain at least 2 tasks');
 
-            if (!tasks.length) setTimeout(() => setMessage('Empty Group'), 3000);
-            else setTimeout(() => setMessage(null), 3000);
-        }
+        //     if (!tasks.length) setTimeout(() => setMessage('Empty Group'), 3000);
+        //     else setTimeout(() => setMessage(null), 3000);
+        // }
         
     }
     function handleCancelGroup() {
-        setGroupPopUpState({ ...groupPopUpState, viewCreateItem: false, })
+        setGroupPopUpState({ ...groupPopUpState, viewEditItem: false, })
         setTasks([])
     }
     function handleCancelTitle() {
@@ -97,9 +119,13 @@ export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,set
                             dateString: dueObject.dateStringDraft
                         }
                 }
-                setTasksToday([...tasksToday, newGroup])
+                setTasksToday(tasksToday.map((task) => {
+                    if (task.id === groupPopUpState.selectedItem.id) 
+                        return newGroup
+                    return task
+                }))
                 setListDone(false);
-                setGroupPopUpState({ ...groupPopUpState, viewCreateItem: false, })
+                setGroupPopUpState({ ...groupPopUpState, viewEditItem: false, })
                 dueDateValue.current.value = ''
                 setTasks([])
 
@@ -111,8 +137,8 @@ export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,set
     }
 
     return <>
-    <div style={{ display: !listDone ? 'flex' : 'none', opacity: groupPopUpState.viewCreateItem ? '1' : '0', pointerEvents: groupPopUpState.viewCreateItem ? 'initial' : 'none' }} className="PopUp Container--col">
-        <h1 style={{alignSelf: 'center',marginBottom:'.5em'}} className="PopUp__Title">Create Group</h1>
+        <div style={{ display: !listDone ? 'flex' : 'none', opacity: groupPopUpState.viewEditItem ? '1' : '0', pointerEvents: groupPopUpState.viewEditItem ? 'initial' : 'none' }} className="PopUp Container--col">
+        <h1 style={{alignSelf: 'center',marginBottom:'.5em'}} className="PopUp__Title">Edit Group</h1>
         <div className="AddTaskContainer--group  Container--row">
         <form onSubmit={handleAddTask} className="AddTask--group">
             <div className="AddTaskContainer--group__Add Container--col">
@@ -156,8 +182,8 @@ export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,set
                 </div> */}
     </div>
         <form onSubmit={handleDone} style={{display: listDone ? 'flex' : 'none'}} className="PopUp CreateTitle Container--col">
-            <h2>Add Title</h2>
-            <input className="CreateTitle__Input" ref={title} type="text" />
+            <h2>Edit Title</h2>
+            <input required value={groupPopUpState ? groupPopUpState.selectedItem?.category.title : '' } className="CreateTitle__Input" ref={title} type="text" />
             <div className="PopUp__Buttons Container--row">
                     <button className="PopUp__Button">DONE</button> 
                     <div onClick={handleCancelTitle} className="PopUp__Button">CANCEL</div>

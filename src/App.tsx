@@ -12,6 +12,7 @@ import Completed from './comps/PopUps/Completed';
 import EditTask from './comps/PopUps/Tasks/EditTask';
 import CreateGroup from './comps/PopUps/Groups/CreateGroup';
 import UpdateGroup from './comps/PopUps/Groups/UpdateGroup';
+import EditGroup from './comps/PopUps/Groups/EditGroup';
 
 
 const DateCollection = {
@@ -101,7 +102,6 @@ export default function App() {
  
         
       
-      
       <CreateGroup
         tasksToday={tasksToday}
         setTasksToday={setTasksToday}
@@ -122,6 +122,18 @@ export default function App() {
         setGroupPopUpState={setGroupPopUpState}
         taskPopUpState={taskPopUpState}
         setTaskPopUpState={setTaskPopUpState}
+        createDueDateObject={createDueDateObject}
+        validateDate={validateDate}
+      />
+
+
+      <EditGroup
+        tasksToday={tasksToday}
+        setTasksToday={setTasksToday}
+        taskPopUpState={taskPopUpState}
+        setTaskPopUpState={setTaskPopUpState}
+        groupPopUpState={groupPopUpState}
+        setGroupPopUpState={setGroupPopUpState}
         createDueDateObject={createDueDateObject}
         validateDate={validateDate}
       />
