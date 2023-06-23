@@ -13,6 +13,7 @@ import EditTask from './comps/PopUps/Tasks/EditTask';
 import CreateGroup from './comps/PopUps/Groups/CreateGroup';
 import UpdateGroup from './comps/PopUps/Groups/UpdateGroup';
 import EditGroup from './comps/PopUps/Groups/EditGroup';
+import CreateSprint from './comps/PopUps/Sprints/CreateSprint';
 
 
 const DateCollection = {
@@ -62,24 +63,28 @@ export default function App() {
     list: null,
     updateList:null
   })
-  const [selectedItemState, setSelectedItemState] = useState<any>({
+  const [sprintPopUpState, setSprintPopUpState] = useState({
+    viewCreateItem: false,
+    viewEditItem: false,
+    viewUpdateItem:false,
+    selectedItem:null,
+    setSelectedItem:null,
+    list: null,
+    updateList:null
+  })
+  const [selectedItemState, setSelectedItemState] = useState({
     selectedItem: null,
     viewCompleted: false,
     viewDelete: false,
     selectedCategoryList: null,
     updateSelectedCategory:null
   });
-  // const [updateSelectedCategory,setUpdateSelectedCategory] = useState<null|Function>(null)
-  // const [itemPopUpState, setItemPopUpState] = useState({
-  //   viewCompleted: false,
-  //   viewDelete: false
-  // })
 
   return (
     <div className="App">
 
       
-      
+    
       
       <Welcome />
 
@@ -99,26 +104,25 @@ export default function App() {
         <div className="Container--row Main">
         <Today
           tasksToday={tasksToday}
-          selectedItemState={selectedItemState}
-          setSelectedItemState={setSelectedItemState}
           setTasksToday={setTasksToday}
+          setSelectedItemState={setSelectedItemState}
           taskPopUpState={taskPopUpState}
           setTaskPopUpState={setTaskPopUpState}
-          // groupkPopUpState={groupPopUpState}
-          // setGroupPopUpState={setGroupPopUpState}
           groupPopUpState={groupPopUpState}
           setGroupPopUpState={setGroupPopUpState}
           full={full}
           setFull={setFull} />
 
-        < Options
+        <Options
           taskPopUpState={taskPopUpState }
           setTaskPopUpState={setTaskPopUpState}
           groupPopUpState={groupPopUpState}
           setGroupPopUpState={setGroupPopUpState}
           full={full}
           setFull={setFull} />
-        </div>
+      </div>
+      
+
 
       <Sprints />
 
@@ -126,83 +130,81 @@ export default function App() {
 
 
         {/* PopUps */}
-        <CreateTask
-       selectedItemState={selectedItemState}
-       setSelectedItemState={setSelectedItemState}
-        tasksToday={tasksToday}
-        setTasksToday={setTasksToday}
-        taskPopUpState={taskPopUpState}
-        setTaskPopUpState={setTaskPopUpState}
-        createDueDateObject={createDueDateObject}
-        DateCollection={DateCollection}
-        validateDate={validateDate} /> 
+  
       
-      {/* <EditTask
-        selectedItemState={selectedItemState}
-        setSelectedItemState={setSelectedItemState}
-        tasksToday={tasksToday}
-        setTasksToday={setTasksToday}
-        taskPopUpState={taskPopUpState}
-        setTaskPopUpState={setTaskPopUpState}
-        createDueDateObject={createDueDateObject}
-        validateDate={validateDate} />  */}
+
+
+
+        {sprintPopUpState.viewCreateItem && 
+        <CreateSprint
+        sprintPopUpState={sprintPopUpState}
+        setSprintPopUpState={setSprintPopUpState } />
+      }
+      
       
  
-        
-      
-      <CreateGroup
-        tasksToday={tasksToday}
-        setTasksToday={setTasksToday}
-        taskPopUpState={taskPopUpState}
-        setTaskPopUpState={setTaskPopUpState}
-        groupPopUpState={groupPopUpState}
-        setGroupPopUpState={setGroupPopUpState}
-        createDueDateObject={createDueDateObject}
-        validateDate={validateDate} />
-      
-
-      <UpdateGroup
+      {taskPopUpState.viewCreateItem &&
+        <CreateTask
         selectedItemState={selectedItemState}
         setSelectedItemState={setSelectedItemState}
-        tasksToday={tasksToday}
-        setTasksToday={setTasksToday}
-        groupPopUpState={groupPopUpState}
-        setGroupPopUpState={setGroupPopUpState}
+        tasks={tasksToday}
+        setTasks={setTasksToday}
         taskPopUpState={taskPopUpState}
         setTaskPopUpState={setTaskPopUpState}
         createDueDateObject={createDueDateObject}
         validateDate={validateDate}
-      />
+        type={'popup'} />}
 
 
-      <EditGroup
-        tasksToday={tasksToday}
-        setTasksToday={setTasksToday}
-        taskPopUpState={taskPopUpState}
-        setTaskPopUpState={setTaskPopUpState}
-        groupPopUpState={groupPopUpState}
-        setGroupPopUpState={setGroupPopUpState}
-        createDueDateObject={createDueDateObject}
-        validateDate={validateDate}
-      />
-      <EditTask
-        taskPopUpState={taskPopUpState}
-        setTaskPopUpState={setTaskPopUpState}
-        createDueDateObject={createDueDateObject}
-        validateDate={validateDate} /> 
       
-
-
-
-      <Delete
-        selectedItemState={selectedItemState}
-        setSelectedItemState={setSelectedItemState}
-      />
+      {groupPopUpState.viewCreateItem &&
+        <CreateGroup
+          tasksToday={tasksToday}
+          setTasksToday={setTasksToday}
+          taskPopUpState={taskPopUpState}
+          setTaskPopUpState={setTaskPopUpState}
+          groupPopUpState={groupPopUpState}
+          setGroupPopUpState={setGroupPopUpState}
+          createDueDateObject={createDueDateObject}
+          validateDate={validateDate}
+          type='popup'/>}
+       
+      {groupPopUpState.updateList && 
+        <UpdateGroup
+          setSelectedItemState={setSelectedItemState}
+          tasksToday={tasksToday}
+          setTasksToday={setTasksToday}
+          groupPopUpState={groupPopUpState}
+          setGroupPopUpState={setGroupPopUpState} />}
       
-      <Completed
-       selectedItemState={selectedItemState}
-        setSelectedItemState={setSelectedItemState}
-      />
+      {groupPopUpState.viewEditItem && 
+        <EditGroup
+          tasksToday={tasksToday}
+          setTasksToday={setTasksToday}
+          taskPopUpState={taskPopUpState}
+          setTaskPopUpState={setTaskPopUpState}
+          groupPopUpState={groupPopUpState}
+          setGroupPopUpState={setGroupPopUpState}
+          createDueDateObject={createDueDateObject}
+          validateDate={validateDate} />}
+      
+      {taskPopUpState.viewEditItem &&
+        <EditTask
+          taskPopUpState={taskPopUpState}
+          setTaskPopUpState={setTaskPopUpState}
+          createDueDateObject={createDueDateObject}
+          validateDate={validateDate} />}
+      
+      {selectedItemState.viewDelete &&
+        <Delete
+          selectedItemState={selectedItemState}
+          setSelectedItemState={setSelectedItemState} />}
+      
+      {selectedItemState.viewCompleted &&
+        <Completed
+          selectedItemState={selectedItemState}
+          setSelectedItemState={setSelectedItemState} /> }
+
     </div>
   );
 }

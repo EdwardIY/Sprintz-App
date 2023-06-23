@@ -4,17 +4,13 @@ import { useRef,useState,useEffect} from "react"
 interface CreateGroup__Inputs {
     setTasksToday:Function
     tasksToday: (any)[],
-    taskPopUpState:any
-    setTaskPopUpState: Function
     groupPopUpState:any
     setGroupPopUpState: Function
-    createDueDateObject: Function
-    validateDate: Function
-    selectedItemState: any
+
     setSelectedItemState: Function
 }
 
-export default function UpdateGroup({selectedItemState,setSelectedItemState,setTasksToday,tasksToday,taskPopUpState,setTaskPopUpState,groupPopUpState, setGroupPopUpState,createDueDateObject,validateDate}: CreateGroup__Inputs) {
+export default function UpdateGroup({setSelectedItemState,setTasksToday,tasksToday,groupPopUpState, setGroupPopUpState}: CreateGroup__Inputs) {
     const titleValue = useRef()
     const dueDateValue = useRef()
     const [tasks, setTasks] = useState<any>(null)
@@ -75,19 +71,19 @@ export default function UpdateGroup({selectedItemState,setSelectedItemState,setT
     return <>
             <div style={{opacity: groupPopUpState.viewUpdateItem ? '1' : '0', pointerEvents: groupPopUpState.viewUpdateItem ? 'initial' : 'none'}} className="BLUR_BG"></div>
             <div style={{ opacity:  groupPopUpState.viewUpdateItem ? '1' : '0', pointerEvents:  groupPopUpState.viewUpdateItem ? 'initial' : 'none'}} className="PopUp Container--col">
-        <h2>{groupPopUpState.selectedItem?.category.title}</h2>
-        <ul className="TaskList--group__List">
+                <h2>{groupPopUpState.selectedItem?.category.title}</h2>
+                <ul className="TaskList--group__List">
                     {message && <span className="TaskList--group__List__Message Container--col">{message}</span>}
                     {tasks && (tasks.map((task:any) => {
                         return <li key={task.id} className="TaskList--group__List__Item "> {task.description}
                             <div onClick={() => handleCompletedTask(task)} className="PopUp__Button">done</div>
                         </li>
                     })) }
-        </ul>
-        <div className="PopUp__Buttons Container--row">
+                </ul>
+                <div className="PopUp__Buttons Container--row">
                     <div onClick={handleSubmit} className="PopUp__Button">DONE</div> 
                     <div onClick={handleDone} className="PopUp__Button">CANCEL</div>
-            </div>
+                </div>
     </div>
     </> 
 }

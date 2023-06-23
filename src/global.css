@@ -12,7 +12,7 @@ body {
     background: var(--primaryColor);
     color: var(--fontColor);
     font-family: var(--primaryFont);
-    overflow: hidden;
+    overflow-x: hidden;
 }
 img{
     max-width: 100%;

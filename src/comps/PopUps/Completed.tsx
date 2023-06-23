@@ -41,15 +41,14 @@ export default function Completed({ setSelectedItemState,selectedItemState}: Com
         })
     }
     return <>
-        <div style={{opacity: selectedItemState.viewCompleted ? '1' : '0', pointerEvents: selectedItemState.viewCompleted ? 'initial' : 'none'}} className="BLUR_BG"></div>
-        <div style={{
-        opacity: selectedItemState.viewCompleted ? '1' : '0', pointerEvents: selectedItemState.viewCompleted ? 'initial' : 'none'}} className="PopUp DeleteTask Container--col">
-                <h2 className="">{title}</h2>
-                <p className="PopUp--DeleteTask__Description">{description}</p>
-                <div className="PopUp__Buttons Container--row">
-                    <button onClick={handleConfirm} className="PopUp__Button">Confirm</button>
-                    <div onClick={handleCancel} className="PopUp__Button">CANCEL</div>
-                </div>
+        <div style={{ opacity: selectedItemState.viewCompleted ? '1' : '0', pointerEvents: selectedItemState.viewCompleted ? 'initial' : 'none' }} className="BLUR_BG"></div >
+        <div style={{ opacity: selectedItemState.viewCompleted ? '1' : '0', pointerEvents: selectedItemState.viewCompleted ? 'initial' : 'none' }} className="PopUp DeleteTask Container--col">
+            <h2 className="">{title}</h2>
+            <p className="PopUp--DeleteTask__Description">{description}</p>
+            <div className="PopUp__Buttons Container--row">
+                <button onClick={handleConfirm} className="PopUp__Button">Confirm</button>
+                <div onClick={handleCancel} className="PopUp__Button">CANCEL</div>
             </div>
+        </div>
     </> 
 }

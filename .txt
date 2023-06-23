@@ -34,4 +34,7 @@ maybe remove check for groups and just have a x and check option for them.
 - Edit group is going to be identical to create group component
 - finished edit group(FYI could probleby implement the components in a more intuitive way since both the task and group
 create and edit component are almost identical so there is alot of reapeated code)
- 
+- shoul have one more input on create task and group that asks wether or not they want it to count towards there sprints score
+ - edit and maybe com/del popups are going to be a little transparent
+
+ - On create sprint need to figure out how I am going to show the created groups in a list format in sprint

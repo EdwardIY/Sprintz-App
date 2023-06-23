@@ -1,5 +1,5 @@
 import * as Icon from 'react-bootstrap-icons';
-import { useState, useRef } from 'react';
+import { useState} from 'react';
 import { ProgressCircle } from '../comps/Util/ProgressCircle';
 
 interface NavBar__Inputs {
@@ -16,12 +16,11 @@ export default function Navbar({ setTaskPopUpState, taskPopUpState,groupPopUpSta
 
     return (
       <>
-            <div style={{opacity: active ? '1' : '0', pointerEvents: active ? 'initial' : 'none'}} className="BLUR_BG"></div>
-            <Icon.List className='Navbar__OpenNav'  onClick={()=> setActive(!active)}/>
-         <ul style={{right: active ? '0px' : '-255px' }} className="NavBar">
-            <Icon.XLg  className='Navbar__CloseNav'  onClick={()=> setActive(!active)}/>
-            
-        {/* <li className="Navbar__Item"><Time/></li> */}
+        <div style={{opacity: active ? '1' : '0', pointerEvents: active ? 'initial' : 'none'}} className="BLUR_BG"></div>
+        <Icon.List className='Navbar__OpenNav'  onClick={()=> setActive(!active)}/>
+        <ul style={{right: active ? '0px' : '-255px' }} className="NavBar">
+          <Icon.XLg  className='Navbar__CloseNav'  onClick={()=> setActive(!active)}/>
+          {/* <li className="Navbar__Item"><Time/></li> */}
           <ProgressCircle
             value={10}
             size={100}

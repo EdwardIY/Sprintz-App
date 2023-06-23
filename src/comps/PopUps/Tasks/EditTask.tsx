@@ -63,15 +63,16 @@ export default function EditTask({taskPopUpState,setTaskPopUpState,createDueDate
     }
 
     return <>
-                <div style={{opacity: taskPopUpState.viewEditItem ? '1' : '0', pointerEvents: taskPopUpState.viewEditItem ? 'auto' : 'none'}} className="BLUR_BG"></div>
-                 <form onSubmit={handleEdit} style={{
-            opacity:  taskPopUpState.viewEditItem ? '1' : '0', pointerEvents:  taskPopUpState.viewEditItem ? 'initial' : 'none'}} className="PopUp Container--col">
-                <h2 className="">Edit Task</h2>
-                <textarea ref={descriptionValue} defaultValue={taskPopUpState.selectedItem ? taskPopUpState.selectedItem.description : ''} required placeholder="Description" className="PopUp__TextArea"></textarea>
-                {taskPopUpState.date && <div className="PopUp__DueDate Container--row">
-                <span className="PopUp__DateTitle">Add Due Date:</span>
-                <input ref={dueDateValue} required className="PopUp__DateInput" type="date" />
-                </div>}
+        <div style={{ opacity: taskPopUpState.viewEditItem ? '1' : '0', pointerEvents: taskPopUpState.viewEditItem ? 'auto' : 'none' }} className="BLUR_BG"></div>
+         <form onSubmit={handleEdit}  className="PopUp Container--col">
+            <h2 className="">Edit Task</h2>
+            <textarea ref={descriptionValue} defaultValue={taskPopUpState.selectedItem ? taskPopUpState.selectedItem.description : ''} required placeholder="Description" className="PopUp__TextArea"></textarea>
+            {taskPopUpState.date &&
+                <div className="PopUp__DueDate Container--row">
+                    <span className="PopUp__DateTitle">Add Due Date:</span>
+                    <input ref={dueDateValue} required className="PopUp__DateInput" type="date" />
+                </div>
+            }
                 <div className="PopUp__Buttons Container--row">
                     <button className="PopUp__Button">EDIT</button>
                     <div onClick={handleClose} className="PopUp__Button">CANCEL</div>

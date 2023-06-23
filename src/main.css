@@ -132,8 +132,6 @@
     width: 100%;
     border-left:2px solid black;
     border-right:2px solid black;
-
-
 }
 .TaskInfo {
     width:100%;
@@ -264,26 +262,28 @@
 
 
 /* PopUp */
-
 .PopUp {
     position: fixed;
     margin-left: auto;
     margin-right: auto;
     left: 0;
     right: 0;
+    top:2em;
     text-align: center;
-    border: 3px solid var(--secondaryColor);
+    /* border: 3px solid var(--secondaryColor); */
+    border-radius: 10px;
     background: var(--primaryColor);
     width: max-content;
     height: max-content;
     align-items: flex-start;
     gap:2em;
-    padding: 3em;
-    top:5em;
+    padding: 3em 3em;
     z-index: 1;
     box-Shadow: 0px 0px 40px 0px #a2a8d3;
-    transition: .3s;
-    /* opacity: 1 !important; */
+    /* transition: .3s; */
+}
+.CreateTask {
+    gap:2em;
 }
 .PopUp__TextArea {
     background: transparent;
@@ -322,6 +322,7 @@
     color: var(--primaryColor);
     padding: .2em;
 }
+/* POPUP DEL/COM TASKS/GROUP */
 .PopUp--DeleteTask__Description,
 .PopUp--CompletedTask__Description {
     background: var(--colorC);
@@ -330,11 +331,14 @@
     border-radius: 5px;
     text-align: start;
 }
+/* POPUP GROUP */
 .PopUp .AddTaskContainer--group{
     gap: 1em;
     align-items: flex-start;
 }
 
+
+/* POPUP TASKS/GROUP */
 .AddTaskContainer--group__Add {
     gap: 1em;
 }
@@ -350,7 +354,8 @@
     align-self: flex-start;
 }
 .TaskList--group {
-    align-self: stretch;
+    /* align-self: stretch; */
+    align-self: flex-start;
     gap:1em;
 }
 .TaskList--group__List {
@@ -361,7 +366,7 @@
     text-align: start;
     padding: 2em;
     position: relative;
-    margin-top: 40px;
+    /* margin-top: 40px; */
     overflow-y: scroll;
 }
 .TaskList--group__List__Item {
@@ -407,6 +412,8 @@
     font-style: italic;
     background-color: transparent;
 }
+
+
 
 /* UTIL */
 .BLUR_BG {

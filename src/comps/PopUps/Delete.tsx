@@ -7,7 +7,6 @@ interface DeleteTask__Inputs {
 export default function DeleteTask({ setSelectedItemState,selectedItemState}: DeleteTask__Inputs) {
     // const description = tasksToday.map((task) => task.id == taskID && task.description)
         let title,description
-    
         if(selectedItemState.selectedItem){
             if (selectedItemState.selectedItem.category) {
                 title = 'Delete Group?'
@@ -18,7 +17,6 @@ export default function DeleteTask({ setSelectedItemState,selectedItemState}: De
                 description = selectedItemState.selectedItem.description
             }
         }
-    
     function handleConfirm() {
         let newList = selectedItemState.selectedCategoryList.filter((item:any) => {
             return item.id !== selectedItemState.selectedItem.id

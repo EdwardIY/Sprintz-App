@@ -34,17 +34,6 @@ export default function EditGroup({setTasksToday,tasksToday,taskPopUpState,setTa
     const [message, setMessage] = useState<null | string>(null)
     const [listDone, setListDone] = useState(false)
     
-
-    // useEffect(() => {
-    //     if (tasks) {
-    //         if (tasks.length == 2) {
-                // setMessage('Group cannot be empty, delete the group instead')
-                // setTimeout(() => {
-                //     setMessage(null)
-                // },2000)
-    //         }
-    //     }
-    // }, [tasks])
     useEffect(() => {
         if(groupPopUpState.selectedItem)
             setTasks(groupPopUpState.selectedItem.list)
@@ -137,17 +126,16 @@ export default function EditGroup({setTasksToday,tasksToday,taskPopUpState,setTa
     }
 
     return <>
-            <div style={{opacity: groupPopUpState.viewEditItem ? '1' : '0', pointerEvents: groupPopUpState.viewEditItem ? 'initial' : 'none'}} className="BLUR_BG"></div>
+        <div style={{ opacity: groupPopUpState.viewEditItem ? '1' : '0', pointerEvents: groupPopUpState.viewEditItem ? 'initial' : 'none' }} className="BLUR_BG"></div>
         <div style={{ display: !listDone ? 'flex' : 'none', opacity: groupPopUpState.viewEditItem ? '1' : '0', pointerEvents: groupPopUpState.viewEditItem ? 'initial' : 'none' }} className="PopUp Container--col">
-        <h1 style={{alignSelf: 'center',marginBottom:'.5em'}} className="PopUp__Title">Edit Group</h1>
-        <div className="AddTaskContainer--group  Container--row">
-        <form onSubmit={handleAddTask} className="AddTask--group">
-            <div className="AddTaskContainer--group__Add Container--col">
-                        <h2 className="PopUp__Title">Add Task</h2>
-                        <textarea ref={description}  required placeholder="Description" className="PopUp__TextArea"></textarea>
+            <h1 style={{alignSelf: 'center',marginBottom:'.5em'}} className="PopUp__Title">Edit Group</h1>
+            <div className="AddTaskContainer--group  Container--row">
+            <form onSubmit={handleAddTask} className="AddTask--group">
+                <div className="AddTaskContainer--group__Add Container--col">
+                    <h2 className="PopUp__Title">Add Task</h2>
+                    <textarea ref={description}  required placeholder="Description" className="PopUp__TextArea"></textarea>
                     <div className="PopUp__Buttons Container--row">
                         <button className="PopUp__Button">ADD</button>
-
                     </div>
                 </div>
             </form>
@@ -164,12 +152,12 @@ export default function EditGroup({setTasksToday,tasksToday,taskPopUpState,setTa
                     })) }
                 </ul>
                 <div className="PopUp__DueDate Container--row">
-                        <span className="PopUp__DateTitle">Add Due Date:</span>
-                        <input ref={dueDateValue} required className="PopUp__DateInput" type="date" />
+                    <span className="PopUp__DateTitle">Add Due Date:</span>
+                    <input ref={dueDateValue} required className="PopUp__DateInput" type="date" />
                 </div>
                 <div className="PopUp__Buttons Container--row">
                     <button className="PopUp__Button">DONE</button> 
-                        <div onClick={handleCancelGroup} className="PopUp__Button">CANCEL</div>
+                    <div onClick={handleCancelGroup} className="PopUp__Button">CANCEL</div>
                 </div>
         </form>
 
@@ -186,8 +174,8 @@ export default function EditGroup({setTasksToday,tasksToday,taskPopUpState,setTa
             <h2>Edit Title</h2>
             <input required value={groupPopUpState ? groupPopUpState.selectedItem?.category.title : '' } className="CreateTitle__Input" ref={title} type="text" />
             <div className="PopUp__Buttons Container--row">
-                    <button className="PopUp__Button">DONE</button> 
-                    <div onClick={handleCancelTitle} className="PopUp__Button">CANCEL</div>
+                <button className="PopUp__Button">DONE</button> 
+                <div onClick={handleCancelTitle} className="PopUp__Button">CANCEL</div>
             </div>
         </form>
     </> 
