@@ -46,6 +46,7 @@ export default function App() {
   const [full, setFull] = useState(false);
   const [background,setBackground] = useState(0)
   const [tasksToday, setTasksToday] = useState([])
+  const [sprints,setSprints] = useState([])
   const [taskPopUpState, setTaskPopUpState] = useState({
     selectedItem:null,
     setSelectedItem:null,
@@ -149,7 +150,12 @@ export default function App() {
       
 
 
-      <Sprints />
+      <Sprints
+          sprints={sprints}
+          setSprints={setSprints}
+          sprintPopUpState={sprintPopUpState}
+          setSprintPopUpState={setSprintPopUpState}
+      />
 
 
 
@@ -157,12 +163,16 @@ export default function App() {
         {/* PopUps */}
         {sprintPopUpState.viewCreateItem && 
         <CreateSprint
+        sprints={sprints}
+        setSprints={setSprints}
         sprintPopUpState={sprintPopUpState}
         setSprintPopUpState={setSprintPopUpState}
         taskPopUpState={taskPopUpState}
         setTaskPopUpState={setTaskPopUpState}
         groupPopUpState={groupPopUpState}
         setGroupPopUpState={setGroupPopUpState}
+        createDueDateObject={createDueDateObject}
+        validateDate={validateDate}
         />
       }
       

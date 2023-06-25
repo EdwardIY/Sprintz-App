@@ -85,10 +85,10 @@ export default function Tasks({setSelectedItemState,tasksToday,setTasksToday,tas
   
     return (
       <div style={{ justifyContent: tasksToday.length ? 'start' : 'center', alignItems: tasksToday.length ? 'start' : 'center' }} className="Container--row Main__Tasks">
-        {!tasksToday.length && <div className="Main__Tasks__AddContainer Container--row">
-                                <span onClick={handleMountCreateTask} className="Main__Tasks__AddOption Main__Tasks__Add--task">Create Task <br /> <Icon.PlusCircleFill/> </span>
-                                <span onClick={handleMountCreateGroup} className="Main__Tasks__AddOption Main__Tasks__Add--group">Create Group <br /> <Icon.PlusCircleFill/> </span>
-                                <span onClick={handleMountCreateSprint} className="Main__Tasks__AddOption  Main__Tasks__Add--sprint">Create Sprint <br /> <Icon.PlusCircleFill/> </span>
+        {!tasksToday.length && <div className="EmptyCategory__AddContainer Container--row">
+                                <span onClick={handleMountCreateTask} className="EmptyCategory__AddOption ">Create Task <br /> <Icon.PlusCircleFill/> </span>
+                                <span onClick={handleMountCreateGroup} className="EmptyCategory__AddOption ">Create Group <br /> <Icon.PlusCircleFill/> </span>
+                                <span onClick={handleMountCreateSprint} className="EmptyCategory__AddOption  ">Create Sprint <br /> <Icon.PlusCircleFill/> </span>
                               </div>}
         <Icon.ChevronLeft onClick={() => setFull(!full)} style={{ display: full ? 'initial' : 'none' }} className='Main__Options__Close--toggle' />
         {tasksToday.length > 0 && tasksToday.map((task:any) => {

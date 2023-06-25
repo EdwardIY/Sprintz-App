@@ -83,6 +83,26 @@
 }
 
 
+/* Used in both tasks and sprints */
+.EmptyCategory__AddContainer {
+    position: absolute;
+    gap:50px;
+    text-align: center;
+    font-size: 18px;
+}
+.EmptyCategory__AddContainer--Sprint {
+    width: 100%;
+    align-self: center !important;
+}
+.EmptyCategory__AddOption {
+    opacity: .5;
+    cursor: pointer;
+}
+.EmptyCategory__AddOption:hover {
+    opacity: 1;
+}
+
+
 /* Tasks */
 .Main {
     width: 100vw;
@@ -164,20 +184,6 @@
 .TaskControls:hover {
     opacity:1;
 }
-.Main__Tasks__AddContainer {
-    position: absolute;
-    gap:50px;
-    text-align: center;
-    font-size: 18px;
-}
-.Main__Tasks__AddOption {
-    opacity: .5;
-    cursor: pointer;
-}
-.Main__Tasks__AddOption:hover {
-    opacity: 1;
-}
-
 
 /* Options */
 .Main__Options {
@@ -223,11 +229,12 @@
 
 /* Sprints */
 .Sprints{
-    justify-content: space-evenly;
-    padding: 1em;
+    justify-content: flex-start;
+    padding: 1em 3em;
     align-items: flex-start;
     height: max-content;
-    /* border-top: 1px solid var(--secondaryColor); */
+    min-height: 30vh;
+    gap:5em;
 }
 .Sprints__Sprint{
     line-height: 1.3em;

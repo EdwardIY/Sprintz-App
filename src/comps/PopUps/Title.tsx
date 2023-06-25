@@ -8,7 +8,7 @@ interface AddTitle_Inputs {
     defaultValue?: any
 }
 
-export default function AddTitle({type,title,confirm, cancel,defaultValue}:AddTitle_Inputs ) {
+export default function Title({type,title,confirm, cancel,defaultValue}:AddTitle_Inputs ) {
     const titleValue = useRef<HTMLInputElement>(null)
 
     function handleDone(e:any) {

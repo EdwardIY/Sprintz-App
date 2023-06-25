@@ -7,7 +7,7 @@ interface ProgressCircle_Inputs {
     progress_color: string,
     value_color: string,
     fontSize: number,
-    note?: string
+    note?: any
 
 }
 export function ProgressCircle({value,size, root_color,progress_color,value_color,fontSize,note}:ProgressCircle_Inputs) {
