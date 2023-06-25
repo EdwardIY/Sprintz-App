@@ -1,4 +1,5 @@
-import { useState,useRef,useEffect } from "react"
+import { useState, useRef, useEffect } from "react"
+import Title from "../Title";
 import * as Icon from 'react-bootstrap-icons';
 interface EditGroup__Inputs {
     setTasksToday:Function
@@ -7,8 +8,8 @@ interface EditGroup__Inputs {
     setTaskPopUpState: Function
     groupPopUpState:any
     setGroupPopUpState: Function
-    createDueDateObject:Function
-    validateDate: Function
+    createDueDateObject?:Function
+    validateDate?: Function
 
 }
 interface Group_Interface {
@@ -18,7 +19,7 @@ interface Group_Interface {
         title: string
       }
     list: any[]
-    due: {
+    due?: {
         date: string
         dateString: string
     }
@@ -27,7 +28,6 @@ interface Group_Interface {
 
 
 export default function EditGroup({setTasksToday,tasksToday,taskPopUpState,setTaskPopUpState,groupPopUpState, setGroupPopUpState,createDueDateObject,validateDate}: EditGroup__Inputs) {
-    const title = useRef<HTMLInputElement>(null)
     const [tasks, setTasks] = useState<{ id: string, description: string }[]>([])
     const dueDateValue = useRef<HTMLInputElement>(null);
     const description = useRef<HTMLTextAreaElement>(null)
@@ -76,8 +76,6 @@ export default function EditGroup({setTasksToday,tasksToday,taskPopUpState,setTa
     }
     function handleCancelTitle() {
         setListDone(false);
-        if (title.current)
-        title.current.value = ''
         
     }
     function handleEditTask(task: any) {
@@ -90,43 +88,70 @@ export default function EditGroup({setTasksToday,tasksToday,taskPopUpState,setTa
         setTaskPopUpState({...info})
     }
 
-    function handleDone(e:any) {
-        e.preventDefault()
-        if (title.current && dueDateValue.current) {
-            console.log(title.current.value)
-            if (validateDate(dueDateValue.current.value)) {
-                const dueObject = createDueDateObject(dueDateValue.current.value)
-                const newGroup: Group_Interface =  {
-                    id: (Math.random() * 10000).toString(),
-                    category: {
-                        type: 'group',
-                        title: title.current.value
-                     },
-                        list: tasks,
-                        due: {
-                            date: dueObject.dateDraft,
-                            dateString: dueObject.dateStringDraft
+    function handleDone(titleValue: string) {
+        if (groupPopUpState.date && validateDate && createDueDateObject) { // If there is a due date with this group
+                if (dueDateValue.current) {
+                    if (validateDate(dueDateValue.current.value)) {
+                        const dueObject = createDueDateObject(dueDateValue.current.value)
+                        const newGroup: Group_Interface =  {
+                            id: (Math.random() * 10000).toString(),
+                            category: {
+                                type: 'group',
+                                title: titleValue
+                             },
+                                list: tasks,
+                                due: {
+                                    date: dueObject.dateDraft,
+                                    dateString: dueObject.dateStringDraft
+                                }
                         }
+                        groupPopUpState.updateList(groupPopUpState.list.map((task:any) => {
+                            if (task.id === groupPopUpState.selectedItem.id) 
+                                return newGroup
+                            return task
+                        }))
+                        setListDone(false);
+                        setGroupPopUpState({ ...groupPopUpState, viewEditItem: false, })
+                        dueDateValue.current.value = ''
+                        setTasks([])
+        
+        
+                    }
+                    else {}
+        
                 }
-                setTasksToday(tasksToday.map((task) => {
-                    if (task.id === groupPopUpState.selectedItem.id) 
-                        return newGroup
-                    return task
-                }))
-                setListDone(false);
-                setGroupPopUpState({ ...groupPopUpState, viewEditItem: false, })
-                dueDateValue.current.value = ''
-                setTasks([])
-
-
-            }
-            else {}
-
+            
         }
+        
+
+        else { // If there is not a due date with this group
+                    const newGroup: Group_Interface =  {
+                        id: (Math.random() * 10000).toString(),
+                        category: {
+                            type: 'group',
+                            title: titleValue
+                         },
+                            list: tasks,
+            }
+                    groupPopUpState.updateList(groupPopUpState.list.map((task:any) => {
+                        if (task.id === groupPopUpState.selectedItem.id) 
+                            return newGroup
+                        return task
+                    }))
+                    // setTasksToday(tasksToday.map((task) => {
+                    //     if (task.id === groupPopUpState.selectedItem.id) 
+                    //         return newGroup
+                    //     return task
+                    // }))
+                    setListDone(false);
+                    setGroupPopUpState({ ...groupPopUpState, viewEditItem: false, })
+                    setTasks([])    
+        }
+
     }
 
+
     return <>
-        <div style={{ opacity: groupPopUpState.viewEditItem ? '1' : '0', pointerEvents: groupPopUpState.viewEditItem ? 'initial' : 'none' }} className="BLUR_BG"></div>
         <div style={{ display: !listDone ? 'flex' : 'none', opacity: groupPopUpState.viewEditItem ? '1' : '0', pointerEvents: groupPopUpState.viewEditItem ? 'initial' : 'none' }} className="PopUp Container--col">
             <h1 style={{alignSelf: 'center',marginBottom:'.5em'}} className="PopUp__Title">Edit Group</h1>
             <div className="AddTaskContainer--group  Container--row">
@@ -151,10 +176,10 @@ export default function EditGroup({setTasksToday,tasksToday,taskPopUpState,setTa
                         </li>
                     })) }
                 </ul>
-                <div className="PopUp__DueDate Container--row">
+                { groupPopUpState.date && <div className="PopUp__DueDate Container--row">
                     <span className="PopUp__DateTitle">Add Due Date:</span>
                     <input ref={dueDateValue} required className="PopUp__DateInput" type="date" />
-                </div>
+                    </div> }
                 <div className="PopUp__Buttons Container--row">
                     <button className="PopUp__Button">DONE</button> 
                     <div onClick={handleCancelGroup} className="PopUp__Button">CANCEL</div>
@@ -169,14 +194,21 @@ export default function EditGroup({setTasksToday,tasksToday,taskPopUpState,setTa
                     </div>
                     <div className="Search__Output"></div>
                 </div> */}
-    </div>
-        <form onSubmit={handleDone} style={{display: listDone ? 'flex' : 'none'}} className="PopUp CreateTitle Container--col">
+        </div>
+        {listDone && <Title
+            type={'popup'}
+            defaultValue={groupPopUpState ? groupPopUpState.selectedItem?.category.title : ''}
+            title={'Edit Title'}
+            confirm={handleDone}
+            cancel={handleCancelTitle} />}
+
+        {/* <form onSubmit={handleDone} style={{display: listDone ? 'flex' : 'none'}} className="PopUp CreateTitle Container--col">
             <h2>Edit Title</h2>
             <input required value={groupPopUpState ? groupPopUpState.selectedItem?.category.title : '' } className="CreateTitle__Input" ref={title} type="text" />
             <div className="PopUp__Buttons Container--row">
                 <button className="PopUp__Button">DONE</button> 
                 <div onClick={handleCancelTitle} className="PopUp__Button">CANCEL</div>
             </div>
-        </form>
+        </form> */}
     </> 
 }

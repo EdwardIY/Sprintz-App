@@ -285,6 +285,10 @@
 .CreateTask {
     gap:2em;
 }
+.CreateGroup{}
+.CreateSprint {
+
+}
 .PopUp__TextArea {
     background: transparent;
     width: 450px;
@@ -416,7 +420,7 @@
 
 
 /* UTIL */
-.BLUR_BG {
+.Background {
     position: fixed;
     top:0;
     left:0;
@@ -424,7 +428,7 @@
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.831);
     /* backdrop-filter: blur(3px); */
-    z-index: 1;
+    /* z-index: 1; */
     opacity: 0;
     transition: .5s;
     pointer-events:none;

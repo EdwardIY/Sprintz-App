@@ -8,19 +8,25 @@ interface Task_Intputs {
   setTaskPopUpState: Function
   groupPopUpState:any
   setGroupPopUpState: Function
+  sprintPopUpState:any
+  setSprintPopUpState: Function
   full: boolean,
   setFull: Function
+
 }
 
 
-export default function Tasks({setSelectedItemState,tasksToday,setTasksToday,taskPopUpState,setTaskPopUpState,groupPopUpState,setGroupPopUpState, full, setFull }: Task_Intputs) {
+export default function Tasks({setSelectedItemState,tasksToday,setTasksToday,taskPopUpState,setTaskPopUpState,groupPopUpState,setGroupPopUpState,sprintPopUpState,setSprintPopUpState, full, setFull}: Task_Intputs) {
   
   
   function handleMountCreateTask() {
-    setTaskPopUpState({...taskPopUpState, viewCreateItem:true});
+    setTaskPopUpState({ ...taskPopUpState, viewCreateItem: true });
   }
   function handleMountCreateGroup() {
-    setGroupPopUpState({...groupPopUpState, viewCreateItem: true})
+    setGroupPopUpState({ ...groupPopUpState, viewCreateItem: true })
+  }
+  function handleMountCreateSprint() {
+    setSprintPopUpState({...sprintPopUpState, viewCreateItem: true})
   }
   function handleMountDelete(type: string, task: any) {
     if (type === 'group' || type === 'task') {
@@ -80,9 +86,9 @@ export default function Tasks({setSelectedItemState,tasksToday,setTasksToday,tas
     return (
       <div style={{ justifyContent: tasksToday.length ? 'start' : 'center', alignItems: tasksToday.length ? 'start' : 'center' }} className="Container--row Main__Tasks">
         {!tasksToday.length && <div className="Main__Tasks__AddContainer Container--row">
-                                <span onClick={()=>  handleMountCreateTask()} className="Main__Tasks__AddOption Main__Tasks__Add--task">Create Task <br /> <Icon.PlusCircleFill/> </span>
-                                <span onClick={()=>  handleMountCreateGroup()} className="Main__Tasks__AddOption Main__Tasks__Add--group">Create Group <br /> <Icon.PlusCircleFill/> </span>
-                                <span className="Main__Tasks__AddOption  Main__Tasks__Add--sprint">Create Sprint <br /> <Icon.PlusCircleFill/> </span>
+                                <span onClick={handleMountCreateTask} className="Main__Tasks__AddOption Main__Tasks__Add--task">Create Task <br /> <Icon.PlusCircleFill/> </span>
+                                <span onClick={handleMountCreateGroup} className="Main__Tasks__AddOption Main__Tasks__Add--group">Create Group <br /> <Icon.PlusCircleFill/> </span>
+                                <span onClick={handleMountCreateSprint} className="Main__Tasks__AddOption  Main__Tasks__Add--sprint">Create Sprint <br /> <Icon.PlusCircleFill/> </span>
                               </div>}
         <Icon.ChevronLeft onClick={() => setFull(!full)} style={{ display: full ? 'initial' : 'none' }} className='Main__Options__Close--toggle' />
         {tasksToday.length > 0 && tasksToday.map((task:any) => {

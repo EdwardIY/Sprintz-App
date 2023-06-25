@@ -69,7 +69,6 @@ export default function UpdateGroup({setSelectedItemState,setTasksToday,tasksTod
         })
     }
     return <>
-            <div style={{opacity: groupPopUpState.viewUpdateItem ? '1' : '0', pointerEvents: groupPopUpState.viewUpdateItem ? 'initial' : 'none'}} className="BLUR_BG"></div>
             <div style={{ opacity:  groupPopUpState.viewUpdateItem ? '1' : '0', pointerEvents:  groupPopUpState.viewUpdateItem ? 'initial' : 'none'}} className="PopUp Container--col">
                 <h2>{groupPopUpState.selectedItem?.category.title}</h2>
                 <ul className="TaskList--group__List">

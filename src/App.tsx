@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {useState} from 'react'
 import Navbar from './Layout/Navbar';
 import Agenda from './Layout/Agenda';
@@ -44,6 +44,7 @@ months: [
 
 export default function App() {
   const [full, setFull] = useState(false);
+  const [background,setBackground] = useState(0)
   const [tasksToday, setTasksToday] = useState([])
   const [taskPopUpState, setTaskPopUpState] = useState({
     selectedItem:null,
@@ -61,7 +62,8 @@ export default function App() {
     selectedItem:null,
     setSelectedItem:null,
     list: null,
-    updateList:null
+    updateList: null,
+    date:true
   })
   const [sprintPopUpState, setSprintPopUpState] = useState({
     viewCreateItem: false,
@@ -80,12 +82,32 @@ export default function App() {
     updateSelectedCategory:null
   });
 
+
+
+  useEffect(() =>{
+    const PopUps = [
+      taskPopUpState.viewCreateItem,
+      taskPopUpState.viewEditItem,
+      groupPopUpState.viewCreateItem,
+      groupPopUpState.viewEditItem,
+      groupPopUpState.viewUpdateItem,
+      sprintPopUpState.viewCreateItem,
+      sprintPopUpState.viewEditItem,
+      sprintPopUpState.viewUpdateItem,
+      selectedItemState.viewCompleted,
+      selectedItemState.viewDelete
+    ]
+
+    for (let state of PopUps) {
+        if(state) return setBackground(1)
+    }
+    setBackground(0)
+    
+  },[taskPopUpState,groupPopUpState,sprintPopUpState,selectedItemState])
+
   return (
     <div className="App">
 
-      
-    
-      
       <Welcome />
 
       {/* Layout */}
@@ -110,8 +132,11 @@ export default function App() {
           setTaskPopUpState={setTaskPopUpState}
           groupPopUpState={groupPopUpState}
           setGroupPopUpState={setGroupPopUpState}
+          sprintPopUpState={sprintPopUpState}
+          setSprintPopUpState={setSprintPopUpState}
           full={full}
-          setFull={setFull} />
+          setFull={setFull}
+          />
 
         <Options
           taskPopUpState={taskPopUpState }
@@ -130,15 +155,15 @@ export default function App() {
 
 
         {/* PopUps */}
-  
-      
-
-
-
         {sprintPopUpState.viewCreateItem && 
         <CreateSprint
         sprintPopUpState={sprintPopUpState}
-        setSprintPopUpState={setSprintPopUpState } />
+        setSprintPopUpState={setSprintPopUpState}
+        taskPopUpState={taskPopUpState}
+        setTaskPopUpState={setTaskPopUpState}
+        groupPopUpState={groupPopUpState}
+        setGroupPopUpState={setGroupPopUpState}
+        />
       }
       
       
@@ -204,6 +229,8 @@ export default function App() {
         <Completed
           selectedItemState={selectedItemState}
           setSelectedItemState={setSelectedItemState} /> }
+
+<div style={{ opacity: background}}  className="Background"></div>
 
     </div>
   );

@@ -16,7 +16,7 @@ export default function EditTask({taskPopUpState,setTaskPopUpState,createDueDate
     function handleEdit(e: any) {
         e.preventDefault()
 
-        if (taskPopUpState.date) { 
+        if (taskPopUpState.date)  { 
             if (descriptionValue.current && dueDateValue.current) {    
                     if (validateDate(dueDateValue.current.value)) {
                         let dueObject = createDueDateObject(dueDateValue.current.value);
@@ -63,7 +63,6 @@ export default function EditTask({taskPopUpState,setTaskPopUpState,createDueDate
     }
 
     return <>
-        <div style={{ opacity: taskPopUpState.viewEditItem ? '1' : '0', pointerEvents: taskPopUpState.viewEditItem ? 'auto' : 'none' }} className="BLUR_BG"></div>
          <form onSubmit={handleEdit}  className="PopUp Container--col">
             <h2 className="">Edit Task</h2>
             <textarea ref={descriptionValue} defaultValue={taskPopUpState.selectedItem ? taskPopUpState.selectedItem.description : ''} required placeholder="Description" className="PopUp__TextArea"></textarea>

@@ -40,7 +40,6 @@ export default function DeleteTask({ setSelectedItemState,selectedItemState}: De
         })
     }
     return <>
-          <div style={{opacity: selectedItemState.viewDelete ? '1' : '0', pointerEvents: selectedItemState.viewDelete ? 'auto' : 'none'}} className="BLUR_BG"></div>
             <div style={{opacity: selectedItemState.viewDelete ? '1' : '0', pointerEvents: selectedItemState.viewDelete ? 'initial' : 'none'}} className="PopUp DeleteTask Container--col">
                 <h2 className="">{title}</h2>
                 <p className="PopUp--DeleteTask__Description">{description}</p>

@@ -1,6 +1,6 @@
 import { useState,useRef } from "react"
 import * as Icon from 'react-bootstrap-icons';
-import AddTitle from "../AddTitle";
+import Title from "../Title";
 import CreateTask from "../Tasks/CreateTask";
 interface CreateGroup__Inputs {
     type:string
@@ -66,7 +66,7 @@ export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,set
         
     }
     function handleCancelGroup() {
-        if(groupPopUpState && setGroupPopUpState)
+        if (groupPopUpState && setGroupPopUpState) 
             setGroupPopUpState({ ...groupPopUpState, viewCreateItem: false, })
         
         setTasks([])
@@ -106,12 +106,12 @@ export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,set
                     }
                         setTasksToday([...tasksToday, newGroup])
                     
-                    setListDone(false);
+                        setListDone(false);
 
                         setGroupPopUpState({ ...groupPopUpState, viewCreateItem: false, })
                     
-                    dueDateValue.current.value = ''
-                    setTasks([])
+                        dueDateValue.current.value = ''
+                        setTasks([])
     
     
                 }
@@ -138,7 +138,6 @@ export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,set
     }
 
     return <>
-        <div  className="BLUR_BG"></div>
         <div style={{ display: type == 'popup' ?  !listDone ? 'flex' : 'none' : type == 'layout'  ? 'flex' : '',gap: '3em' }} className={`${type == 'popup' ? 'PopUp' : ''} CreateGroup Container--col`}>
             <div className="AddTaskContainer--group  Container--row">
                 <CreateTask
@@ -156,7 +155,7 @@ export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,set
                         </li>
                     })) }
                     </ul>
-                    { Boolean(validateDate) && <div className="PopUp__DueDate Container--row">
+                    { validateDate != undefined && <div className="PopUp__DueDate Container--row">
                         <span className="PopUp__DateTitle">Add Due Date:</span>
                         <input ref={dueDateValue} required className="PopUp__DateInput" type="date" />
                         </div> }
@@ -175,7 +174,7 @@ export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,set
                     <div className="Search__Output"></div>
                 </div> */}
         </div>
-        {listDone && <AddTitle type={'popup'} confirm={handleDone} cancel={handleCancelTitle} /> }
+        {listDone && <Title type={'popup'} title={'Add Title'} confirm={handleDone} cancel={handleCancelTitle} /> }
 
     </> 
 }

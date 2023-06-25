@@ -38,8 +38,8 @@ export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasks, se
     function handleSubmit(e:any) {
       e.preventDefault()
       
-      if (type == 'popup' && tasks && setTasks && taskPopUpState && setTaskPopUpState)
-        return handleAdd(tasks, setTasks, taskPopUpState, setTaskPopUpState, createDueDateObject, validateDate)
+      if (type == 'popup' && tasks && setTasks && taskPopUpState && setTaskPopUpState && createDueDateObject)
+        return handleAdd(tasks, setTasks, taskPopUpState, setTaskPopUpState,createDueDateObject, validateDate)
       
       if (type == 'layout' && confirm) {
         // Only check description becayse as a layout comp we dont have date input
@@ -63,12 +63,12 @@ export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasks, se
                   date: dueObject.dateDraft,
                   dateString: dueObject.dateStringDraft
                 }
-          }
+              }
                 setTasks([...tasks, task])
                 setTaskPopUpState({ ...taskPopUpState, viewCreateItem: false })
               
-              descriptionValue.current.value = '';
-              dueDateValue.current.value = ''
+                descriptionValue.current.value = '';
+                dueDateValue.current.value = ''
         }
             
           }
@@ -113,7 +113,6 @@ export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasks, se
   
 
   return <>
-    <div className="BLUR_BG"></div>
     <form onSubmit={handleSubmit} className={`${type == 'popup' ? 'PopUp' : ''} CreateTask Container--col` }>
       <h2 className="">Create Task</h2>
       <textarea ref={descriptionValue} required placeholder="Description" className="PopUp__TextArea"></textarea>
