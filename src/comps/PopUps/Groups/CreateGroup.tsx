@@ -21,7 +21,7 @@ interface CreateGroup__Inputs {
 }
 interface Group_Interface {
     id: string
-    category?: {
+    category: {
         type: string
         title: string
       }
@@ -35,7 +35,7 @@ interface Group_Interface {
 
 
 export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,setTaskPopUpState,groupPopUpState, setGroupPopUpState,createDueDateObject,validateDate,confirm,type}: CreateGroup__Inputs) {
-    const [tasks, setTasks] = useState<{ id: string, description: string }[]>([])
+    const [tasks, setTasks] = useState<{ id: string, description: string, category:any  }[]>([])
     const dueDateValue = useRef<HTMLInputElement>(null)
     const [message, setMessage] = useState<null | string>('Empty Group')
     const [listDone,setListDone] = useState(false)
@@ -43,7 +43,14 @@ export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,set
     function handleAddTask(TaskDescription: string) {
         console.log(TaskDescription)
             const id = (Math.random()*10000).toString()
-            setTasks([...tasks,{id,description:TaskDescription}])
+        setTasks([...tasks, {
+            id: id,
+            description: TaskDescription,
+            category: {
+                type: 'task',
+                title:null
+            }
+        }])
             setMessage(null)
         
     }

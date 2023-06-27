@@ -63,7 +63,7 @@ export function ProgressCircle({type,sprint,controls,value,size, root_color,prog
                 <Icon.XLg className='ProgressCircle_Message_Close' onClick={()=> setSeeOptions(false)} />
                 <span className='ProgressCircle_Message_Option Container--row'>Edit <Icon.Pencil onClick={()=> true } /> </span>
                 <span className='ProgressCircle_Message_Option Container--row'>Update <Icon.Check2 onClick={()=> true }/> </span>
-                <span className='ProgressCircle_Message_Option Container--row'>Delete <Icon.XLg onClick={()=> controls.delete(sprint)} /></span>
+                <span onClick={()=> controls.delete(sprint)} className='ProgressCircle_Message_Option Container--row'>Delete <Icon.XLg /></span>
             </div> }
         </div>
     )

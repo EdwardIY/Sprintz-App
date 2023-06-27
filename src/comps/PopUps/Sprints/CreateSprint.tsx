@@ -21,8 +21,11 @@ interface CreateSprint_Inputs {
 
 interface Sprint {
     id: string
-    title: string
     list: any[]
+    category: {
+        type: 'sprint'
+        title: string
+    }
     due: {
         date: string
         dateString: string
@@ -90,8 +93,11 @@ export default function CreateSprint({ sprints,setSprints,sprintPopUpState, setS
                 const dueObject = createDueDateObject(dueDateValue.current.value)
                 let sprint: Sprint = {
                     id: (Math.random()*10000).toString(),
-                    title: titleValue,
                     list: groups,
+                    category: {
+                        type: 'sprint',
+                        title: titleValue
+                    },
                     due: {
                         date: dueObject.dateDraft,
                         dateString: dueObject.dateStringDraft

@@ -8,14 +8,15 @@ export default function Completed({ setSelectedItemState,selectedItemState}: Com
         let title,description
     
         if(selectedItemState.selectedItem){
-            if (selectedItemState.selectedItem.category) {
+            if (selectedItemState.selectedItem.category.type == 'group') {
                 title ='Group Completed?'
                 description = `Have you completed this group? "${selectedItemState.selectedItem.category.title}"`
             }
-            else {
+            else if(selectedItemState.selectedItem.category.type == 'task') {
                 title = 'Task Completed?'
                 description = selectedItemState.selectedItem.description
             }
+
         }
     
     function handleConfirm() {

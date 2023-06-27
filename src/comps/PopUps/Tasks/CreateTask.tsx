@@ -23,6 +23,10 @@ interface CreateTask_Inputs {
 interface Task_Interface {
     id: number
     description: string
+    category: {
+      type: string
+      title: string | null
+    }
     due?: {
       date: string
       dateString: string
@@ -59,6 +63,10 @@ export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasks, se
               let task: Task_Interface = {
                 id: Math.round(Math.random() * 10000),
                 description: descriptionValue.current.value,
+                category: {
+                  type: 'task',
+                  title: null
+                },
                 due: {
                   date: dueObject.dateDraft,
                   dateString: dueObject.dateStringDraft
@@ -80,6 +88,10 @@ export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasks, se
           let task: Task_Interface = {
             id:  Math.round(Math.random() * 10000),
             description: descriptionValue.current.value,
+            category: {
+              type: 'task',
+              title: null
+            }
       }
       if(tasks && setTasks)
             setTasks([...tasks, task])

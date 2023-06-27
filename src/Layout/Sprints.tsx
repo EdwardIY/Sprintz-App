@@ -39,7 +39,7 @@ console.log(sprints)
                 :
                 sprints.map((sprint:any) => {
                     return <div className="Sprints__Sprint Container--col">
-                            <h2 className="Sprints__Sprint__Title">{sprint.title}</h2>
+                            <h2 className="Sprints__Sprint__Title">{sprint.category.title}</h2>
                         <ProgressCircle
                                 type={'sprint'}
                                 sprint={sprint}

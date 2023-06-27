@@ -92,14 +92,14 @@ export default function Tasks({setSelectedItemState,tasksToday,setTasksToday,tas
                               </div>}
         <Icon.ChevronLeft onClick={() => setFull(!full)} style={{ display: full ? 'initial' : 'none' }} className='Main__Options__Close--toggle' />
         {tasksToday.length > 0 && tasksToday.map((task:any) => {
-                            return <div key={task.id} className={`Task Container--col ${task.category ? 'Task--' + task.category.type : 'Task--reg' } `}>
-                                    <span className="TaskCategory">{task.category ? 'From ' + task.category.type  + ' "' + task.category.title + '"' : ''  }</span>
-                                    <span className="TaskDescription">{ task.category ? `This ${task.category.type} contains ${task.list.length} tasks ` : task.description}</span>
+                            return <div key={task.id} className={`Task Container--col ${task.category.type == 'group' ? 'Task--' + task.category.type : 'Task--reg' } `}>
+                                    <span className="TaskCategory">{task.category.type == 'group' ? 'From ' + task.category.type  + ' "' + task.category.title + '"' : ''  }</span>
+                                    <span className="TaskDescription">{ task.category.type == 'group' ? `This ${task.category.type} contains ${task.list.length} tasks ` : task.description}</span>
                                     <div className="Container--col TaskInfo">
                                       <span className="TaskControls Container--row">
-                                        <Icon.Pencil onClick={()=> handleMountEdit(task.category ? 'group': 'task',task)} />
-                                        <Icon.Check2 onClick={()=> handleMountCompleted(task.category ? 'group': 'task',task)}/>
-                                        <Icon.XLg onClick={()=> handleMountDelete(task.category ? 'group': 'task',task)} />
+                                        <Icon.Pencil onClick={()=> handleMountEdit(task.category.type == 'group' ? 'group': 'task',task)} />
+                                        <Icon.Check2 onClick={()=> handleMountCompleted(task.category.type == 'group' ? 'group': 'task',task)}/>
+                                        <Icon.XLg onClick={()=> handleMountDelete(task.category.type == 'group' ? 'group': 'task',task)} />
                                       </span>
                                       <span className='TaskTime'> Due: {task.due.dateString}</span>
                                     </div>

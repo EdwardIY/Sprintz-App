@@ -8,13 +8,17 @@ export default function DeleteTask({ setSelectedItemState,selectedItemState}: De
     // const description = tasksToday.map((task) => task.id == taskID && task.description)
         let title,description
         if(selectedItemState.selectedItem){
-            if (selectedItemState.selectedItem.category) {
+            if (selectedItemState.selectedItem.category.type == 'group') {
                 title = 'Delete Group?'
                 description = `Are you sure you want to delete this group? "${selectedItemState.selectedItem.category.title}"`
             }
-            else {
+            else if(selectedItemState.selectedItem.category.type == 'task') {
                 title = 'Delete Task?'
                 description = selectedItemState.selectedItem.description
+            }
+            else if (selectedItemState.selectedItem.category.type == 'sprint') {
+                title = 'Delete Sprint?'
+                description = `Are you sure you want to delete this sprint? "${selectedItemState.selectedItem.category.title}"`
             }
         }
     function handleConfirm() {
