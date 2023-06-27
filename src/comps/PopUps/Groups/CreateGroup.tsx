@@ -96,7 +96,7 @@ export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,set
         
         // Decide wether this is a layout or PopUp
         if (type == 'popup' && tasksToday && setTasksToday && groupPopUpState && setGroupPopUpState && validateDate && createDueDateObject) { 
-            if (dueDateValue.current) {
+            if (dueDateValue.current) { // this also canceled out the root creategroup comp 'popup' when view is made true for sprint
                 if (validateDate(dueDateValue.current.value)) {
                     const dueObject = createDueDateObject(dueDateValue.current.value)
                     const newGroup: Group_Interface =  {

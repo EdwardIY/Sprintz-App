@@ -47,6 +47,7 @@ export default function Tasks({setSelectedItemState,tasksToday,setTasksToday,tas
       info.viewEditItem = true
       info.list =  tasksToday
       info.updateList = setTasksToday
+      info.date = true
       return setTaskPopUpState({...info})
     }
     if (type == 'group') {
@@ -55,6 +56,7 @@ export default function Tasks({setSelectedItemState,tasksToday,setTasksToday,tas
       info.viewEditItem = true
       info.list =  tasksToday
       info.updateList = setTasksToday
+      info.date = true
       setGroupPopUpState({...info})
     }
   
@@ -91,7 +93,8 @@ export default function Tasks({setSelectedItemState,tasksToday,setTasksToday,tas
                                 <span onClick={handleMountCreateSprint} className="EmptyCategory__AddOption  ">Create Sprint <br /> <Icon.PlusCircleFill/> </span>
                               </div>}
         <Icon.ChevronLeft onClick={() => setFull(!full)} style={{ display: full ? 'initial' : 'none' }} className='Main__Options__Close--toggle' />
-        {tasksToday.length > 0 && tasksToday.map((task:any) => {
+        {tasksToday.length > 0 && tasksToday.map((task: any) => {
+          console.log(task)
                             return <div key={task.id} className={`Task Container--col ${task.category.type == 'group' ? 'Task--' + task.category.type : 'Task--reg' } `}>
                                     <span className="TaskCategory">{task.category.type == 'group' ? 'From ' + task.category.type  + ' "' + task.category.title + '"' : ''  }</span>
                                     <span className="TaskDescription">{ task.category.type == 'group' ? `This ${task.category.type} contains ${task.list.length} tasks ` : task.description}</span>

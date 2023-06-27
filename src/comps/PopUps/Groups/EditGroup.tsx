@@ -89,8 +89,9 @@ export default function EditGroup({setTasksToday,tasksToday,taskPopUpState,setTa
     }
 
     function handleDone(titleValue: string) {
+    
         if (groupPopUpState.date && validateDate && createDueDateObject) { // If there is a due date with this group
-                if (dueDateValue.current) {
+            if (dueDateValue.current) {
                     if (validateDate(dueDateValue.current.value)) {
                         const dueObject = createDueDateObject(dueDateValue.current.value)
                         const newGroup: Group_Interface =  {
@@ -125,6 +126,7 @@ export default function EditGroup({setTasksToday,tasksToday,taskPopUpState,setTa
         
 
         else { // If there is not a due date with this group
+            console.log('Editing a group in a sprint')
                     const newGroup: Group_Interface =  {
                         id: (Math.random() * 10000).toString(),
                         category: {

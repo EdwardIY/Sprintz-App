@@ -27,7 +27,24 @@ console.log(sprints)
             updateSelectedCategory:setSprints
         })
       }
-      const handleMountEdit = (sprint: any) => {}
+    const handleMountEdit = (sprint: any) => {
+        setSprintPopUpState({
+            viewCreateItem: false,
+            viewEditItem: true,
+            viewUpdateItem:false,
+            selectedItem:sprint,
+            list: sprints,
+            updateList: setSprints
+        })
+        setSelectedItemState({
+            selectedItem: sprint,
+            viewCompleted: false,
+            viewDelete: false,
+            viewEdit: true,
+            selectedCategoryList: sprints,
+            updateSelectedCategory:setSprints
+        })
+      }
       const handleMountCompleted = (sprint: any) => {}
   
     return (
@@ -43,7 +60,7 @@ console.log(sprints)
                         <ProgressCircle
                                 type={'sprint'}
                                 sprint={sprint}
-                                controls={{delete:handleMountDelete}}
+                                controls={{delete:handleMountDelete, edit:handleMountEdit}}
                                 value={sprint.progress}
                                 size={100}
                                 root_color='#e3e3e3'
