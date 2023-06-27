@@ -154,7 +154,9 @@ export default function App() {
           sprints={sprints}
           setSprints={setSprints}
           sprintPopUpState={sprintPopUpState}
-          setSprintPopUpState={setSprintPopUpState}
+        setSprintPopUpState={setSprintPopUpState}
+        setSelectedItemState={setSelectedItemState}
+
       />
 
 

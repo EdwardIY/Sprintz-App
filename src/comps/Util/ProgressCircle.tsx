@@ -1,20 +1,24 @@
-import {useState,useEffect} from 'react'
+import { useState, useEffect } from 'react'
+import * as Icon from 'react-bootstrap-icons';
+
 
 interface ProgressCircle_Inputs {
+    type:string
     value: number,
     size: number,
     root_color: string,
     progress_color: string,
     value_color: string,
     fontSize: number,
+    sprint?:any
     note?: any
-
+    controls?:any
 }
-export function ProgressCircle({value,size, root_color,progress_color,value_color,fontSize,note}:ProgressCircle_Inputs) {
+export function ProgressCircle({type,sprint,controls,value,size, root_color,progress_color,value_color,fontSize,note}:ProgressCircle_Inputs) {
     const [progressValue, setProgressValue] = useState(0);
+    const [seeOptions,setSeeOptions] = useState(false)
 
-    useEffect(() => {
-
+    useEffect(() => { // Increment animation
         for (let i = progressValue; i <= value; i++){
             setTimeout(() => {
                 setProgressValue(i)
@@ -22,21 +26,24 @@ export function ProgressCircle({value,size, root_color,progress_color,value_colo
         }
     }, [value])
 
+
     
 
 
 
     return (
         <div className="ProgressCircle Container--col">
+
+
             <div
+                onClick={()=> setSeeOptions(true)}
                 style={{
                     background: `conic-gradient(${progress_color} ${progressValue}%, ${root_color} 0deg)`,
                     width: `${size}px`,
                     height: `${size}px`,
                     borderRadius: '50%',
-                    boxShadow: 'inset 1px 0px 16px 3px rgba(0,0,0,0.27)',
-                    transition: '1s'
-
+                    boxShadow: '0px 0px 10px 0px var(--colorB)',
+                    transition: '.5s'
                 }} className="ProgressCircle__Parent Container--row">
                 <div style={{
                     width: `${size - 25}px`,
@@ -51,7 +58,13 @@ export function ProgressCircle({value,size, root_color,progress_color,value_colo
                     {progressValue}%
                 </div>
             </div>
-            <span style={{fontSize:'16px'}}>{note && note}</span>
+            <span style={{ fontSize: '16px' }}>{note && note}</span>
+            {(seeOptions && type == 'sprint') &&  <div style={{opacity: seeOptions ? '1' : '0', pointerEvents: seeOptions ? 'initial' : 'none'}}  className='ProgressCircle_Message Container--col'>
+                <Icon.XLg className='ProgressCircle_Message_Close' onClick={()=> setSeeOptions(false)} />
+                <span className='ProgressCircle_Message_Option Container--row'>Edit <Icon.Pencil onClick={()=> true } /> </span>
+                <span className='ProgressCircle_Message_Option Container--row'>Update <Icon.Check2 onClick={()=> true }/> </span>
+                <span className='ProgressCircle_Message_Option Container--row'>Delete <Icon.XLg onClick={()=> controls.delete(sprint)} /></span>
+            </div> }
         </div>
     )
 }

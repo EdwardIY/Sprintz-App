@@ -6,17 +6,27 @@ interface Sprints_Inputs {
     setSprints: Function
     sprintPopUpState:any
     setSprintPopUpState: Function
+    setSelectedItemState:Function
+
 }
 
 
-export default function Sprints({sprints,setSprints,sprintPopUpState,setSprintPopUpState}:Sprints_Inputs) {
+export default function Sprints({sprints,setSprints,sprintPopUpState,setSprintPopUpState,setSelectedItemState}:Sprints_Inputs) {
 
 
 console.log(sprints)
     const handleMountCreateSprint = () => {
         setSprintPopUpState({...sprintPopUpState, viewCreateItem: true})
       }
-      const handleMountDelete = (sprint: any) => {}
+    const handleMountDelete = (sprint: string) => {
+        setSelectedItemState({
+            selectedItem: sprint,
+            viewCompleted: false,
+            viewDelete: true,
+            selectedCategoryList: sprints,
+            updateSelectedCategory:setSprints
+        })
+      }
       const handleMountEdit = (sprint: any) => {}
       const handleMountCompleted = (sprint: any) => {}
   
@@ -30,7 +40,10 @@ console.log(sprints)
                 sprints.map((sprint:any) => {
                     return <div className="Sprints__Sprint Container--col">
                             <h2 className="Sprints__Sprint__Title">{sprint.title}</h2>
-                            <ProgressCircle
+                        <ProgressCircle
+                                type={'sprint'}
+                                sprint={sprint}
+                                controls={{delete:handleMountDelete}}
                                 value={sprint.progress}
                                 size={100}
                                 root_color='#e3e3e3'

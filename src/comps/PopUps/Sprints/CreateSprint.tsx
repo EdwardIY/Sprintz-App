@@ -97,7 +97,7 @@ export default function CreateSprint({ sprints,setSprints,sprintPopUpState, setS
                         dateString: dueObject.dateStringDraft
                     },
                     totalTasks: groups.reduce((a, b) => a + b.list.length, 0),
-                    progress: 50
+                    progress: 0
                 }
                 console.log('Sprints updated')
                 setSprints([...sprints, sprint])

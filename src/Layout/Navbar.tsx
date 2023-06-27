@@ -22,6 +22,7 @@ export default function Navbar({ setTaskPopUpState, taskPopUpState,groupPopUpSta
           <Icon.XLg  className='Navbar__CloseNav'  onClick={()=> setActive(!active)}/>
           {/* <li className="Navbar__Item"><Time/></li> */}
           <ProgressCircle
+            type={'root'}
             value={10}
             size={100}
             root_color='#e3e3e3'
