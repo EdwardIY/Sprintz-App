@@ -16,7 +16,22 @@ interface ProgressCircle_Inputs {
 }
 export function ProgressCircle({type,sprint,controls,value,size, root_color,progress_color,value_color,fontSize,note}:ProgressCircle_Inputs) {
     const [progressValue, setProgressValue] = useState(0);
-    const [seeOptions,setSeeOptions] = useState(false)
+    const [seeOptions, setSeeOptions] = useState(false)
+
+
+    
+    // If controls are given to this icon
+    const handleEdit = () => {
+        controls.edit(sprint)
+        setSeeOptions(false)
+    }
+    const handleDelete = () => {
+        controls.delete(sprint)
+    }
+    const handleUpdate = () => {
+        controls.update(sprint)
+        setSeeOptions(false)
+    }
 
     useEffect(() => { // Increment animation
         for (let i = progressValue; i <= value; i++){
@@ -61,9 +76,9 @@ export function ProgressCircle({type,sprint,controls,value,size, root_color,prog
             <span style={{ fontSize: '16px' }}>{note && note}</span>
             {(seeOptions && type == 'sprint') &&  <div style={{opacity: seeOptions ? '1' : '0', pointerEvents: seeOptions ? 'initial' : 'none'}}  className='ProgressCircle_Message Container--col'>
                 <Icon.XLg className='ProgressCircle_Message_Close' onClick={()=> setSeeOptions(false)} />
-                <span onClick={()=> controls.edit(sprint)} className='ProgressCircle_Message_Option Container--row'>Edit <Icon.Pencil onClick={()=> true } /> </span>
-                <span className='ProgressCircle_Message_Option Container--row'>Update <Icon.Check2 onClick={()=> true }/> </span>
-                <span onClick={()=> controls.delete(sprint)} className='ProgressCircle_Message_Option Container--row'>Delete <Icon.XLg /></span>
+                <span onClick={handleEdit} className='ProgressCircle_Message_Option Container--row'>Edit <Icon.Pencil onClick={()=> true } /> </span>
+                <span onClick={handleUpdate} className='ProgressCircle_Message_Option Container--row'>Update <Icon.Check2 onClick={()=> true }/> </span>
+                <span onClick={handleDelete} className='ProgressCircle_Message_Option Container--row'>Delete <Icon.XLg /></span>
             </div> }
         </div>
     )

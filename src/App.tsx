@@ -15,6 +15,7 @@ import UpdateGroup from './comps/PopUps/Groups/UpdateGroup';
 import EditGroup from './comps/PopUps/Groups/EditGroup';
 import CreateSprint from './comps/PopUps/Sprints/CreateSprint';
 import EditSprint from './comps/PopUps/Sprints/EditSprint';
+import UpdateSprint from './comps/PopUps/Sprints/UpdateSprint';
 
 
 const DateCollection = {
@@ -190,6 +191,16 @@ export default function App() {
             setGroupPopUpState={setGroupPopUpState}
             createDueDateObject={createDueDateObject}
             validateDate={validateDate}
+        />}
+        {sprintPopUpState.viewUpdateItem &&
+          <UpdateSprint
+          sprints={sprints}
+          setSprints={setSprints}
+          sprintPopUpState={sprintPopUpState}
+          setSprintPopUpState={setSprintPopUpState}
+          // groupPopUpState={groupPopUpState}
+          setGroupPopUpState={setGroupPopUpState}
+
         />}
       
       

@@ -14,7 +14,6 @@ interface Sprints_Inputs {
 export default function Sprints({sprints,setSprints,sprintPopUpState,setSprintPopUpState,setSelectedItemState}:Sprints_Inputs) {
 
 
-console.log(sprints)
     const handleMountCreateSprint = () => {
         setSprintPopUpState({...sprintPopUpState, viewCreateItem: true})
       }
@@ -36,16 +35,25 @@ console.log(sprints)
             list: sprints,
             updateList: setSprints
         })
-        setSelectedItemState({
-            selectedItem: sprint,
-            viewCompleted: false,
-            viewDelete: false,
-            viewEdit: true,
-            selectedCategoryList: sprints,
-            updateSelectedCategory:setSprints
+        // setSelectedItemState({
+        //     selectedItem: sprint,
+        //     viewCompleted: false,
+        //     viewDelete: false,
+        //     viewEdit: true,
+        //     selectedCategoryList: sprints,
+        //     updateSelectedCategory:setSprints
+        // })
+      }
+    const handleMountUpdate = (sprint: any) => {
+        setSprintPopUpState({
+            viewCreateItem: false,
+            viewEditItem: false,
+            viewUpdateItem:true,
+            selectedItem:sprint,
+            list: sprints,
+            updateList: setSprints
         })
       }
-      const handleMountCompleted = (sprint: any) => {}
   
     return (
         <div className="Container--row Sprints">
@@ -60,7 +68,7 @@ console.log(sprints)
                         <ProgressCircle
                                 type={'sprint'}
                                 sprint={sprint}
-                                controls={{delete:handleMountDelete, edit:handleMountEdit}}
+                                controls={{delete:handleMountDelete, edit:handleMountEdit, update:handleMountUpdate}}
                                 value={sprint.progress}
                                 size={100}
                                 root_color='#e3e3e3'
