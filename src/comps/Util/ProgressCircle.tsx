@@ -4,41 +4,46 @@ import * as Icon from 'react-bootstrap-icons';
 
 interface ProgressCircle_Inputs {
     type:string
-    value: number,
+    value: number | number[],
     size: number,
     root_color: string,
     progress_color: string,
     value_color: string,
     fontSize: number,
-    sprint?:any
+    selected?:number
+    sprint?: any
     note?: any
     controls?:any
 }
-export function ProgressCircle({type,sprint,controls,value,size, root_color,progress_color,value_color,fontSize,note}:ProgressCircle_Inputs) {
-    const [progressValue, setProgressValue] = useState(0);
-    const [seeOptions, setSeeOptions] = useState(false)
-
-
-    
-    // If controls are given to this icon
-    const handleEdit = () => {
-        controls.edit(sprint)
-        setSeeOptions(false)
-    }
-    const handleDelete = () => {
-        controls.delete(sprint)
-    }
-    const handleUpdate = () => {
-        controls.update(sprint)
-        setSeeOptions(false)
-    }
+export function ProgressCircle({type,sprint,selected,controls,value,size, root_color,progress_color,value_color,fontSize,note}:ProgressCircle_Inputs) {
+    const [progressValue, setProgressValue] = useState<number>(typeof value == 'object' ? value[0] : value);
 
     useEffect(() => { // Increment animation
-        for (let i = progressValue; i <= value; i++){
-            setTimeout(() => {
-                setProgressValue(i)
-            },i * 10)
+
+        if (sprint && selected) {
+            if (sprint.id == selected && typeof value == 'object') {
+                console.log(sprint.category.title + 'Made it through')
+                console.log(value,progressValue)
+                if (value[1] < progressValue) {
+                    console.log('dec progress value',value,progressValue)
+                    for (let i = progressValue; i >= value[1]; i--){
+                        setTimeout(() => {
+                            setProgressValue(i)
+                        },i * 10 * i / 10)
+                    }
+                }
+                else if (value[1] > progressValue) {
+                    console.log('dec progress value',value,progressValue)
+                    for (let i = progressValue; i <= value[1]; i++){
+                        setTimeout(() => {
+                            setProgressValue(i)
+                        },i * 10 * i / 10)
+                    }
+                }
+            }
         }
+       
+
     }, [value])
 
 
@@ -51,7 +56,7 @@ export function ProgressCircle({type,sprint,controls,value,size, root_color,prog
 
 
             <div
-                onClick={()=> setSeeOptions(true)}
+                // onClick={()=> setSeeOptions(true)}
                 style={{
                     background: `conic-gradient(${progress_color} ${progressValue}%, ${root_color} 0deg)`,
                     width: `${size}px`,
@@ -74,12 +79,12 @@ export function ProgressCircle({type,sprint,controls,value,size, root_color,prog
                 </div>
             </div>
             <span style={{ fontSize: '16px' }}>{note && note}</span>
-            {(seeOptions && type == 'sprint') &&  <div style={{opacity: seeOptions ? '1' : '0', pointerEvents: seeOptions ? 'initial' : 'none'}}  className='ProgressCircle_Message Container--col'>
+            {/* {(seeOptions && type == 'sprint') &&  <div style={{opacity: seeOptions ? '1' : '0', pointerEvents: seeOptions ? 'initial' : 'none'}}  className='ProgressCircle_Message Container--col'>
                 <Icon.XLg className='ProgressCircle_Message_Close' onClick={()=> setSeeOptions(false)} />
                 <span onClick={handleEdit} className='ProgressCircle_Message_Option Container--row'>Edit <Icon.Pencil onClick={()=> true } /> </span>
                 <span onClick={handleUpdate} className='ProgressCircle_Message_Option Container--row'>Update <Icon.Check2 onClick={()=> true }/> </span>
                 <span onClick={handleDelete} className='ProgressCircle_Message_Option Container--row'>Delete <Icon.XLg /></span>
-            </div> }
+            </div> } */}
         </div>
     )
 }

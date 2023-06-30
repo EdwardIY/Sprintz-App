@@ -146,6 +146,8 @@ export default function App() {
           setTaskPopUpState={setTaskPopUpState}
           groupPopUpState={groupPopUpState}
           setGroupPopUpState={setGroupPopUpState}
+          sprintPopUpState={sprintPopUpState}
+          setSprintPopUpState={setSprintPopUpState}
           full={full}
           setFull={setFull} />
       </div>

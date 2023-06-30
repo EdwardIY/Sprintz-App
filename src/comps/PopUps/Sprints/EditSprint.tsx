@@ -31,7 +31,7 @@ interface Sprint {
         dateString: string
     }
     totalTasks:number
-    progress: number
+    progress: number[]
 }
 
 
@@ -100,6 +100,9 @@ export default function EditSprint({ sprints,setSprints,sprintPopUpState, setSpr
         if (dueDateValue.current) {
             if (validateDate(dueDateValue.current.value)) {
                 const dueObject = createDueDateObject(dueDateValue.current.value)
+                const oldAmountOfTasks = sprintPopUpState.selectedItem.list.reduce((a:any,b:any)=> a + b.list.length,0)
+                const newAmountOfTasks = groups.reduce((a: any, b: any) => a + b.list.length, 0)
+                const numberOfTotalTasks = calculateTaskTotal(sprintPopUpState.selectedItem.totalTasks,newAmountOfTasks,oldAmountOfTasks)
                 let newSprint: Sprint = {
                     id: (Math.random()*10000).toString(),
                     list: groups,
@@ -111,9 +114,12 @@ export default function EditSprint({ sprints,setSprints,sprintPopUpState, setSpr
                         date: dueObject.dateDraft,
                         dateString: dueObject.dateStringDraft
                     },
-                    totalTasks: groups.reduce((a, b) => a + b.list.length, 0),
-                    progress: 0
+                    totalTasks: numberOfTotalTasks ,
+                    // progress: Math.ceil((numberOfTotalTasks - newAmountOfTasks) / numberOfTotalTasks   * 100)
+                    progress: [sprintPopUpState.selectedItem.progress[1],Math.ceil((numberOfTotalTasks - newAmountOfTasks) / numberOfTotalTasks   * 100)]
+
                 }
+                console.log(newSprint.progress)
                 sprintPopUpState.updateList(sprintPopUpState.list.map((sprint:Sprint) => {
                     if (sprint.id == sprintPopUpState.selectedItem.id)
                         return newSprint
@@ -152,7 +158,7 @@ export default function EditSprint({ sprints,setSprints,sprintPopUpState, setSpr
                     <ul className="TaskList--group__List ">
                         {message && <span className="TaskList--group__List__Message Container--col">{message}</span>}
                         {groups.length > 0 && (groups.map((group:any) => {
-                            return <li className='TaskList--group__List__Item'>
+                            return <li key={Math.random() * Math.random()} className='TaskList--group__List__Item'>
                                 {group.category.title + ` (Contains ${group.list.length} tasks)`} 
                                 <span onClick={()=> handleEditGroup(group)} className="PopUp__Button">edit</span>
                                 <span onClick={()=> handleRemoveGroup(group.id)} className="PopUp__Button">remove</span>
@@ -169,7 +175,7 @@ export default function EditSprint({ sprints,setSprints,sprintPopUpState, setSpr
                     </div>
                 </form>
             </div>
-            {listDone && <Title type={'popup'} title={'Add Title'} confirm={handleDone} cancel={handleCancelTitle} />}
+            {listDone && <Title defaultValue={sprintPopUpState.selectedItem.category.title} type={'popup'} title={'Add Title'} confirm={handleDone} cancel={handleCancelTitle} />}
         
                 {/* <div className="PopUp__Search">
                     <div className="SearchBarContainer">
@@ -179,4 +185,14 @@ export default function EditSprint({ sprints,setSprints,sprintPopUpState, setSpr
                 </div> */}
     </section>
     </> 
+}
+
+
+function calculateTaskTotal(total:number, newTaskTotal:number, oldTaskTotal:number) {
+    if (oldTaskTotal > newTaskTotal)
+        return total - (oldTaskTotal - newTaskTotal)
+    else if (oldTaskTotal < newTaskTotal)
+        return total + (newTaskTotal - oldTaskTotal)
+    else return total
+
 }

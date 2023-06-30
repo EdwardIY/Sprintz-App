@@ -38,3 +38,5 @@ create and edit component are almost identical so there is alot of reapeated cod
  - edit and maybe com/del popups are going to be a little transparent
 
  - On create sprint need to figure out how I am going to show the created groups in a list format in sprint
+ - EDit sprint percentage
+ - Split progress into array first value us old value second is new value

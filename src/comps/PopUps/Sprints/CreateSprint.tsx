@@ -31,7 +31,7 @@ interface Sprint {
         dateString: string
     }
     totalTasks:number
-    progress: number
+    progress: number[]
 }
 
 
@@ -103,7 +103,8 @@ export default function CreateSprint({ sprints,setSprints,sprintPopUpState, setS
                         dateString: dueObject.dateStringDraft
                     },
                     totalTasks: groups.reduce((a, b) => a + b.list.length, 0),
-                    progress: 0
+                    // progress: 0
+                    progress: [0,0]
                 }
                 console.log('Sprints updated')
                 setSprints([...sprints, sprint])
@@ -140,7 +141,7 @@ export default function CreateSprint({ sprints,setSprints,sprintPopUpState, setS
                     <ul className="TaskList--group__List ">
                         {message && <span className="TaskList--group__List__Message Container--col">{message}</span>}
                         {groups.length > 0 && (groups.map((group:any) => {
-                            return <li className='TaskList--group__List__Item'>
+                            return <li key={Math.random() * Math.random()} className='TaskList--group__List__Item'>
                                 {group.category.title + ` (Contains ${group.list.length} tasks)`} 
                                 <span onClick={()=> handleEditGroup(group)} className="PopUp__Button">edit</span>
                                 <span onClick={()=> handleRemoveGroup(group)} className="PopUp__Button">remove</span>

@@ -83,7 +83,7 @@ export default function UpdateGroup({setSelectedItemState,setTasksToday,tasksTod
                 <ul className="TaskList--group__List">
                     {tasks ? !tasks.length && <span className="TaskList--group__List__Message Container--col">Group Completed</span> : '' }
                     {tasks && (tasks.map((task:any) => {
-                        return <li key={task.id} className="TaskList--group__List__Item "> {task.description}
+                        return <li key={task.id} className="TaskList--group__List__Item ">Task: "{task.description}"
                             <div onClick={() => handleCompletedTask(task)} className="PopUp__Button">done</div>
                         </li>
                     })) }
