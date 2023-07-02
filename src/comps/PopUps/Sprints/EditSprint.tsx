@@ -143,6 +143,7 @@ export default function EditSprint({ sprints,setSprints,sprintPopUpState, setSpr
     }
     
     return <>
+    <div className='Background'></div>
         <section className="PopUp">
             <h1 style={{alignSelf: 'center',marginBottom:'.5em'}} className="PopUp__Title">Edit Sprint </h1>
             <div className="AddTaskContainer--group  Container--row">

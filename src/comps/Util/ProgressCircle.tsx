@@ -16,35 +16,50 @@ interface ProgressCircle_Inputs {
     controls?:any
 }
 export function ProgressCircle({type,sprint,selected,controls,value,size, root_color,progress_color,value_color,fontSize,note}:ProgressCircle_Inputs) {
-    const [progressValue, setProgressValue] = useState<number>(typeof value == 'object' ? value[0] : value);
+    const [progressValue, setProgressValue] = useState<number>(typeof value == 'object' ? value[1] : value);
+    // const [progressValue, setProgressValue] = useState<number>(initialValue());
 
-    useEffect(() => { // Increment animation
-
-        if (sprint && selected) {
-            if (sprint.id == selected && typeof value == 'object') {
-                console.log(sprint.category.title + 'Made it through')
-                console.log(value,progressValue)
-                if (value[1] < progressValue) {
-                    console.log('dec progress value',value,progressValue)
-                    for (let i = progressValue; i >= value[1]; i--){
-                        setTimeout(() => {
-                            setProgressValue(i)
-                        },i * 10 * i / 10)
-                    }
-                }
-                else if (value[1] > progressValue) {
-                    console.log('dec progress value',value,progressValue)
-                    for (let i = progressValue; i <= value[1]; i++){
-                        setTimeout(() => {
-                            setProgressValue(i)
-                        },i * 10 * i / 10)
-                    }
-                }
-            }
-        }
+    // useEffect(() => {  // Increment animation
+    //     console.log('useeffect ran')
+    //     if (sprint && selected) {
+    //         if (sprint.id == selected && typeof value == 'object') {
+    //             console.log('Sprint ID: ' + sprint.id)
+    //             console.log('ID: ' + selected)
+    //             console.log(sprint.category.title + 'Made it through')
+    //             console.log(value,progressValue)
+    //             if (value[1] < progressValue) {
+    //                 console.log('dec progress value', value, progressValue)
+    //                 for (let i = progressValue; i >= value[1]; i--){
+    //                     setTimeout(() => {
+    //                         setProgressValue(i)
+    //                     },i * 10 * i / 10)
+    //                 }
+    //             }
+    //             else if (value[1] > progressValue) {
+    //                 console.log('dec progress value', value, progressValue)
+    //                 for (let i = progressValue; i <= value[1]; i++){
+    //                     setTimeout(() => {
+    //                         setProgressValue(i)
+    //                     },i * 10 * i / 10)
+    //                 }
+    //             }
+    //         }
+    //     }
        
+    //     // return clearInterval(step)
 
-    }, [value])
+    // }, [value])
+    // function initialValue():number {
+    //     if (typeof value == 'object' && selected && sprint) {
+    //         if (selected == sprint.id) {
+    //             return value[0]
+    //          }
+    //         else return value[1]
+    //      }
+    //     else if (typeof value == 'number') return value
+
+    //     return 1
+    // }
 
 
     

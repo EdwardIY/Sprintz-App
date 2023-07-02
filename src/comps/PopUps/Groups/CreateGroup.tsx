@@ -145,6 +145,7 @@ export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,set
     }
 
     return <>
+    {type == 'popup' && <div className='Background'></div>}
         <div style={{ display: type == 'popup' ?  !listDone ? 'flex' : 'none' : type == 'layout'  ? 'flex' : '',gap: '3em' }} className={`${type == 'popup' ? 'PopUp' : ''} CreateGroup Container--col`}>
             <div className="AddTaskContainer--group  Container--row">
                 <CreateTask

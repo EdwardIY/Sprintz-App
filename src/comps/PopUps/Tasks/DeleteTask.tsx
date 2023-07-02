@@ -20,8 +20,9 @@ export default function DeleteTask({ taskID, setTaskID, tasksToday, setTasksToda
         setTaskID(null);
         setTaskPopUpState({...taskPopUpState, viewDeleteTask: false})
     }
-    return <div style={{
-        opacity: taskPopUpState.viewDeleteTask ? '1' : '0', pointerEvents: taskPopUpState.viewDeleteTask ? 'initial' : 'none'}} className="PopUp DeleteTask Container--col">
+    return <>
+            <div className='Background'></div>
+            <div className="PopUp DeleteTask Container--col">
                 <h2 className="">Are you sure you want to delete this task?</h2>
                 <p className="PopUp--DeleteTask__Description">{description}</p>
                 <div className="PopUp__Buttons Container--row">
@@ -29,4 +30,5 @@ export default function DeleteTask({ taskID, setTaskID, tasksToday, setTasksToda
                     <div onClick={handleCancel} className="PopUp__Button">CANCEL</div>
                 </div>
             </div>
+    </> 
 }

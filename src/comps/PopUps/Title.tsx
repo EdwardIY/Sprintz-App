@@ -28,12 +28,16 @@ export default function Title({type,title,confirm, cancel,defaultValue}:AddTitle
     }
 
 
-    return <form onSubmit={handleDone} style={{display:'flex',opacity: '1'}} className={`${type == 'popup' ? 'PopUp' : ''} CreateTitle Container--col` }>
-        <h2>{ title }</h2>
-        <input defaultValue={defaultValue } className="CreateTitle__Input" ref={titleValue} type="text" />
-        <div className="PopUp__Buttons Container--row">
-        <button className="PopUp__Button">DONE</button> 
-        <div onClick={handleCancel} className="PopUp__Button">CANCEL</div>
-    </div>
-</form>
+    return <>
+            <div  className='Background'></div>
+            <form onSubmit={handleDone} style={{display:'flex',opacity: '1'}} className={`${type == 'popup' ? 'PopUp' : ''} CreateTitle Container--col` }>
+                <h2>{ title }</h2>
+                <input defaultValue={defaultValue } className="CreateTitle__Input" ref={titleValue} type="text" />
+                <div className="PopUp__Buttons Container--row">
+                <button className="PopUp__Button">DONE</button> 
+                <div onClick={handleCancel} className="PopUp__Button">CANCEL</div>
+                </div>
+        
+        </form>
+    </> 
 }

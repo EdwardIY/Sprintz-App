@@ -46,7 +46,6 @@ months: [
 
 export default function App() {
   const [full, setFull] = useState(false);
-  const [background,setBackground] = useState(0)
   const [tasksToday, setTasksToday] = useState([])
   const [sprints,setSprints] = useState([])
   const [taskPopUpState, setTaskPopUpState] = useState({
@@ -86,27 +85,6 @@ export default function App() {
   });
 
 
-
-  useEffect(() =>{
-    const PopUps = [
-      taskPopUpState.viewCreateItem,
-      taskPopUpState.viewEditItem,
-      groupPopUpState.viewCreateItem,
-      groupPopUpState.viewEditItem,
-      groupPopUpState.viewUpdateItem,
-      sprintPopUpState.viewCreateItem,
-      sprintPopUpState.viewEditItem,
-      sprintPopUpState.viewUpdateItem,
-      selectedItemState.viewCompleted,
-      selectedItemState.viewDelete
-    ]
-
-    for (let state of PopUps) {
-        if(state) return setBackground(1)
-    }
-    setBackground(0)
-    
-  },[taskPopUpState,groupPopUpState,sprintPopUpState,selectedItemState])
 
   return (
     <div className="App">
@@ -166,7 +144,8 @@ export default function App() {
 
 
 
-        {/* PopUps */}
+      {/* PopUps */}
+
         {sprintPopUpState.viewCreateItem && 
         <CreateSprint
         sprints={sprints}
@@ -206,7 +185,6 @@ export default function App() {
         />}
       
       
- 
       {taskPopUpState.viewCreateItem &&
         <CreateTask
         selectedItemState={selectedItemState}
@@ -219,8 +197,6 @@ export default function App() {
         validateDate={validateDate}
         type={'popup'} />}
 
-
-      
       {groupPopUpState.viewCreateItem &&
         <CreateGroup
           tasksToday={tasksToday}
@@ -233,7 +209,8 @@ export default function App() {
           validateDate={validateDate}
           type='popup'/>}
        
-      {groupPopUpState.updateList && 
+      
+      {groupPopUpState.viewUpdateItem && 
         <UpdateGroup
           setSelectedItemState={setSelectedItemState}
           tasksToday={tasksToday}
@@ -251,6 +228,7 @@ export default function App() {
           setGroupPopUpState={setGroupPopUpState}
           createDueDateObject={createDueDateObject}
           validateDate={validateDate} />}
+
       
       {taskPopUpState.viewEditItem &&
         <EditTask
@@ -259,7 +237,6 @@ export default function App() {
           createDueDateObject={createDueDateObject}
           validateDate={validateDate} />}
 
-      
       {selectedItemState.viewDelete &&
         <Delete
           selectedItemState={selectedItemState}
@@ -269,8 +246,6 @@ export default function App() {
         <Completed
           selectedItemState={selectedItemState}
           setSelectedItemState={setSelectedItemState} /> }
-
-<div style={{ opacity: background}}  className="Background"></div>
 
     </div>
   );

@@ -42,7 +42,8 @@ export default function Completed({ setSelectedItemState,selectedItemState}: Com
         })
     }
     return <>
-        <div style={{ opacity: selectedItemState.viewCompleted ? '1' : '0', pointerEvents: selectedItemState.viewCompleted ? 'initial' : 'none' }} className="PopUp DeleteTask Container--col">
+    <div className='Background'></div>
+        <div className="PopUp DeleteTask Container--col">
             <h2 className="">{title}</h2>
             <p className="PopUp--DeleteTask__Description">{description}</p>
             <div className="PopUp__Buttons Container--row">

@@ -88,6 +88,7 @@ export default function UpdateSprint({setSprints,sprints,sprintPopUpState, setSp
         // })
     }
     return <>
+        <div className='Background'></div>
             <div className="PopUp Container--col">
                 <h2> Update Sprint "{sprintPopUpState.selectedItem?.category.title}"</h2>
                 <ul className="TaskList--group__List">

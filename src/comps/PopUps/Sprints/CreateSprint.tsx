@@ -126,6 +126,7 @@ export default function CreateSprint({ sprints,setSprints,sprintPopUpState, setS
     }
     
     return <>
+        <div className='Background'></div>
         <section className="PopUp">
             <h1 style={{alignSelf: 'center',marginBottom:'.5em'}} className="PopUp__Title">Create Sprint Group</h1>
             <div className="AddTaskContainer--group  Container--row">

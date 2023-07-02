@@ -23,6 +23,7 @@ export default function Sprints({sprints,setSprints,sprintPopUpState,setSprintPo
     // When there Sprints is populated
     const handleSelected = (sprint: any) => {
         setViewOptions(sprint.id)
+        setSelected(sprint.id)
     }
     const handleMountDelete = (sprint: any) => {
         setViewOptions(null)

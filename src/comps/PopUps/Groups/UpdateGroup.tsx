@@ -78,7 +78,8 @@ export default function UpdateGroup({setSelectedItemState,setTasksToday,tasksTod
         })
     }
     return <>
-            <div style={{ opacity:  groupPopUpState.viewUpdateItem ? '1' : '0', pointerEvents:  groupPopUpState.viewUpdateItem ? 'initial' : 'none'}} className="PopUp Container--col">
+        <div  className='Background'></div>
+            <div className="PopUp Container--col">
                 <h2> Update Group "{groupPopUpState.selectedItem?.category.title}"</h2>
                 <ul className="TaskList--group__List">
                     {tasks ? !tasks.length && <span className="TaskList--group__List__Message Container--col">Group Completed</span> : '' }
