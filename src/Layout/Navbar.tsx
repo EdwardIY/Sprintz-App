@@ -1,6 +1,8 @@
 import * as Icon from 'react-bootstrap-icons';
 import { useState} from 'react';
 import { ProgressCircle } from '../comps/Util/ProgressCircle';
+import Time from './Time';
+import {DateCollection} from '../App'
 
 interface NavBar__Inputs {
   taskPopUpState:any
@@ -12,7 +14,7 @@ export default function Navbar({ setTaskPopUpState, taskPopUpState,groupPopUpSta
     const [active, setActive] = useState<boolean>(false);
   
 
-
+  console.log(DateCollection)
 
     return (
       <>
@@ -52,8 +54,10 @@ export default function Navbar({ setTaskPopUpState, taskPopUpState,groupPopUpSta
         <li className="Navbar__Item Navbar__Profile">
           <Icon.Gear />
           <span>Settings</span>
-        </li>
-      </ul>
+          </li>
+          <Time DateCollection={DateCollection}/>
+        </ul>
+
         </>
 
     )

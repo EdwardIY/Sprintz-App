@@ -10,13 +10,29 @@ interface Task_Intputs {
   setGroupPopUpState: Function
   sprintPopUpState:any
   setSprintPopUpState: Function
-  full: boolean,
-  setFull: Function
+  showSidebar: boolean,
+  setShowSidebar: Function
+  showSprints: boolean,
+  setShowSprints: Function
 
 }
 
 
-export default function Tasks({setSelectedItemState,tasksToday,setTasksToday,taskPopUpState,setTaskPopUpState,groupPopUpState,setGroupPopUpState,sprintPopUpState,setSprintPopUpState, full, setFull}: Task_Intputs) {
+export default function Tasks({
+  setSelectedItemState,
+  tasksToday,
+  setTasksToday,
+  taskPopUpState,
+  setTaskPopUpState,
+  groupPopUpState,
+  setGroupPopUpState,
+  sprintPopUpState,
+  setSprintPopUpState,
+  showSidebar,
+  setShowSidebar,
+  showSprints,
+  setShowSprints
+}: Task_Intputs) {
   
   
   function handleMountCreateTask() {
@@ -92,7 +108,8 @@ export default function Tasks({setSelectedItemState,tasksToday,setTasksToday,tas
                                 <span onClick={handleMountCreateGroup} className="EmptyCategory__AddOption ">Create Group <br /> <Icon.PlusCircleFill/> </span>
                                 <span onClick={handleMountCreateSprint} className="EmptyCategory__AddOption  ">Create Sprint <br /> <Icon.PlusCircleFill/> </span>
                               </div>}
-        <Icon.ChevronLeft onClick={() => setFull(!full)} style={{ display: full ? 'initial' : 'none' }} className='Main__Options__Close--toggle' />
+        <Icon.ChevronLeft onClick={() => setShowSidebar(!showSidebar)} style={{ display: showSidebar ? 'initial' : 'none' }} className='Main__Options__Close--toggle' />
+        <Icon.ChevronUp onClick={() => setShowSprints(!showSprints)} style={{ display: showSprints ? 'none' : 'initial' }} className='Sprint_OpenToggle' />
         {tasksToday.length > 0 && tasksToday.map((task: any) => {
           console.log(task)
                             return <div key={task.id} className={`Task Container--col ${task.category.type == 'group' ? 'Task--' + task.category.type : 'Task--reg' } `}>

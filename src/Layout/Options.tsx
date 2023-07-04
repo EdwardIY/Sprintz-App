@@ -2,8 +2,8 @@ import * as Icon from 'react-bootstrap-icons';
 
 
 interface Options_Intputs {
-  full: boolean
-  setFull: Function
+  showSidebar: boolean,
+  setShowSidebar: Function
   taskPopUpState: any
   setTaskPopUpState: Function
   groupPopUpState:any
@@ -13,10 +13,10 @@ interface Options_Intputs {
 }
 
 
-export default function Options({full,setFull,taskPopUpState,setTaskPopUpState,groupPopUpState,setGroupPopUpState,sprintPopUpState,setSprintPopUpState}:Options_Intputs) {
+export default function Options({showSidebar, setShowSidebar,taskPopUpState,setTaskPopUpState,groupPopUpState,setGroupPopUpState,sprintPopUpState,setSprintPopUpState}:Options_Intputs) {
     return (
-      <div style = {{ marginRight: full ? '-600px' : 'initial'}} className="Container--col Main__Options">
-        <Icon.ChevronRight onClick={()=> setFull(!full)}  className='Main__Options__Close--toggle' />
+      <div style = {{ marginRight: showSidebar ? '-600px' : 'initial'}} className="Container--col Main__Options">
+        <Icon.ChevronRight onClick={()=> setShowSidebar(!showSidebar)}  className='Main__Options__Close--toggle' />
         <div onClick={() => setTaskPopUpState({ ...taskPopUpState, viewCreateItem: true })} className="Main__Options__Option Container--col">
           <h2 className="Options__Option__Title">Create Task</h2>
           <span className="Options__Option__Description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione beatae at natus odio consequatur nemo?</span>

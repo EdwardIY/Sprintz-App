@@ -18,7 +18,7 @@ import EditSprint from './comps/PopUps/Sprints/EditSprint';
 import UpdateSprint from './comps/PopUps/Sprints/UpdateSprint';
 
 
-const DateCollection = {
+export const DateCollection = {
   days: [
     "Sunday",
     "Monday",
@@ -44,8 +44,9 @@ months: [
   ]
  }
 
-export default function App() {
-  const [full, setFull] = useState(false);
+ export default function App() {
+  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSprints, setShowSprints] = useState(true);
   const [tasksToday, setTasksToday] = useState([])
   const [sprints,setSprints] = useState([])
   const [taskPopUpState, setTaskPopUpState] = useState({
@@ -104,7 +105,7 @@ export default function App() {
           DateCollection={DateCollection} />
       </div>
 
-        <div className="Container--row Main">
+        <div style={{height: showSprints ? '55vh' : '85vh'}} className="Container--row Main">
         <Today
           tasksToday={tasksToday}
           setTasksToday={setTasksToday}
@@ -115,8 +116,10 @@ export default function App() {
           setGroupPopUpState={setGroupPopUpState}
           sprintPopUpState={sprintPopUpState}
           setSprintPopUpState={setSprintPopUpState}
-          full={full}
-          setFull={setFull}
+          showSidebar={showSidebar}
+          setShowSidebar={setShowSidebar}
+          showSprints={showSprints}
+          setShowSprints={setShowSprints}
           />
 
         <Options
@@ -126,18 +129,20 @@ export default function App() {
           setGroupPopUpState={setGroupPopUpState}
           sprintPopUpState={sprintPopUpState}
           setSprintPopUpState={setSprintPopUpState}
-          full={full}
-          setFull={setFull} />
+          showSidebar={showSidebar}
+          setShowSidebar={setShowSidebar}
+      />
       </div>
-      
 
 
       <Sprints
           sprints={sprints}
           setSprints={setSprints}
           sprintPopUpState={sprintPopUpState}
-        setSprintPopUpState={setSprintPopUpState}
-        setSelectedItemState={setSelectedItemState}
+          setSprintPopUpState={setSprintPopUpState}
+          setSelectedItemState={setSelectedItemState}
+          showSprints={showSprints}
+          setShowSprints={setShowSprints}
 
       />
 
@@ -248,7 +253,8 @@ export default function App() {
           setSelectedItemState={setSelectedItemState} /> }
 
     </div>
-  );
+  )
+  
 }
 
 
@@ -279,6 +285,7 @@ function validateDate(dueDateValue: any) {
   }).join('-')
   return new Date(string) >= new Date()
 }
+
 
 
 

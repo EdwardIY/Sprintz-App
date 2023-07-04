@@ -7,14 +7,26 @@ interface Sprints_Inputs {
     setSprints: Function
     sprintPopUpState:any
     setSprintPopUpState: Function
-    setSelectedItemState:Function
+    setSelectedItemState: Function
+    showSprints: boolean,
+    setShowSprints: Function
 
 }
 
 
-export default function Sprints({sprints,setSprints,sprintPopUpState,setSprintPopUpState,setSelectedItemState}:Sprints_Inputs) {
-    const [selected, setSelected] = useState(Infinity)
-    const [viewOptions,setViewOptions] = useState(null)
+export default function Sprints({
+    sprints,
+    setSprints,
+    sprintPopUpState,
+    setSprintPopUpState,
+    setSelectedItemState,
+    showSprints,
+    setShowSprints
+}: Sprints_Inputs) {
+
+    const [selected, setSelected] = useState(Infinity);
+    const [viewOptions, setViewOptions] = useState(null);
+    const [full,setFull] = useState(true)
 
     // When Sprints is empty
     const handleMountCreateSprint = () => {
@@ -70,7 +82,8 @@ export default function Sprints({sprints,setSprints,sprintPopUpState,setSprintPo
       }
   
     return (
-        <div className="Container--row Sprints">
+        <div  className="Container--row Sprints">
+            <Icon.ChevronDown style={{ display: showSprints ? 'initial' : 'none' }} onClick={()=> setShowSprints(!showSprints)}  className='Sprint_CloseToggle' />
             {!sprints.length ?
                 <div className="EmptyCategory__AddContainer EmptyCategory__AddContainer--Sprint Container--row">                               
                      <span onClick={handleMountCreateSprint} className="EmptyCategory__AddOption  ">Create Sprint <br /> <Icon.PlusCircleFill/> </span>
