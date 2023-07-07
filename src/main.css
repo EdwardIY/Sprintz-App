@@ -47,7 +47,8 @@ opacity: .6;
 }
 @media(max-width:600px){
     .Navbar__OpenNav {
-        right: 1em;
+        right: .5em;
+        top:1em
     }
 }
 
@@ -61,6 +62,18 @@ height: 15vh;
 background-color: var(--primaryColor);
 /* border: 5px solid blue; */
 /* overflow: hidden; */
+}
+@media(max-width: 700px){
+    .Header {
+        height: 10vh;
+    }
+    .Header .Agenda__Quote,
+    .Header .Agenda__Quote__Author{
+        display: none;
+    }
+    .Agenda__Tasks {
+        width: 90%;
+    }
 }
 
 /* Agenda */
@@ -112,7 +125,7 @@ align-self: stretch;
         width: 100%;
     }
 }
-@media(max-width: 700px){
+/* @media(max-width: 700px){
     .Navbar__OpenNav {
 
     }
@@ -130,15 +143,22 @@ align-self: stretch;
 }
 @media(max-width: 500px){
     .Header{
-        height: 20vh;
+        height: auto;
     }
+    .Agenda__Quote {
+        margin-bottom: 1em;
+    }
+    .Agenda__Quote__Author {
+        left:0%;
+        font-size: 12px;
+        }
     .Main{
         height: 50vh;
     }
     .Sprints{
         height: 30vh;
     }
-}
+} */
 
 
 /* Used in both tasks and sprints */
@@ -147,9 +167,10 @@ position: absolute;
 gap:50px;
 text-align: center;
 font-size: 18px;
+left: 0;
+right: 0;
 }
 .EmptyCategory__AddContainer--Sprint {
-width: 100%;
 align-self: center !important;
 }
 .EmptyCategory__AddOption {
@@ -166,7 +187,6 @@ opacity: 1;
 width: 100vw;
 justify-content: flex-end;
 /* border: 5px solid red; */
-height: 55vh;
 transition: .5s;
 /* height: 85vh;  */
 }
@@ -174,9 +194,11 @@ transition: .5s;
 /* height: 55vh; */
 width: 100%;
 padding: 1em;
+padding-left: 2.5em;
 position: relative;
 justify-content: start;
 align-items: flex-start;
+
 flex-wrap: wrap;
 gap:1em 1em;
 background: var(--colorA);
@@ -293,6 +315,12 @@ opacity: .6;
 .Main__Options__Close--toggle:hover {
 opacity: 1;
 }
+.Main--expand{
+    height: 85vh !important;
+}
+.Main--shorten {
+    height: 53vh !important;
+}
 @media(max-width: 1000px){
     .Main {
         flex-direction: column;
@@ -308,20 +336,33 @@ opacity: 1;
         .Main__Options {
             display: none;
         }
-    /* .Main__Options {
-        width: 100%;
-        border-left:none;
-        flex-direction: row;
-        margin:auto !important;
-        height: 30%;
-        border-top: 1px solid var(--secondaryColor);
-        }
-        */
     .Main__Options__Close--toggle {
         display: none !important;
     } 
 }
+@media(max-width:700px){
+    .Main--expand{
+        height: 90vh !important;
+    }
+    .Main--shorten {
+        height: 0vh !important;
+    }
 
+}
+@media(max-width:400px){
+    .Main__Tasks {
+        flex-wrap: nowrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-left: 0em;
+    }
+     .EmptyCategory__AddContainer {
+        flex-direction: column;
+        }
+}
+
+/* EmptyCategory__AddContainer */
 
 /* Sprints */
 .Sprints{
@@ -329,8 +370,8 @@ background-color: black;
 justify-content: flex-start;
 padding: 1em 3em;
 align-items: flex-start;
-height: 30vh;
-min-height: 30vh;
+/* height: 31vh; */
+height: 33vh;
 gap:5em;
 position: relative;
 /* border: 5px solid green; */
@@ -345,6 +386,7 @@ align-items: center; */
 line-height: 1.3em;
 max-height: 100%;
 min-width: max-content;
+width: 300px;
 position: relative;
 }
 .Sprints__Sprint__Title{
@@ -367,14 +409,14 @@ opacity: 1;
 .Sprint_OpenToggle{
 position: absolute;
 bottom:1em;
-left:1em;
-font-size: 28px;
+left:.3em;
+font-size: 25px;
 opacity: .6;
 }
 .Sprint_CloseToggle {
 position: absolute;
 left: 1em;
-font-size: 28px;
+font-size: 25px;
 opacity: .6;
 }
 .Sprint_CloseToggle:hover {
@@ -429,6 +471,25 @@ position: absolute;
 right:5px;
 top:5px;
 }
+@media(max-width:700px){
+    .Sprints {
+        height: 92vh !important;
+    }
+}
+@media(max-width:760px){
+    /* .Sprint_CloseToggle,
+    .Sprint_OpenToggle {
+        display: none !important;
+    } */
+    .Sprints{
+        flex-wrap: wrap;
+        overflow: scroll;
+    } 
+    /* .Sprints__Sprint {
+        flex-direction: row;
+        gap:1em;
+    } */
+ }
 
 
 /* PopUp */
@@ -444,6 +505,7 @@ text-align: center;
 border-radius: 10px;
 background: var(--primaryColor);
 width: max-content;
+max-width: 100vw;
 height: max-content;
 align-items: flex-start;
 gap:2em;

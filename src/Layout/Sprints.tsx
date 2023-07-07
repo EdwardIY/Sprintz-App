@@ -99,7 +99,7 @@ export default function Sprints({
                                 selected={selected}
                                 // controls={{delete:handleMountDelete, edit:handleMountEdit, update:handleMountUpdate}}
                                 value={sprint.progress}
-                                size={100}
+                                size={90}
                                 root_color='#e3e3e3'
                                 progress_color='#545B77'
                                 value_color='#121212'

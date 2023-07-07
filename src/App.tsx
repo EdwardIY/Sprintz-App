@@ -105,7 +105,7 @@ months: [
           DateCollection={DateCollection} />
       </div>
 
-        <div style={{height: showSprints ? '55vh' : '85vh'}} className="Container--row Main">
+        <div  className={`Container--row Main` + ` ${showSprints ? 'Main--shorten' : 'Main--expand'}`}>
         <Today
           tasksToday={tasksToday}
           setTasksToday={setTasksToday}
