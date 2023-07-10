@@ -475,6 +475,9 @@ top:5px;
     .Sprints {
         height: 92vh !important;
     }
+    .Sprint_OpenToggle{
+        bottom:5em;
+        }
 }
 @media(max-width:760px){
     /* .Sprint_CloseToggle,
