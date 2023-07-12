@@ -126,8 +126,8 @@ export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasks, se
 
   return <>
     {type == 'popup' && <div className='Background'></div>}
-    <form onSubmit={handleSubmit} className={`${type == 'popup' ? 'PopUp' : ''} CreateTask Container--col` }>
-      <h2 className="">Create Task</h2>
+    <form onSubmit={handleSubmit} className={`${type == 'popup' ? 'PopUp' : 'layout'} CreateTask Container--col` }>
+      {type == 'popup' && <h2 className="">Create Task</h2>  }
       <textarea ref={descriptionValue} required placeholder="Description" className="PopUp__TextArea"></textarea>
       { validateDate != undefined && <div className="PopUp__DueDate Container--row">
         <span className="PopUp__DateTitle">Add Due Date:</span>

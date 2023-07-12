@@ -508,17 +508,20 @@ text-align: center;
 border-radius: 10px;
 background: var(--primaryColor);
 width: max-content;
-max-width: 100vw;
+max-width:95vw;
 height: max-content;
+max-height: 90vh;
 align-items: flex-start;
 gap:2em;
 padding: 3em 3em;
 z-index: 1;
 box-Shadow: 0px 0px 40px 0px #a2a8d3;
+/* flex-wrap: wrap; */
+overflow: scroll;
 /* transition: .3s; */
 }
 .CreateTask {
-gap:2em;
+gap:1em;
 }
 .CreateGroup{}
 .CreateSprint {
@@ -529,6 +532,7 @@ background: transparent;
 width: 450px;
 height: 200px;
 padding: .5em;
+max-width: 100%;
 }
 .PopUp__Buttons{
 gap:15px;
@@ -651,6 +655,74 @@ font-size: 18px;
 font-style: italic;
 background-color: transparent;
 }
+@media(max-width:1400px){
+    .CreateSprint{
+        flex-direction: column-reverse;
+    }
+    .CreateSprint .AddTaskContainer--group {
+        flex-direction: column-reverse;
+
+    }
+    .AddTaskContainer--group.CreateSprint .PopUp__TextArea {
+        width: 60vw;
+    }
+    .AddTaskContainer--group.CreateSprint .AddTaskContainer--group {
+        gap:2em;
+    }
+    .AddTaskContainer--group.CreateSprint .TaskList--group__List {
+        width: 60vw;
+    }
+}
+@media(max-width:1000px){
+    .PopUp {
+        padding: 2em;
+    }
+    .CreateGroup.PopUp {
+        width: 90vw;
+        align-items: center;
+        padding: 2em 0em;
+    }
+    .CreateGroup.PopUp .AddTaskContainer--group{
+        flex-direction: column;
+    }
+    .CreateGroup.PopUp .PopUp__TextArea {
+        width: 500px;
+        height: 100px;
+    }
+    .CreateGroup.PopUp .AddTaskContainer--group {
+        gap:2em;
+    }
+    .CreateGroup.PopUp .TaskList--group__List {
+        height: 150px;
+        width: 500px;
+    }
+}
+@media(max-width:600px){
+    .CreateTask.PopUp {
+        padding: 1em;
+        align-items: center;
+    }
+    .CreateGroup.PopUp .PopUp__TextArea {
+        width: 80vw;
+    }
+    .CreateGroup.PopUp .TaskList--group__List {
+        width: 80vw;
+    }
+    .AddTaskContainer--group.CreateSprint .PopUp__TextArea {
+        width: 80vw;
+        height: 200px;
+    }
+    .AddTaskContainer--group.CreateSprint .TaskList--group__List {
+        width: 80vw;
+        height: 200px;
+    }
+}
+@media(max-width:350px){
+    .PopUp__DateTitle {
+        font-size: initial;
+    }
+}
+
 
 
 

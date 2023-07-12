@@ -146,14 +146,15 @@ export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,set
 
     return <>
     {type == 'popup' && <div className='Background'></div>}
-        <div style={{ display: type == 'popup' ?  !listDone ? 'flex' : 'none' : type == 'layout'  ? 'flex' : '',gap: '3em' }} className={`${type == 'popup' ? 'PopUp' : ''} CreateGroup Container--col`}>
+        <div style={{ display: type == 'popup' ?  !listDone ? 'flex' : 'none' : type == 'layout'  ? 'flex' : '',gap: '1em' }} className={`${type == 'popup' ? 'PopUp' : ''} CreateGroup Container--col`}>
+            {type == 'popup' && <h2 style={{alignSelf: 'center',marginBottom:'.5em'}} className="PopUp__Title">Create Group</h2> }
             <div className="AddTaskContainer--group  Container--row">
                 <CreateTask
                     confirm={handleAddTask}
                      type={'layout'} />    
             <form onSubmit={handleCompletedGroup} className="TaskList--group  Container--col">
                 {/* <input required placeholder="ENTER TITLE" className="TaskList--group__Title" type="text" /> */}
-                <h2 style={{alignSelf: 'center',marginBottom:'.5em'}} className="PopUp__Title">Create Group</h2>
+                {/* <h2 style={{alignSelf: 'center',marginBottom:'.5em'}} className="PopUp__Title">Create Group</h2> */}
                 <ul className="TaskList--group__List">
                     {message && <span className="TaskList--group__List__Message Container--col">{message}</span>}
                     {tasks.length > 0 && (tasks.map((task) => {

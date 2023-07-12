@@ -128,8 +128,8 @@ export default function CreateSprint({ sprints,setSprints,sprintPopUpState, setS
     return <>
         <div className='Background'></div>
         <section className="PopUp">
-            <h1 style={{alignSelf: 'center',marginBottom:'.5em'}} className="PopUp__Title">Create Sprint Group</h1>
-            <div className="AddTaskContainer--group  Container--row">
+            <h1 style={{alignSelf: 'center',marginBottom:'.5em'}} className="PopUp__Title">Create Sprint</h1>
+            <div className="AddTaskContainer--group CreateSprint  Container--row">
                 <CreateGroup
                     taskPopUpState={taskPopUpState}
                     setTaskPopUpState={setTaskPopUpState}
@@ -137,7 +137,7 @@ export default function CreateSprint({ sprints,setSprints,sprintPopUpState, setS
                     type='layout'
                 />
                 <form onSubmit={sprintCompleted} className="TaskList--group  Container--col">
-                <h2 className="PopUp__Title">Sprint</h2>
+                {/* <h2 className="PopUp__Title">Sprint</h2> */}
                     {/* <input required placeholder="ENTER TITLE" className="TaskList--group__Title" type="text" /> */}
                     <ul className="TaskList--group__List ">
                         {message && <span className="TaskList--group__List__Message Container--col">{message}</span>}
