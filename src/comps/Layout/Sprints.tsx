@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ProgressCircle } from '../comps/Util/ProgressCircle';
+import { ProgressCircle } from '../Util/ProgressCircle';
 import * as Icon from 'react-bootstrap-icons';
 
 interface Sprints_Inputs {

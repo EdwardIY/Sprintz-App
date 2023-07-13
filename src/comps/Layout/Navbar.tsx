@@ -1,8 +1,8 @@
 import * as Icon from 'react-bootstrap-icons';
 import { useState} from 'react';
-import { ProgressCircle } from '../comps/Util/ProgressCircle';
+import { ProgressCircle } from '../Util/ProgressCircle';
 import Time from './Time';
-import {DateCollection} from '../App'
+import {DateCollection} from '../../Pages/Home'
 
 interface NavBar__Inputs {
   taskPopUpState:any

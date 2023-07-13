@@ -1,4 +1,9 @@
-@import url(./theme.css);
+
+.Home {
+    background: var(--secondaryColor);
+    color: var(--fontColor);
+}
+
 
 /* NavBar */
 .NavBar {

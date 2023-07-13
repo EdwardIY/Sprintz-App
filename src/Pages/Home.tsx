@@ -1,21 +1,22 @@
 import React, { useEffect } from 'react';
+import '../styles/Home.css'
 import {useState} from 'react'
-import Navbar from './Layout/Navbar';
-import Agenda from './Layout/Agenda';
-import Time from './Layout/Time';
-import Sprints  from './Layout/Sprints';
-import Options  from './Layout/Options';
-import Today from './Layout/Today';
-import CreateTask from './comps/PopUps/Tasks/CreateTask';
-import Delete from './comps/PopUps/Delete';
-import Completed from './comps/PopUps/Completed';
-import EditTask from './comps/PopUps/Tasks/EditTask';
-import CreateGroup from './comps/PopUps/Groups/CreateGroup';
-import UpdateGroup from './comps/PopUps/Groups/UpdateGroup';
-import EditGroup from './comps/PopUps/Groups/EditGroup';
-import CreateSprint from './comps/PopUps/Sprints/CreateSprint';
-import EditSprint from './comps/PopUps/Sprints/EditSprint';
-import UpdateSprint from './comps/PopUps/Sprints/UpdateSprint';
+import Navbar from '../comps/Layout/Navbar';
+import Agenda from '../comps/Layout/Agenda';
+import Time from '../comps/Layout/Time';
+import Sprints  from '../comps/Layout/Sprints';
+import Options  from '../comps/Layout/Options';
+import Today from '../comps/Layout/Today';
+import CreateTask from '../comps/PopUps/Tasks/CreateTask';
+import Delete from '../comps/PopUps/Delete';
+import Completed from '../comps/PopUps/Completed';
+import EditTask from '../comps/PopUps/Tasks/EditTask';
+import CreateGroup from '../comps/PopUps/Groups/CreateGroup';
+import UpdateGroup from '../comps/PopUps/Groups/UpdateGroup';
+import EditGroup from '../comps/PopUps/Groups/EditGroup';
+import CreateSprint from '../comps/PopUps/Sprints/CreateSprint';
+import EditSprint from '../comps/PopUps/Sprints/EditSprint';
+import UpdateSprint from '../comps/PopUps/Sprints/UpdateSprint';
 
 
 export const DateCollection = {
@@ -44,7 +45,7 @@ months: [
   ]
  }
 
- export default function App() {
+ export default function Home() {
   const [showSidebar, setShowSidebar] = useState(true);
   const [showSprints, setShowSprints] = useState(true);
   const [tasksToday, setTasksToday] = useState([])
@@ -88,7 +89,7 @@ months: [
 
 
   return (
-    <div className="App">
+    <div className="Home">
 
       <Welcome />
 

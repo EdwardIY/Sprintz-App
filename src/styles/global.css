@@ -7,16 +7,17 @@
     text-decoration: none;
     color: inherit;
 }
+
 html {
   overflow: hidden;
 }
+
 body {
-    line-height: 1.6em;
-    background: var(--secondaryColor);
-    color: var(--fontColor);
-    font-family: var(--primaryFont);
-    overflow: hidden;
+  line-height: 1.6em;
+  font-family: var(--primaryFont);
+  overflow: hidden;
 }
+
 img{
     max-width: 100%;
 }
