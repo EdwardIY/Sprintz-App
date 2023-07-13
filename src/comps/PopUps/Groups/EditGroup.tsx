@@ -155,12 +155,11 @@ export default function EditGroup({setTasksToday,tasksToday,taskPopUpState,setTa
 
     return <>
         <div className='Background'></div>
-        <div style={{ display: !listDone ? 'flex' : 'none', opacity: groupPopUpState.viewEditItem ? '1' : '0', pointerEvents: groupPopUpState.viewEditItem ? 'initial' : 'none' }} className="PopUp Container--col">
+        <div style={{ display: !listDone ? 'flex' : 'none', opacity: groupPopUpState.viewEditItem ? '1' : '0', pointerEvents: groupPopUpState.viewEditItem ? 'initial' : 'none' }} className="PopUp EditGroup Container--col">
             <h1 style={{alignSelf: 'center',marginBottom:'.5em'}} className="PopUp__Title">Edit Group</h1>
             <div className="AddTaskContainer--group  Container--row">
             <form onSubmit={handleAddTask} className="AddTask--group">
                 <div className="AddTaskContainer--group__Add Container--col">
-                    <h2 className="PopUp__Title">Add Task</h2>
                     <textarea ref={description}  required placeholder="Description" className="PopUp__TextArea"></textarea>
                     <div className="PopUp__Buttons Container--row">
                         <button className="PopUp__Button">ADD</button>

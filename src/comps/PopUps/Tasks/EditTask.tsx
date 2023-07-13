@@ -64,7 +64,7 @@ export default function EditTask({taskPopUpState,setTaskPopUpState,createDueDate
 
     return <>
         <div className='Background'></div>
-         <form onSubmit={handleEdit}  className="PopUp Container--col">
+         <form onSubmit={handleEdit}  className="PopUp Container--col EditTask">
             <h2 className="">Edit Task</h2>
             <textarea ref={descriptionValue} defaultValue={taskPopUpState.selectedItem ? taskPopUpState.selectedItem.description : ''} required placeholder="Description" className="PopUp__TextArea"></textarea>
             {taskPopUpState.date &&

@@ -41,7 +41,7 @@ export default function Time({DateCollection} : any) {
   
     return (
         <div className="Container--col Time">
-            <span className="Time__Clock">{ details?.time }</span>
+            <span className="Time__Clock">{details?.time}</span>
             <span className="Time__Date">{ details?.date }</span>
       </div>
     )

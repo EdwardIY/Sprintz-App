@@ -97,7 +97,9 @@ months: [
         taskPopUpState={taskPopUpState}
         setTaskPopUpState={setTaskPopUpState}
         groupPopUpState={groupPopUpState}
-        setGroupPopUpState={setGroupPopUpState}/>
+        setGroupPopUpState={setGroupPopUpState}
+        sprintPopUpState={sprintPopUpState}
+        setSprintPopUpState={setSprintPopUpState}/>
 
       <div className="Container--row Header">
         <Agenda/>

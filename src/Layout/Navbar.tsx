@@ -9,8 +9,18 @@ interface NavBar__Inputs {
   setTaskPopUpState: Function
   groupPopUpState:any
   setGroupPopUpState: Function
+  sprintPopUpState:any
+  setSprintPopUpState: Function
 }
-export default function Navbar({ setTaskPopUpState, taskPopUpState,groupPopUpState,setGroupPopUpState}:NavBar__Inputs) {
+export default function Navbar({
+  setTaskPopUpState,
+  taskPopUpState,
+  groupPopUpState,
+  setGroupPopUpState,
+  sprintPopUpState,
+  setSprintPopUpState
+}: NavBar__Inputs) {
+
     const [active, setActive] = useState<boolean>(false);
   
 
@@ -43,7 +53,7 @@ export default function Navbar({ setTaskPopUpState, taskPopUpState,groupPopUpSta
           <span>Create Group</span>
         </li>
   
-        <li className="Navbar__Item Navbar__AddSprint">
+        <li onClick={()=> setSprintPopUpState({...sprintPopUpState, viewCreateItem: true})} className="Navbar__Item Navbar__AddSprint">
           <Icon.Lightning />
           <span>Create Sprint</span>
         </li>

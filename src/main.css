@@ -118,7 +118,7 @@ align-self: stretch;
         display: none;
     }
     .NavBar .Time{
-        display: block;
+        display: flex;
         padding: 1em;
         font-size: initial;
         border-left: none;
@@ -355,7 +355,7 @@ opacity: 1;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding-left: 0em;
+        padding-left: 1em;
     }
      .EmptyCategory__AddContainer {
         flex-direction: column;
@@ -408,7 +408,7 @@ opacity: 1;
 /* ICONS */
 .Sprint_OpenToggle{
 position: absolute;
-bottom:1em;
+bottom:3em;
 left:.3em;
 font-size: 25px;
 opacity: .6;
@@ -475,9 +475,9 @@ top:5px;
     .Sprints {
         height: 92vh !important;
     }
-    .Sprint_OpenToggle{
-        bottom:5em;
-        }
+    /* .Sprint_OpenToggle{
+        bottom:1em;
+        } */
 }
 @media(max-width:760px){
     /* .Sprint_CloseToggle,
@@ -517,16 +517,15 @@ padding: 3em 3em;
 z-index: 1;
 box-Shadow: 0px 0px 40px 0px #a2a8d3;
 /* flex-wrap: wrap; */
-overflow: scroll;
+overflow-y: scroll;
+overflow-x: hidden;
 /* transition: .3s; */
 }
 .CreateTask {
 gap:1em;
 }
 .CreateGroup{}
-.CreateSprint {
-
-}
+.CreateSprint {}
 .PopUp__TextArea {
 background: transparent;
 width: 450px;
@@ -570,6 +569,7 @@ padding: .2em;
 .PopUp--CompletedTask__Description {
 background: var(--colorC);
 width: 400px;
+max-width: 90%;
 padding: .5em;
 border-radius: 5px;
 text-align: start;
@@ -605,6 +605,7 @@ gap:1em;
 height: 300px;
 list-style-type:circle;
 width: 400px;
+max-width: 100%;
 border: 2px solid var(--secondaryColor);
 text-align: start;
 padding: 2em;
@@ -656,20 +657,25 @@ font-style: italic;
 background-color: transparent;
 }
 @media(max-width:1400px){
-    .CreateSprint{
+    .CreateSprint,
+    .EditSprint{
         flex-direction: column-reverse;
     }
-    .CreateSprint .AddTaskContainer--group {
+    .CreateSprint .AddTaskContainer--group,
+    .EditSprint .AddTaskContainer--group {
         flex-direction: column-reverse;
 
     }
-    .AddTaskContainer--group.CreateSprint .PopUp__TextArea {
+    .AddTaskContainer--group.CreateSprint .PopUp__TextArea,
+    .AddTaskContainer--group.EditSprint .PopUp__TextArea {
         width: 60vw;
     }
-    .AddTaskContainer--group.CreateSprint .AddTaskContainer--group {
+    .AddTaskContainer--group.CreateSprint .AddTaskContainer--group,
+    .AddTaskContainer--group.EditSprint .AddTaskContainer--group {
         gap:2em;
     }
-    .AddTaskContainer--group.CreateSprint .TaskList--group__List {
+    .AddTaskContainer--group.CreateSprint .TaskList--group__List,
+    .AddTaskContainer--group.EditSprint .TaskList--group__List {
         width: 60vw;
     }
 }
@@ -677,42 +683,52 @@ background-color: transparent;
     .PopUp {
         padding: 2em;
     }
-    .CreateGroup.PopUp {
+    .CreateGroup.PopUp,
+    .EditGroup.PopUp {
         width: 90vw;
         align-items: center;
         padding: 2em 0em;
     }
-    .CreateGroup.PopUp .AddTaskContainer--group{
+    .CreateGroup.PopUp .AddTaskContainer--group,
+    .EditGroup.PopUp .AddTaskContainer--group{
         flex-direction: column;
     }
-    .CreateGroup.PopUp .PopUp__TextArea {
+    .CreateGroup.PopUp .PopUp__TextArea,
+    .EditGroup.PopUp .PopUp__TextArea {
         width: 500px;
         height: 100px;
     }
-    .CreateGroup.PopUp .AddTaskContainer--group {
+    .CreateGroup.PopUp .AddTaskContainer--group,
+    .EditGroup.PopUp .AddTaskContainer--group {
         gap:2em;
     }
-    .CreateGroup.PopUp .TaskList--group__List {
+    .CreateGroup.PopUp .TaskList--group__List,
+    .EditGroup.PopUp .TaskList--group__List {
         height: 150px;
         width: 500px;
     }
 }
 @media(max-width:600px){
-    .CreateTask.PopUp {
+    .CreateTask.PopUp,
+    .EditTask.PopUp {
         padding: 1em;
         align-items: center;
     }
-    .CreateGroup.PopUp .PopUp__TextArea {
+    .CreateGroup.PopUp .PopUp__TextArea,
+    .EditGroup.PopUp .PopUp__TextArea{
         width: 80vw;
     }
-    .CreateGroup.PopUp .TaskList--group__List {
+    .CreateGroup.PopUp .TaskList--group__List,
+    .EditGroup.PopUp .TaskList--group__List {
         width: 80vw;
     }
-    .AddTaskContainer--group.CreateSprint .PopUp__TextArea {
+    .AddTaskContainer--group.CreateSprint .PopUp__TextArea,
+    .AddTaskContainer--group.EditSprint .PopUp__TextArea {
         width: 80vw;
         height: 200px;
     }
-    .AddTaskContainer--group.CreateSprint .TaskList--group__List {
+    .AddTaskContainer--group.CreateSprint .TaskList--group__List,
+    .AddTaskContainer--group.EditSprint .TaskList--group__List {
         width: 80vw;
         height: 200px;
     }

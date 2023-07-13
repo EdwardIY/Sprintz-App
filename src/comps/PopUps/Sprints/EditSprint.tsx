@@ -146,7 +146,7 @@ export default function EditSprint({ sprints,setSprints,sprintPopUpState, setSpr
     <div className='Background'></div>
         <section className="PopUp">
             <h1 style={{alignSelf: 'center',marginBottom:'.5em'}} className="PopUp__Title">Edit Sprint </h1>
-            <div className="AddTaskContainer--group  Container--row">
+            <div className="AddTaskContainer--group EditSprint  Container--row">
                 <CreateGroup
                     taskPopUpState={taskPopUpState}
                     setTaskPopUpState={setTaskPopUpState}
@@ -154,7 +154,6 @@ export default function EditSprint({ sprints,setSprints,sprintPopUpState, setSpr
                     type='layout'
                 />
                 <form onSubmit={sprintCompleted} className="TaskList--group  Container--col">
-                <h2 className="PopUp__Title">Sprint</h2>
                     {/* <input required placeholder="ENTER TITLE" className="TaskList--group__Title" type="text" /> */}
                     <ul className="TaskList--group__List ">
                         {message && <span className="TaskList--group__List__Message Container--col">{message}</span>}
