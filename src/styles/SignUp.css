@@ -5,36 +5,22 @@
 }
 .SignUp .Title{
     font-size: 50px;
-    animation-name: Title;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-    transform: translateX(-20vw);
-    opacity: 0;
 }
-@keyframes Title {
-    0%{
-        transform: translateX(-20vw);
-        opacity: 0;
-    }
-    100%{
-        transform: translateX(0vw);
-        opacity: 1;
-    }
-}
-/* .SignIn_Form {
-    margin-top: 4em;
-    animation-name: Form;
-    animation-delay: 1s;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-    opacity: 0;
+.SignUp_Form  {
+    position: fixed;
+    border-radius: 10px;
+    background: var(--primaryColor);
+    z-index: 1;
+    box-Shadow: 0px 0px 40px 0px #a2a8d3;
+    gap:1em;
+    width: 500px;
+    max-width: 95vw;
+    min-height: 400px;
+    padding: 1em 0em;
+    opacity: .99;
 
-} */
-@keyframes Form {
-    0%{    opacity: 0;    }
-    100% {    opacity: 1;    }
 }
-/* .SignIn_Form_Input {
+.SignUp_Form_Input {
     background-color: transparent;
     outline: none;
     border: 1px solid white;
@@ -42,7 +28,7 @@
     padding: 1em;
     border-radius: 18px;
     margin-bottom: 1em;
-} */
+}
 .SignUp .Btn.a{
     cursor: pointer;
     background-color: var(--primaryColor);
@@ -66,18 +52,14 @@
 .SignUp .Note {
     margin-top: 3em;
 }
-.SignUp .Note span {
+.SignUp .Note a {
  color: var(--colorB);
  cursor: pointer;
 }
-
-.SignUp form {
-    position: fixed;
-    border-radius: 10px;
-    background: var(--primaryColor);
-    z-index: 1;
-    box-Shadow: 0px 0px 40px 0px #a2a8d3;
-    gap:1em;
-    width: 500px;
-    height: 40vh;
+.SignUp_Form_Close {
+    position: absolute;
+    right: .5em;
+    top:.5em;
+    font-size: 18px;
 }
+
