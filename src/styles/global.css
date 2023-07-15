@@ -21,6 +21,11 @@ body {
 img{
     max-width: 100%;
 }
+button {
+  all:initial;
+  color:inherit;
+  font-family: inherit;
+}
 svg {
     cursor: pointer;
 }

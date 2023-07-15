@@ -1,11 +1,15 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import '../styles/SignUp.css';
 import * as Icon from 'react-bootstrap-icons';
+import { auth,createUser_Option1,customizeProfile } from "../firebase.js";
+
 
 export default function SignUp() {
     const [createAccount, setCreateAccount] = useState(false);
     const [hasPassword, setHasPassword] = useState(false);
-    const [details, setDetails] = useState({});
+    const navigate = useNavigate()
 
 
     const verifyPassword = (value: string) => {
@@ -26,7 +30,22 @@ export default function SignUp() {
         if (Test3 !== 'passed') return alert(Test3)
 
         alert('All Passed')
-        // create User
+        createUser_Option1(auth, e.target.email.value, e.target.password1.value)
+            .then((newUserInfo) => {
+                console.log('Created user')
+                console.log(newUserInfo.user)
+                customizeProfile(newUserInfo.user, { displayName: e.target.username.value  })
+                .then(() =>{
+                    console.log('Added username')
+                    console.log(auth.currentUser)
+                    // Create database spot for this user using ther uid
+                    
+                    return navigate('/')
+                })
+                .catch((err) => console.log(err))
+            })
+            .catch((err) => console.log(err))
+        
 
     }
 
@@ -47,6 +66,7 @@ export default function SignUp() {
             <Icon.XLg className='SignUp_Form_Close' onClick={ () => setCreateAccount(false) } />
             <h2>Create Account</h2>
             <input name='username' className='SignUp_Form_Input' type="text" placeholder='Create username' required/>
+            <input name='email' className='SignUp_Form_Input' type="email" placeholder=' Add email' required/>
             <input onChange={(e) => verifyPassword(e.target.value)}  name='password1'  className='SignUp_Form_Input' type="password" placeholder='Create password' required/>
             <input style={{display: hasPassword ? 'block' : 'none'}} name='password2'  className='SignUp_Form_Input' type="password" placeholder='Retype password' required />
             <button  className="Btn b" >Create Account</button>
@@ -66,7 +86,8 @@ function Test_Username(name:string) {
     }
     return 'passed';
 }
-function Test_Password1(password:string) {
+function Test_Password1(password: string) {
+    if(password.length < 6 ) return 'Password must be at east 6 characters long'
     const chars = 'abcdefghijklmnopqrstuvwxyz1234567890#$'
     for (let char of password) {
         if(char === ' ') return 'Password cannot conatin spaces'
