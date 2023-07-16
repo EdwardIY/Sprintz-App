@@ -63,4 +63,11 @@
     text-align: center;
     margin-top: 1em;
 }
+.SignIn .Btn.c{
+    cursor: pointer;
+    background-color: var(--colorA);
+    font-size: 18px;
+    margin-top: 1em;
+    
+}
 

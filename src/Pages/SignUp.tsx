@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import '../styles/SignUp.css';
 import * as Icon from 'react-bootstrap-icons';
-import { auth,createUser_Option1,customizeProfile } from "../firebase.js";
+import { auth,createUser,customizeProfile } from "../firebase.js";
 
 
 export default function SignUp() {
@@ -30,7 +30,7 @@ export default function SignUp() {
         if (Test3 !== 'passed') return alert(Test3)
 
         alert('All Passed')
-        createUser_Option1(auth, e.target.email.value, e.target.password1.value)
+        createUser(auth, e.target.email.value, e.target.password1.value)
             .then((newUserInfo) => {
                 console.log('Created user')
                 console.log(newUserInfo.user)
@@ -51,9 +51,9 @@ export default function SignUp() {
 
     return <section className="SignUp Container--col">
                 <h1 className="Title">Join Sprintz</h1>
-        
+{/*         
                 <div className='Btn a'>Join With Google</div>
-                <div>or</div>
+                <div>or</div> */}
                 <div onClick={ () => setCreateAccount(true)} className="Btn b">Create Account</div>
                 
                 <span className='Note'>Already have an account? <a href='/'>Sign In</a></span>

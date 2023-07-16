@@ -18,7 +18,7 @@ export const app = initializeApp(firebaseConfig);
 // All firebase features used
 export const auth = getAuth(app);
 export const signIn_Option1 = signInWithEmailAndPassword
-export const createUser_Option1 = createUserWithEmailAndPassword
+export const createUser = createUserWithEmailAndPassword
 export const customizeProfile = updateProfile
 export const checkIfSignedIn = onAuthStateChanged
 

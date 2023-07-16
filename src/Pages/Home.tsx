@@ -3,6 +3,9 @@ import '../styles/Home.css'
 import {useState} from 'react'
 import Navbar from '../comps/Layout/Navbar';
 import Agenda from '../comps/Layout/Agenda';
+import {auth} from '../firebase.js';
+import { onAuthStateChanged } from "firebase/auth";
+
 import Time from '../comps/Layout/Time';
 import Sprints  from '../comps/Layout/Sprints';
 import Options  from '../comps/Layout/Options';
@@ -45,7 +48,8 @@ months: [
   ]
  }
 
- export default function Home() {
+export default function Home() {
+  const [user,setUser] = useState<any>()
   const [showSidebar, setShowSidebar] = useState(true);
   const [showSprints, setShowSprints] = useState(true);
   const [tasksToday, setTasksToday] = useState([])
@@ -85,6 +89,12 @@ months: [
     selectedCategoryList: null,
     updateSelectedCategory:null
   });
+
+  onAuthStateChanged(auth, () => {
+
+    setUser(auth.currentUser)
+  })   
+  console.log('In Home user is ' + user)
 
 
 

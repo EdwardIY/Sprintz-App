@@ -1,8 +1,11 @@
 import '../styles/SignIn.css'
+import { useNavigate } from 'react-router-dom';
+
 import {auth,signIn_Option1} from '../firebase.js'
 
 
 export default function SignIn() {
+    const navigate = useNavigate()
 
     const handleSignIn = (e: any) => {
         e.preventDefault()
@@ -11,7 +14,7 @@ export default function SignIn() {
         signIn_Option1(auth, e.target.email.value, e.target.password.value)
             .then((userInfo) => {
                 console.log(userInfo.user)
-                document.cookie = "firebaseID=" + userInfo.user.email ;
+                navigate('/home')
             })
             .catch((error) => {
                 console.log(error)
@@ -28,7 +31,9 @@ export default function SignIn() {
         <input name='email' required className='SignIn_Form_Input' type="email" placeholder="Enter your email" />
         <input name='password' required className='SignIn_Form_Input' type="password" placeholder="Enter your password" />
         <button className='Btn a'>Sign In</button>
-        <a href="/sign-up" className="Btn b"> Sign Up</a>
-    </form>
+        <a href="/sign-up" className="Btn b">Sign Up</a>
+        <div className="Btn c">Continue with Google</div>
+        </form>
+        
 </section>
 }
