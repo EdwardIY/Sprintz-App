@@ -5,7 +5,9 @@ import {auth,signIn_Option1} from '../firebase.js'
 
 
 export default function SignIn() {
+
     const navigate = useNavigate()
+
 
     const handleSignIn = (e: any) => {
         e.preventDefault()
@@ -13,7 +15,7 @@ export default function SignIn() {
         console.log(e.target.password.value)
         signIn_Option1(auth, e.target.email.value, e.target.password.value)
             .then((userInfo) => {
-                console.log(userInfo.user)
+                console.log('Signed In')
                 navigate('/home')
             })
             .catch((error) => {

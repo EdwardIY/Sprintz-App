@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth,onAuthStateChanged,createUserWithEmailAndPassword,updateProfile,signInWithEmailAndPassword} from "firebase/auth";
-
+import {useState} from 'react'
 
 const firebaseConfig = {
   apiKey: "AIzaSyAvMfJmvZqvJxD2gnnBp9be1oBoIJcH2n4",
@@ -21,6 +21,7 @@ export const signIn_Option1 = signInWithEmailAndPassword
 export const createUser = createUserWithEmailAndPassword
 export const customizeProfile = updateProfile
 export const checkIfSignedIn = onAuthStateChanged
+
 
 
 // module.exports = {

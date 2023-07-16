@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 
 import '../styles/SignUp.css';
 import * as Icon from 'react-bootstrap-icons';
@@ -10,7 +10,6 @@ export default function SignUp() {
     const [createAccount, setCreateAccount] = useState(false);
     const [hasPassword, setHasPassword] = useState(false);
     const navigate = useNavigate()
-
 
     const verifyPassword = (value: string) => {
         if (value.length) setHasPassword(true);
@@ -39,8 +38,8 @@ export default function SignUp() {
                     console.log('Added username')
                     console.log(auth.currentUser)
                     // Create database spot for this user using ther uid
-                    
-                    return navigate('/')
+                    navigate('/')
+                    console.log('after')
                 })
                 .catch((err) => console.log(err))
             })
@@ -56,7 +55,7 @@ export default function SignUp() {
                 <div>or</div> */}
                 <div onClick={ () => setCreateAccount(true)} className="Btn b">Create Account</div>
                 
-                <span className='Note'>Already have an account? <a href='/'>Sign In</a></span>
+                <span className='Note'>Already have an account?<Link to="/"> Sign In</Link></span>
             {/* <form className='SignIn_Form Container--col'>
                 <input className='SignIn_Form_Input' type="text" placeholder="Enter your username" />
                 <input className='SignIn_Form_Input' type="password" placeholder="Enter your password" />
