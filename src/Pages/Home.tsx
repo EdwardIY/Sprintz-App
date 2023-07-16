@@ -88,8 +88,7 @@ export default function Home({ user }: any) {
     updateSelectedCategory: null
   });
 
-console.log(user.email)
-
+  if(!user.email) return window.location.href = '/'
 
   return  <div className="Home">
 

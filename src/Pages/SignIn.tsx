@@ -2,11 +2,16 @@ import '../styles/SignIn.css'
 import { useNavigate } from 'react-router-dom';
 
 import {auth,signIn_Option1} from '../firebase.js'
+import { useEffect } from 'react';
 
 
 export default function SignIn() {
-
     const navigate = useNavigate()
+
+    
+    useEffect(() => {
+        if (auth.currentUser) return navigate('/home')
+    })
 
 
     const handleSignIn = (e: any) => {
@@ -19,7 +24,14 @@ export default function SignIn() {
                 navigate('/home')
             })
             .catch((error) => {
-                console.log(error)
+                if (error.code.split('/')[1] == 'wrong-password')
+                    alert('Wrong Password')
+                else if (error.code.split('/')[1] == 'too-many-requests')
+                    alert('To many failed attepmts try again later')
+                else if (error.code.split('/')[1] == 'user-not-found')
+                    alert('Account not found')
+                console.log(error.code.split('/'))
+                console.log(error.message)
             });
 }
 
