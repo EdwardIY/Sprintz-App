@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth,onAuthStateChanged,createUserWithEmailAndPassword,updateProfile,signInWithEmailAndPassword} from "firebase/auth";
+import { getAuth,onAuthStateChanged,createUserWithEmailAndPassword,updateProfile,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup,signInWithRedirect,signOut} from "firebase/auth";
 import {useState} from 'react'
 
 const firebaseConfig = {
@@ -15,12 +15,18 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 
-// All firebase features used
+// FIREBASE AUTH
 export const auth = getAuth(app);
 export const signIn_Option1 = signInWithEmailAndPassword
 export const createUser = createUserWithEmailAndPassword
 export const customizeProfile = updateProfile
 export const checkIfSignedIn = onAuthStateChanged
+export const signOutUser = signOut
+// Sign in with Google
+export const provider = new GoogleAuthProvider();
+export const signIn_Option2 = signInWithPopup
+export const signIn_Option2_mobile = signInWithRedirect
+
 
 
 
