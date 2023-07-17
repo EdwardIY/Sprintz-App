@@ -11,14 +11,11 @@ export default function App() {
     const [user, setUser] = useState(auth)
 
     checkIfSignedIn(auth, (newState) => {
-            console.log('Auth state has changed')
             if (auth.currentUser) {
-                console.log('we have a current user: ' + auth.currentUser.email)
                 setUser(newState)
             }
     })
     
-    console.log('USER in app is:' + user.email)
     
 
     return   <Routes>

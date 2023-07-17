@@ -1,5 +1,6 @@
-import React, { useEffect, useContext,useLayoutEffect } from 'react';
-import { UserContext } from '../App';
+import React, { useLayoutEffect,useEffect } from 'react';
+import {getUser} from '../firebase.js'
+
 import '../styles/Home.css'
 import {useState} from 'react'
 import Navbar from '../comps/Layout/Navbar';
@@ -48,6 +49,7 @@ months: [
  }
 
 export default function Home({ user }: any) {
+
   const [showSidebar, setShowSidebar] = useState(true);
   const [showSprints, setShowSprints] = useState(true);
   const [tasksToday, setTasksToday] = useState([])
@@ -87,9 +89,25 @@ export default function Home({ user }: any) {
     selectedCategoryList: null,
     updateSelectedCategory: null
   });
+    // Set data
+  useLayoutEffect(() => {
+    ( async function (){
+      if (user) {
+        let data: any = await getUser(user)
 
-  if(!user.email) return window.location.href = '/'
+        console.log(data)
+        
+        // sprint rating
+        setTasksToday(data.todaysTasks)
+      } 
+      })()
 
+    }, [user])
+  
+  if (!user.email) return window.location.href = '/';
+
+console.log(user)
+console.log(tasksToday)
   return  <div className="Home">
 
           <Welcome />
@@ -257,7 +275,6 @@ export default function Home({ user }: any) {
               setSelectedItemState={setSelectedItemState} />}
 
         </div> 
-
 }
 
 function Welcome() {

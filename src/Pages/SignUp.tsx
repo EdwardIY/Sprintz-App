@@ -3,7 +3,7 @@ import { useNavigate,Link } from 'react-router-dom';
 
 import '../styles/SignUp.css';
 import * as Icon from 'react-bootstrap-icons';
-import { auth,createUser,customizeProfile } from "../firebase.js";
+import { auth,createUser,customizeProfile,createDatabase } from "../firebase.js";
 
 
 export default function SignUp() {
@@ -31,15 +31,10 @@ export default function SignUp() {
         alert('All Passed')
         createUser(auth, e.target.email.value, e.target.password1.value)
             .then((newUserInfo) => {
-                console.log('Created user')
-                console.log(newUserInfo.user)
                 customizeProfile(newUserInfo.user, { displayName: e.target.username.value  })
                 .then(() =>{
-                    console.log('Added username')
-                    console.log(auth.currentUser)
-                    // Create database spot for this user using ther uid
+                    createDatabase(auth.currentUser)
                     navigate('/')
-                    console.log('after')
                 })
                 .catch((err) => console.log(err))
             })
