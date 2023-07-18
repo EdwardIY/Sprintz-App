@@ -1,5 +1,7 @@
 import React, { useLayoutEffect,useEffect } from 'react';
-import {getUser} from '../firebase.js'
+import { doc } from "firebase/firestore"; 
+
+import { getUser,db,writeToDatabase } from '../firebase.js'
 
 import '../styles/Home.css'
 import {useState} from 'react'
@@ -96,15 +98,13 @@ export default function Home({ user }: any) {
     selectedCategoryList: null,
     updateSelectedCategory: null
   });
-    // Set data
-  useLayoutEffect(() => {
-
-    ( async function (){
+    // Set data on page load
+  useLayoutEffect(() => {      
+    (async function (){
       if (user) {
-        console.log(user)
         let data: any = await getUser(user)
 
-        console.log(data)
+        console.log('Setting up database')
         
         // sprint rating
         setUsername(data.username)
@@ -116,13 +116,26 @@ export default function Home({ user }: any) {
         setHistory(data.history)
       } 
       })()
+  }, [])
 
-    }, [])
+  // Update base on change
+  useEffect(() => {
+
+    if(username)
+    writeToDatabase(doc(db, "Users", email), {
+      username: username,
+      todaysTasks: [...tasksToday],
+      sprints: sprints,
+      history: [...history],
+      completed: completed,
+      missed: missed,
+    }).then(() => {
+      console.log('updated database')
+     })
+    .catch((err)=> console.log(err))
+  },[tasksToday,sprints])
   
   if (!user.email) return window.location.href = '/';
-
-console.log(user)
-console.log(tasksToday)
   return  <div className="Home">
 
           <Welcome />
@@ -233,14 +246,10 @@ console.log(tasksToday)
               selectedItemState={selectedItemState}
               setSelectedItemState={setSelectedItemState}
               tasks={tasksToday}
-              sprints={sprints}
               setTasks={setTasksToday}
               taskPopUpState={taskPopUpState}
               setTaskPopUpState={setTaskPopUpState}
-              username={username}
-              email={email}
-              completed={completed}
-              missed={missed}
+              setHistory={setHistory}
               history={history}
               createDueDateObject={createDueDateObject}
               validateDate={validateDate}

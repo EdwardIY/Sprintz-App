@@ -40,3 +40,4 @@ create and edit component are almost identical so there is alot of reapeated cod
  - On create sprint need to figure out how I am going to show the created groups in a list format in sprint
  - EDit sprint percentage
  - Split progress into array first value us old value second is new value
+ - On sign Up/sign In with google i need to first traverse the database and make sure that that email is not already being used

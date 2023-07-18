@@ -1,7 +1,7 @@
 import { useRef } from 'react'
-import { doc } from "firebase/firestore"; 
+// import { doc } from "firebase/firestore"; 
 
-import { db,writeToDatabase } from '../../../firebase'
+// import { db,writeToDatabase } from '../../../firebase'
 
 interface CreateTask_Inputs {
   type:string
@@ -10,14 +10,10 @@ interface CreateTask_Inputs {
     selectedItemState?:any
     setSelectedItemState?: Function
     tasks?: (any)[]
-    sprints?:(any)[]
     setTasks?: Function
     taskPopUpState?: any,
     setTaskPopUpState?: Function
-    username?:string
-    email?:string
-    completed?:number
-    missed?:number
+    setHistory?: Function
     history?:(any)[]
     createDueDateObject?: Function
     validateDate?: Function
@@ -46,15 +42,11 @@ export default function CreateTask({
   taskPopUpState,
   setTaskPopUpState,
   tasks,
-  sprints,
   setTasks,
   setSelectedItemState,
   selectedItemState,
   createDueDateObject,
-  username,
-  email,
-  completed,
-  missed,
+  setHistory,
   history,
   validateDate,
   type,
@@ -98,38 +90,36 @@ export default function CreateTask({
                   dateString: dueObject.dateStringDraft
                 }
               }
-              console.log(history,email,username)
-              if (username && email && history) {
-                console.log('writing to database')
-                writeToDatabase(doc(db, "Users", email), {
-                  username: username,
-                  todaysTasks: [...tasks,task],
-                  sprints: sprints,
-                  history: [...history,task],
-                  completed: completed,
-                  missed: missed,
-                }).then(() => {
-                  console.log('task was successfully added to database')
-                  setTasks([...tasks, task])
-                  setTaskPopUpState({ ...taskPopUpState, viewCreateItem: false })
-                  if (descriptionValue.current && dueDateValue.current) {
-                    descriptionValue.current.value = '';
-                    dueDateValue.current.value = ''
-                  }
-                })
-                .catch((err) => {
-                  console.log(err)
-                })
-              }
+              // if (username && email && history) {
+              //   writeToDatabase(doc(db, "Users", email), {
+              //     username: username,
+              //     todaysTasks: [...tasks,task],
+              //     sprints: sprints,
+              //     history: [...history,task],
+              //     completed: completed,
+              //     missed: missed,
+              //   }).then(() => {
+              //     console.log('task was successfully added to database')
+              //     // setTasks([...tasks, task])
+              //     // setTaskPopUpState({ ...taskPopUpState, viewCreateItem: false })
+              //     // if (descriptionValue.current && dueDateValue.current) {
+              //     //   descriptionValue.current.value = '';
+              //     //   dueDateValue.current.value = ''
+              //     // }
+              //   })
+              //   .catch((err) => {
+              //     console.log(err)
+              //   })
+              // }
  
-                console.log('After task')
           
-                // setTasks([...tasks, task])
+                setTasks([...tasks, task])
+                if(history && setHistory)
+                setHistory([...history,task])
+                setTaskPopUpState({ ...taskPopUpState, viewCreateItem: false })
               
-                // setTaskPopUpState({ ...taskPopUpState, viewCreateItem: false })
-              
-                // descriptionValue.current.value = '';
-                // dueDateValue.current.value = ''
+                descriptionValue.current.value = '';
+                dueDateValue.current.value = ''
         }
             
           }
@@ -148,6 +138,9 @@ export default function CreateTask({
       }
       if(tasks && setTasks)
             setTasks([...tasks, task])
+          
+      if(history && setHistory)
+            setHistory([...history,task])
           
         if(taskPopUpState && setTaskPopUpState)
             setTaskPopUpState({ ...taskPopUpState, viewCreateItem: false })
