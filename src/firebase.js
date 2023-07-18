@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth,onAuthStateChanged,createUserWithEmailAndPassword,updateProfile,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup,signInWithRedirect,signOut} from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { collection, addDoc,getDocs } from "firebase/firestore"; 
+import { collection, addDoc,getDocs,setDoc,doc } from "firebase/firestore"; 
 
 
 const firebaseConfig = {
@@ -31,18 +31,21 @@ export const signIn_Option2_mobile = signInWithRedirect
 
 
 // Firestore
-const db = getFirestore(app)
+export const db = getFirestore(app)
+export const writeToDatabase = setDoc
 
 // Initialize database for new user
 export function createDatabase(user) {
   try {
-    addDoc(collection(db, "Users"), {
-        email: user.email,
-        todaysTasks: [{description:'Test'}],
-        sprints: [],
-        sprintz_rating: '0%'
-      
-    });
+    writeToDatabase(doc(db, "Users", user.email), {
+      username: user.displayName,
+      todaysTasks: [],
+      sprints: [],
+      history: [],
+      completed: 0,
+      missed: 0,
+    
+  });
     console.log('Database created')
   } catch (e) {
     console.error("Error adding document: ", e);
@@ -50,18 +53,22 @@ export function createDatabase(user) {
   
 }
 
+// 
 export async function getUser(currentUser) {
   const querySnapshot = await getDocs(collection(db, "Users"));
   let user
 
   querySnapshot.forEach((doc) => {
-    if(doc.data().email === currentUser.email) user = doc.data()
+    if(doc.id === currentUser.email) user = doc.data()
   })
 
 
   console.log(user)
   return user
 }
+getUser({email:'weemfed@gmail.com'})
+// editUser()
+// Update database
 
 
 

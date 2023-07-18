@@ -33,6 +33,7 @@ export default function SignUp() {
             .then((newUserInfo) => {
                 customizeProfile(newUserInfo.user, { displayName: e.target.username.value  })
                 .then(() =>{
+                    
                     createDatabase(auth.currentUser)
                     navigate('/')
                 })

@@ -22,6 +22,7 @@ export default function SignIn() {
         signIn_Option1(auth, e.target.email.value, e.target.password.value)
             .then((userInfo) => {
                 console.log('Signed In')
+
                 navigate('/home')
             })
             .catch((error) => {
@@ -44,8 +45,10 @@ export default function SignIn() {
          else {
             provider.setCustomParameters({ prompt: 'select_account' });
             signIn_Option2(auth, provider)
-            .then((result) => {
-                createDatabase(result.user)
+                .then((result) => {
+                    console.log('creating data base')
+                    console.log(result.user)
+                    createDatabase(result.user)
             })
             .catch((err) => {
                 console.log(err.code)

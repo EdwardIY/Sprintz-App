@@ -1,4 +1,7 @@
-import {useRef} from 'react'
+import { useRef } from 'react'
+import { doc } from "firebase/firestore"; 
+
+import { db,writeToDatabase } from '../../../firebase'
 
 interface CreateTask_Inputs {
   type:string
@@ -7,9 +10,15 @@ interface CreateTask_Inputs {
     selectedItemState?:any
     setSelectedItemState?: Function
     tasks?: (any)[]
+    sprints?:(any)[]
     setTasks?: Function
     taskPopUpState?: any,
     setTaskPopUpState?: Function
+    username?:string
+    email?:string
+    completed?:number
+    missed?:number
+    history?:(any)[]
     createDueDateObject?: Function
     validateDate?: Function
   
@@ -33,8 +42,25 @@ interface Task_Interface {
     } 
   
   }
-export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasks, setTasks,setSelectedItemState,selectedItemState, createDueDateObject,validateDate,type,confirm}: CreateTask_Inputs) {
-    const descriptionValue = useRef<HTMLTextAreaElement>(null);
+export default function CreateTask({
+  taskPopUpState,
+  setTaskPopUpState,
+  tasks,
+  sprints,
+  setTasks,
+  setSelectedItemState,
+  selectedItemState,
+  createDueDateObject,
+  username,
+  email,
+  completed,
+  missed,
+  history,
+  validateDate,
+  type,
+  confirm }: CreateTask_Inputs) {
+  
+  const descriptionValue = useRef<HTMLTextAreaElement>(null);
   const dueDateValue = useRef<HTMLInputElement>(null);
   
 
@@ -72,11 +98,38 @@ export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasks, se
                   dateString: dueObject.dateStringDraft
                 }
               }
-                setTasks([...tasks, task])
-                setTaskPopUpState({ ...taskPopUpState, viewCreateItem: false })
+              console.log(history,email,username)
+              if (username && email && history) {
+                console.log('writing to database')
+                writeToDatabase(doc(db, "Users", email), {
+                  username: username,
+                  todaysTasks: [...tasks,task],
+                  sprints: sprints,
+                  history: [...history,task],
+                  completed: completed,
+                  missed: missed,
+                }).then(() => {
+                  console.log('task was successfully added to database')
+                  setTasks([...tasks, task])
+                  setTaskPopUpState({ ...taskPopUpState, viewCreateItem: false })
+                  if (descriptionValue.current && dueDateValue.current) {
+                    descriptionValue.current.value = '';
+                    dueDateValue.current.value = ''
+                  }
+                })
+                .catch((err) => {
+                  console.log(err)
+                })
+              }
+ 
+                console.log('After task')
+          
+                // setTasks([...tasks, task])
               
-                descriptionValue.current.value = '';
-                dueDateValue.current.value = ''
+                // setTaskPopUpState({ ...taskPopUpState, viewCreateItem: false })
+              
+                // descriptionValue.current.value = '';
+                // dueDateValue.current.value = ''
         }
             
           }
@@ -140,4 +193,8 @@ export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasks, se
 
     </form>
   </>
+}
+
+function writeToDatase() {
+  
 }

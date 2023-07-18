@@ -49,11 +49,18 @@ months: [
  }
 
 export default function Home({ user }: any) {
-
-  const [showSidebar, setShowSidebar] = useState(true);
-  const [showSprints, setShowSprints] = useState(true);
+  // User Information
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [tasksToday, setTasksToday] = useState([])
   const [sprints, setSprints] = useState([])
+  const [completed, setCompleted] = useState(0)
+  const [missed, setMissed] = useState(0)
+  const [history, setHistory] = useState([])
+
+  // Application State
+  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSprints, setShowSprints] = useState(true);
   const [taskPopUpState, setTaskPopUpState] = useState({
     selectedItem: null,
     setSelectedItem: null,
@@ -91,18 +98,26 @@ export default function Home({ user }: any) {
   });
     // Set data
   useLayoutEffect(() => {
+
     ( async function (){
       if (user) {
+        console.log(user)
         let data: any = await getUser(user)
 
         console.log(data)
         
         // sprint rating
+        setUsername(data.username)
+        setEmail(user.email)
         setTasksToday(data.todaysTasks)
+        setSprints(data.sprints)
+        setCompleted(data.completed)
+        setMissed(data.missed)
+        setHistory(data.history)
       } 
       })()
 
-    }, [user])
+    }, [])
   
   if (!user.email) return window.location.href = '/';
 
@@ -114,6 +129,7 @@ console.log(tasksToday)
 
           {/* Layout */}
           <Navbar
+            // user={user}
             taskPopUpState={taskPopUpState}
             setTaskPopUpState={setTaskPopUpState}
             groupPopUpState={groupPopUpState}
@@ -217,9 +233,15 @@ console.log(tasksToday)
               selectedItemState={selectedItemState}
               setSelectedItemState={setSelectedItemState}
               tasks={tasksToday}
+              sprints={sprints}
               setTasks={setTasksToday}
               taskPopUpState={taskPopUpState}
               setTaskPopUpState={setTaskPopUpState}
+              username={username}
+              email={email}
+              completed={completed}
+              missed={missed}
+              history={history}
               createDueDateObject={createDueDateObject}
               validateDate={validateDate}
               type={'popup'} />}
