@@ -1,7 +1,7 @@
 import '../styles/SignIn.css'
 import { useNavigate } from 'react-router-dom';
 
-import {auth,signIn_Option1,signIn_Option2,signIn_Option2_mobile,provider,createDatabase} from '../firebase.js'
+import {auth,signIn_Option1,signIn_Option2,signIn_Option2_mobile,provider,createDatabase,getUser} from '../firebase.js'
 
 import {useLayoutEffect } from 'react';
 
@@ -45,10 +45,13 @@ export default function SignIn() {
          else {
             provider.setCustomParameters({ prompt: 'select_account' });
             signIn_Option2(auth, provider)
-                .then((result) => {
+                .then( async (result) => {
                     console.log('creating data base')
                     console.log(result.user)
-                    createDatabase(result.user)
+                    
+                    let data = await getUser(result.user)
+                    if (data) navigate('/home')
+                    else createDatabase(result.user)
             })
             .catch((err) => {
                 console.log(err.code)

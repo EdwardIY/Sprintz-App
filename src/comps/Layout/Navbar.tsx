@@ -1,8 +1,10 @@
 import * as Icon from 'react-bootstrap-icons';
-import { useState} from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ProgressCircle } from '../Util/ProgressCircle';
 import Time from './Time';
-import {DateCollection} from '../../Pages/Home'
+import { DateCollection } from '../../Pages/Home'
+import { signOutUser,auth } from '../../firebase';
 
 interface NavBar__Inputs {
   taskPopUpState:any
@@ -21,11 +23,19 @@ export default function Navbar({
   setSprintPopUpState
 }: NavBar__Inputs) {
 
-    const [active, setActive] = useState<boolean>(false);
+  const [active, setActive] = useState<boolean>(false);
+  const navigate = useNavigate()
+
   
-
-  console.log(DateCollection)
-
+  
+  const signOut = () => {
+    signOutUser(auth)
+      .then(() => {
+        console.log('User has been signed out')
+        navigate('/')
+    })
+    .catch((err)=> console.log(err))
+  }
     return (
       <>
         <div style={{display: active ? 'block' : 'none'}} className="Background"></div>
@@ -57,13 +67,17 @@ export default function Navbar({
           <Icon.Lightning />
           <span>Create Sprint</span>
         </li>
-        <li className="Navbar__Item Navbar__Profile">
+        <li className="Navbar__Item Navbar">
           <Icon.PersonCircle />
           <span>Profile</span>
         </li>
-        <li className="Navbar__Item Navbar__Profile">
+        <li className="Navbar__Item Navbar">
           <Icon.Gear />
           <span>Settings</span>
+          </li>
+        <li onClick={signOut} className="Navbar__Item Navbar">
+          <Icon.BoxArrowLeft />
+          <span>Sign Out</span>
           </li>
           <Time DateCollection={DateCollection}/>
         </ul>

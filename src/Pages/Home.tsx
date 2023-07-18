@@ -103,11 +103,9 @@ export default function Home({ user }: any) {
     (async function (){
       if (user) {
         let data: any = await getUser(user)
-
         console.log('Setting up database')
         
-        // sprint rating
-        setUsername(data.username)
+        setUsername(user.displayName)
         setEmail(user.email)
         setTasksToday(data.todaysTasks)
         setSprints(data.sprints)

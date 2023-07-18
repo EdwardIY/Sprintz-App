@@ -53,8 +53,8 @@ export function createDatabase(user) {
   
 }
 
-// 
-export async function getUser(currentUser) {
+// Get User
+ export async function getUser(currentUser) {
   const querySnapshot = await getDocs(collection(db, "Users"));
   let user
 
@@ -65,10 +65,8 @@ export async function getUser(currentUser) {
 
   console.log(user)
   return user
-}
-getUser({email:'weemfed@gmail.com'})
-// editUser()
-// Update database
+ }
+
 
 
 
