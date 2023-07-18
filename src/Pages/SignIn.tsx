@@ -1,7 +1,7 @@
 import '../styles/SignIn.css'
 import { useNavigate } from 'react-router-dom';
 
-import {auth,signIn_Option1,signIn_Option2,signIn_Option2_mobile,provider} from '../firebase.js'
+import {auth,signIn_Option1,signIn_Option2,signIn_Option2_mobile,provider,createDatabase} from '../firebase.js'
 
 import {useLayoutEffect } from 'react';
 
@@ -22,6 +22,7 @@ export default function SignIn() {
         signIn_Option1(auth, e.target.email.value, e.target.password.value)
             .then((userInfo) => {
                 console.log('Signed In')
+
                 navigate('/home')
             })
             .catch((error) => {
@@ -44,15 +45,10 @@ export default function SignIn() {
          else {
             provider.setCustomParameters({ prompt: 'select_account' });
             signIn_Option2(auth, provider)
-            .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                // const credential = GoogleAuthProvider.credentialFromResult(result);
-                // // console.log(credential)
-                // const token = credential?.accessToken;
-                // // console.log(token)
-                // // // The signed-in user info.
-                const user = result.user;
-                console.log(user)
+                .then((result) => {
+                    console.log('creating data base')
+                    console.log(result.user)
+                    createDatabase(result.user)
             })
             .catch((err) => {
                 console.log(err.code)

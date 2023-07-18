@@ -1,4 +1,7 @@
-import {useRef} from 'react'
+import { useRef } from 'react'
+// import { doc } from "firebase/firestore"; 
+
+// import { db,writeToDatabase } from '../../../firebase'
 
 interface CreateTask_Inputs {
   type:string
@@ -10,6 +13,8 @@ interface CreateTask_Inputs {
     setTasks?: Function
     taskPopUpState?: any,
     setTaskPopUpState?: Function
+    setHistory?: Function
+    history?:(any)[]
     createDueDateObject?: Function
     validateDate?: Function
   
@@ -33,8 +38,21 @@ interface Task_Interface {
     } 
   
   }
-export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasks, setTasks,setSelectedItemState,selectedItemState, createDueDateObject,validateDate,type,confirm}: CreateTask_Inputs) {
-    const descriptionValue = useRef<HTMLTextAreaElement>(null);
+export default function CreateTask({
+  taskPopUpState,
+  setTaskPopUpState,
+  tasks,
+  setTasks,
+  setSelectedItemState,
+  selectedItemState,
+  createDueDateObject,
+  setHistory,
+  history,
+  validateDate,
+  type,
+  confirm }: CreateTask_Inputs) {
+  
+  const descriptionValue = useRef<HTMLTextAreaElement>(null);
   const dueDateValue = useRef<HTMLInputElement>(null);
   
 
@@ -72,6 +90,30 @@ export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasks, se
                   dateString: dueObject.dateStringDraft
                 }
               }
+              // if (username && email && history) {
+              //   writeToDatabase(doc(db, "Users", email), {
+              //     username: username,
+              //     todaysTasks: [...tasks,task],
+              //     sprints: sprints,
+              //     history: [...history,task],
+              //     completed: completed,
+              //     missed: missed,
+              //   }).then(() => {
+              //     console.log('task was successfully added to database')
+              //     // setTasks([...tasks, task])
+              //     // setTaskPopUpState({ ...taskPopUpState, viewCreateItem: false })
+              //     // if (descriptionValue.current && dueDateValue.current) {
+              //     //   descriptionValue.current.value = '';
+              //     //   dueDateValue.current.value = ''
+              //     // }
+              //   })
+              //   .catch((err) => {
+              //     console.log(err)
+              //   })
+              // }
+ 
+                if(history && setHistory)
+                setHistory([...history,task])
                 setTasks([...tasks, task])
                 setTaskPopUpState({ ...taskPopUpState, viewCreateItem: false })
               
@@ -93,8 +135,14 @@ export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasks, se
               title: null
             }
       }
+      
+      if(history && setHistory)
+            setHistory([...history, task])
+          
       if(tasks && setTasks)
             setTasks([...tasks, task])
+          
+
           
         if(taskPopUpState && setTaskPopUpState)
             setTaskPopUpState({ ...taskPopUpState, viewCreateItem: false })
@@ -140,4 +188,8 @@ export default function CreateTask({ taskPopUpState, setTaskPopUpState,tasks, se
 
     </form>
   </>
+}
+
+function writeToDatase() {
+  
 }

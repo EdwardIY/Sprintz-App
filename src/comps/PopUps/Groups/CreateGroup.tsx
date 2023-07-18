@@ -11,6 +11,8 @@ interface CreateGroup__Inputs {
     setTaskPopUpState?: Function
     groupPopUpState?:any
     setGroupPopUpState?: Function
+    setHistory?: Function
+    history?:(any)[]
     createDueDateObject?:Function
     validateDate?: Function
 
@@ -34,7 +36,20 @@ interface Group_Interface {
 }
 
 
-export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,setTaskPopUpState,groupPopUpState, setGroupPopUpState,createDueDateObject,validateDate,confirm,type}: CreateGroup__Inputs) {
+export default function CreateGroup({
+    setTasksToday,
+    tasksToday,
+    taskPopUpState,
+    setTaskPopUpState,
+    groupPopUpState,
+    setGroupPopUpState,
+    setHistory,
+    history,
+    createDueDateObject,
+    validateDate,
+    confirm,
+    type }: CreateGroup__Inputs) {
+    
     const [tasks, setTasks] = useState<{ id: string, description: string, category:any  }[]>([])
     const dueDateValue = useRef<HTMLInputElement>(null)
     const [message, setMessage] = useState<null | string>('Empty Group')
@@ -113,8 +128,8 @@ export default function CreateGroup({setTasksToday,tasksToday,taskPopUpState,set
                     }
                         setTasksToday([...tasksToday, newGroup])
                     
+                        
                         setListDone(false);
-
                         setGroupPopUpState({ ...groupPopUpState, viewCreateItem: false, })
                     
                         dueDateValue.current.value = ''

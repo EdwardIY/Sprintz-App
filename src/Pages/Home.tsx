@@ -1,5 +1,8 @@
-import React, { useEffect, useContext,useLayoutEffect } from 'react';
-import { UserContext } from '../App';
+import React, { useLayoutEffect,useEffect } from 'react';
+import { doc } from "firebase/firestore"; 
+
+import { getUser,db,writeToDatabase } from '../firebase.js'
+
 import '../styles/Home.css'
 import {useState} from 'react'
 import Navbar from '../comps/Layout/Navbar';
@@ -11,7 +14,7 @@ import Options  from '../comps/Layout/Options';
 import Today from '../comps/Layout/Today';
 import CreateTask from '../comps/PopUps/Tasks/CreateTask';
 import Delete from '../comps/PopUps/Delete';
-import Completed from '../comps/PopUps/Completed';
+import Completed from '../comps/PopUps/Tasks/Completed';
 import EditTask from '../comps/PopUps/Tasks/EditTask';
 import CreateGroup from '../comps/PopUps/Groups/CreateGroup';
 import UpdateGroup from '../comps/PopUps/Groups/UpdateGroup';
@@ -48,10 +51,18 @@ months: [
  }
 
 export default function Home({ user }: any) {
-  const [showSidebar, setShowSidebar] = useState(true);
-  const [showSprints, setShowSprints] = useState(true);
+  // User Information
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [tasksToday, setTasksToday] = useState([])
   const [sprints, setSprints] = useState([])
+  const [completed, setCompleted] = useState(0)
+  const [missed, setMissed] = useState(0)
+  const [history, setHistory] = useState([])
+
+  // Application State
+  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSprints, setShowSprints] = useState(true);
   const [taskPopUpState, setTaskPopUpState] = useState({
     selectedItem: null,
     setSelectedItem: null,
@@ -87,15 +98,51 @@ export default function Home({ user }: any) {
     selectedCategoryList: null,
     updateSelectedCategory: null
   });
+    // Set data on page load
+  useLayoutEffect(() => {      
+    (async function (){
+      if (user) {
+        let data: any = await getUser(user)
 
-  if(!user.email) return window.location.href = '/'
+        console.log('Setting up database')
+        
+        // sprint rating
+        setUsername(data.username)
+        setEmail(user.email)
+        setTasksToday(data.todaysTasks)
+        setSprints(data.sprints)
+        setCompleted(data.completed)
+        setMissed(data.missed)
+        setHistory(data.history)
+      } 
+      })()
+  }, [])
 
+  // Update base on change
+  useEffect(() => {
+
+    if(username)
+    writeToDatabase(doc(db, "Users", email), {
+      username: username,
+      todaysTasks: [...tasksToday],
+      sprints: sprints,
+      history: [...history],
+      completed: completed,
+      missed: missed,
+    }).then(() => {
+      console.log('updated database')
+     })
+    .catch((err)=> console.log(err))
+  },[tasksToday,sprints])
+  
+  if (!user.email) return window.location.href = '/';
   return  <div className="Home">
 
           <Welcome />
 
           {/* Layout */}
           <Navbar
+            // user={user}
             taskPopUpState={taskPopUpState}
             setTaskPopUpState={setTaskPopUpState}
             groupPopUpState={groupPopUpState}
@@ -202,6 +249,8 @@ export default function Home({ user }: any) {
               setTasks={setTasksToday}
               taskPopUpState={taskPopUpState}
               setTaskPopUpState={setTaskPopUpState}
+              setHistory={setHistory}
+              history={history}
               createDueDateObject={createDueDateObject}
               validateDate={validateDate}
               type={'popup'} />}
@@ -214,6 +263,8 @@ export default function Home({ user }: any) {
               setTaskPopUpState={setTaskPopUpState}
               groupPopUpState={groupPopUpState}
               setGroupPopUpState={setGroupPopUpState}
+              setHistory={setHistory}
+              history={history}
               createDueDateObject={createDueDateObject}
               validateDate={validateDate}
               type='popup' />}
@@ -254,10 +305,11 @@ export default function Home({ user }: any) {
           {selectedItemState.viewCompleted &&
             <Completed
               selectedItemState={selectedItemState}
-              setSelectedItemState={setSelectedItemState} />}
+              setSelectedItemState={setSelectedItemState}
+              setCompleted={setCompleted} />
+              }
 
         </div> 
-
 }
 
 function Welcome() {
