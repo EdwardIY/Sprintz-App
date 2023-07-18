@@ -14,7 +14,7 @@ import Options  from '../comps/Layout/Options';
 import Today from '../comps/Layout/Today';
 import CreateTask from '../comps/PopUps/Tasks/CreateTask';
 import Delete from '../comps/PopUps/Delete';
-import Completed from '../comps/PopUps/Completed';
+import Completed from '../comps/PopUps/Tasks/Completed';
 import EditTask from '../comps/PopUps/Tasks/EditTask';
 import CreateGroup from '../comps/PopUps/Groups/CreateGroup';
 import UpdateGroup from '../comps/PopUps/Groups/UpdateGroup';
@@ -263,6 +263,8 @@ export default function Home({ user }: any) {
               setTaskPopUpState={setTaskPopUpState}
               groupPopUpState={groupPopUpState}
               setGroupPopUpState={setGroupPopUpState}
+              setHistory={setHistory}
+              history={history}
               createDueDateObject={createDueDateObject}
               validateDate={validateDate}
               type='popup' />}
@@ -303,7 +305,9 @@ export default function Home({ user }: any) {
           {selectedItemState.viewCompleted &&
             <Completed
               selectedItemState={selectedItemState}
-              setSelectedItemState={setSelectedItemState} />}
+              setSelectedItemState={setSelectedItemState}
+              setCompleted={setCompleted} />
+              }
 
         </div> 
 }

@@ -112,10 +112,9 @@ export default function CreateTask({
               //   })
               // }
  
-          
-                setTasks([...tasks, task])
                 if(history && setHistory)
                 setHistory([...history,task])
+                setTasks([...tasks, task])
                 setTaskPopUpState({ ...taskPopUpState, viewCreateItem: false })
               
                 descriptionValue.current.value = '';
@@ -136,11 +135,14 @@ export default function CreateTask({
               title: null
             }
       }
+      
+      if(history && setHistory)
+            setHistory([...history, task])
+          
       if(tasks && setTasks)
             setTasks([...tasks, task])
           
-      if(history && setHistory)
-            setHistory([...history,task])
+
           
         if(taskPopUpState && setTaskPopUpState)
             setTaskPopUpState({ ...taskPopUpState, viewCreateItem: false })

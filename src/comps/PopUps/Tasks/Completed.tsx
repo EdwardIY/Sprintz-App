@@ -1,25 +1,22 @@
 interface CompletedTask__Inputs {
     selectedItemState:any
-    setSelectedItemState:Function 
+    setSelectedItemState: Function 
+    setCompleted:Function
 }
 
 
-export default function Completed({ setSelectedItemState,selectedItemState}: CompletedTask__Inputs) {
-        let title,description
+export default function Completed({
+    setSelectedItemState,
+    selectedItemState,
+    setCompleted}: CompletedTask__Inputs) {    
     
-        if(selectedItemState.selectedItem){
-            if (selectedItemState.selectedItem.category.type == 'group') {
-                title ='Group Completed?'
-                description = `Have you completed this group? "${selectedItemState.selectedItem.category.title}"`
-            }
-            else if(selectedItemState.selectedItem.category.type == 'task') {
-                title = 'Task Completed?'
-                description = selectedItemState.selectedItem.description
-            }
-
-        }
+    let title = 'Task Completed?'
+    let description = selectedItemState.selectedItem.description
+    
     
     function handleConfirm() {
+        setCompleted((prev: number) => prev + 1)
+        
         let newList = selectedItemState.selectedCategoryList.filter((item:any) => {
             return item.id !== selectedItemState.selectedItem.id
         })
