@@ -28,7 +28,7 @@ export default function SignUp() {
         if (Test2 !== 'passed') return alert(Test2)
         if (Test3 !== 'passed') return alert(Test3)
 
-        alert('All Passed')
+        // alert('All Passed')
         createUser(auth, e.target.email.value, e.target.password1.value)
             .then((newUserInfo) => {
                 customizeProfile(newUserInfo.user, { displayName: e.target.username.value  })
@@ -39,7 +39,11 @@ export default function SignUp() {
                 })
                 .catch((err) => console.log(err))
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+                console.log(err.code)
+                if (err.code.split('/')[1] == 'email-already-in-use') alert('Email already in use')
+
+            })
         
 
     }
