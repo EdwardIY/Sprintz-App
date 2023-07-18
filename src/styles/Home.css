@@ -115,9 +115,12 @@ align-self: stretch;
     border-left: none;
     width: 100%;
 }
-@media(max-width:900px){
+@media(max-width:1100px){
     .Agenda {
         width: 100%;
+    }
+    .Agenda__Quote {
+        font-size: 18px;
     }
     .Header .Time {
         display: none;
