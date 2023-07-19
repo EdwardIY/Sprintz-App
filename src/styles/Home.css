@@ -288,7 +288,36 @@ max-width: 600px;
 min-height: 90px;
 justify-content: flex-start;
 box-Shadow: 0px 0px 40px 0px var(--primaryColor);
-
+position: relative;
+}
+.Task_Msg {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.829);
+}
+.Task_Msg:hover .Task_Msg_Note  {
+    display: none;
+}
+.Task_Msg:hover .Task_Msg_Remove {
+    display: block;
+}
+.Task_Msg_Note{
+    font-size: 20px;
+}
+.Task_Msg_Remove{
+    cursor: pointer;
+    padding: .3em 0em;
+    width: 150px;
+    text-align: center;
+    border-radius: 15px;
+    display: none;
+}
+.Task_Msg_Remove.task {
+    background-color: var(--colorC);
+}
+.Task_Msg_Remove.group {
+    background-color: var(--colorB);
 }
 .TaskCategory {
 padding: .5em;
@@ -463,6 +492,37 @@ max-height: 100%;
 min-width: max-content;
 width: 300px;
 position: relative;
+}
+.Sprint_Msg {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.829);
+}
+.Sprint_Msg:hover .Sprint_Msg_Note  {
+    display: none;
+}
+.Sprint_Msg:hover .Sprint_Msg_Remove {
+    display: block;
+}
+.Sprint_Msg_Note{
+    font-size: 20px;
+}
+.Sprint_Msg_Remove{
+    cursor: pointer;
+    padding: .3em 0em;
+    width: 150px;
+    text-align: center;
+    display: none;
+}
+.Sprint_Msg_Remove.Sprint {
+    background-color: var(--colorC);
+}
+.Sprint_Msg_Remove.group {
+    background-color: var(--colorB);
+}
+.Sprint_Msg_Remove.sprint {
+    background-color: var(--colorD);
 }
 .Sprints__Sprint__Title{
 text-align: center;

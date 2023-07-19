@@ -99,6 +99,11 @@ export default function Tasks({
     }
   }
 
+  function handleMissed() {
+    // Remove task/group
+    // Update missed(missed = missed + 1)
+  }
+
 
   
     return (
@@ -112,7 +117,7 @@ export default function Tasks({
         <Icon.ChevronUp onClick={() => setShowSprints(!showSprints)} style={{ display: showSprints ? 'none' : 'initial' }} className='Sprint_OpenToggle' />
         {tasksToday.length > 0 && tasksToday.map((task: any) => {
           console.log(task)
-                            return <div key={task.id} className={`Task Container--col ${task.category.type == 'group' ? 'Task--' + task.category.type : 'Task--reg' } `}>
+          return <div key={task.id} className={`Task Container--col ${task.category.type == 'group' ? 'Task--' + task.category.type : 'Task--reg'} `}>
                                     <span className="TaskCategory">{task.category.type == 'group' ? 'From ' + task.category.type  + ' "' + task.category.title + '"' : ''  }</span>
                                     <span className="TaskDescription">{ task.category.type == 'group' ? `This ${task.category.type} contains ${task.list.length} tasks ` : task.description}</span>
                                     <div className="Container--col TaskInfo">
@@ -123,6 +128,10 @@ export default function Tasks({
                                       </span>
                                       <span className='TaskTime'> Due: {task.due.dateString}</span>
                                     </div>
+                                    {/* <div className="Task_Msg Container--col">
+                                      <span className="Task_Msg_Note">{ task.category.type == 'group' ? 'Group ' : 'Task'} Missed</span>
+                                      <div onClick={handleMissed} className={`Task_Msg_Remove  ${task.category.type == 'group' ? 'group' : 'task'}`}>Remove</div>
+                                    </div> */}
                                   </div>
                           })}
       </div>
