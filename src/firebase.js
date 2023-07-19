@@ -35,9 +35,9 @@ export const db = getFirestore(app)
 export const writeToDatabase = setDoc
 
 // Initialize database for new user
-export function createDatabase(user) {
+export async function createDatabase(user) {
   try {
-    writeToDatabase(doc(db, "Users", user.email), {
+    await writeToDatabase(doc(db, "Users", user.email), {
       username: user.displayName,
       todaysTasks: [],
       sprints: [],

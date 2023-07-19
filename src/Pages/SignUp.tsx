@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState,useLayoutEffect } from 'react';
 import { useNavigate,Link } from 'react-router-dom';
 
 import '../styles/SignUp.css';
 import * as Icon from 'react-bootstrap-icons';
-import { auth,createUser,customizeProfile,createDatabase } from "../firebase.js";
+import { auth,createUser,customizeProfile,createDatabase,getUser } from "../firebase.js";
 
 
 export default function SignUp() {
@@ -15,6 +15,22 @@ export default function SignUp() {
         if (value.length) setHasPassword(true);
         else setHasPassword(false)
     }
+
+    useLayoutEffect(() => {
+        goToHomePage()
+    })
+
+    async function goToHomePage() {
+        console.log('gotohomepage ran')
+        if (auth.currentUser) {
+            let userHasAccount  = await getUser(auth.currentUser)
+            if (userHasAccount) return navigate('/home')
+            else { 
+                await createDatabase(auth.currentUser)
+                goToHomePage()
+            } 
+        }
+    } 
 
     const handleCreate = (e:any) => {
         e.preventDefault();
@@ -32,10 +48,8 @@ export default function SignUp() {
         createUser(auth, e.target.email.value, e.target.password1.value)
             .then((newUserInfo) => {
                 customizeProfile(newUserInfo.user, { displayName: e.target.username.value  })
-                .then(() =>{
-                    
-                    createDatabase(auth.currentUser)
-                    navigate('/')
+                .then(() =>{ 
+                    goToHomePage()
                 })
                 .catch((err) => console.log(err))
             })

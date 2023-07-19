@@ -22,6 +22,7 @@ import EditGroup from '../comps/PopUps/Groups/EditGroup';
 import CreateSprint from '../comps/PopUps/Sprints/CreateSprint';
 import EditSprint from '../comps/PopUps/Sprints/EditSprint';
 import UpdateSprint from '../comps/PopUps/Sprints/UpdateSprint';
+import { log } from 'console';
 
 
 export const DateCollection = {
@@ -104,7 +105,10 @@ export default function Home({ user }: any) {
       if (user) {
         let data: any = await getUser(user)
         console.log('Setting up database')
-        
+
+        console.log(user)
+        console.log(data)
+
         setUsername(user.displayName)
         setEmail(user.email)
         setTasksToday(data.todaysTasks)
@@ -135,8 +139,10 @@ export default function Home({ user }: any) {
   
   if (!user.email) return window.location.href = '/';
   return  <div className="Home">
-
-          <Welcome />
+          <div className="loader">
+                        <div></div><div></div><div></div><div></div>
+            </div>          
+            <Welcome />
 
           {/* Layout */}
           <Navbar

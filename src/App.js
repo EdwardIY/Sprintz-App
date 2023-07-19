@@ -12,6 +12,7 @@ export default function App() {
 
     checkIfSignedIn(auth, (newState) => {
             if (auth.currentUser) {
+                console.log(newState)
                 setUser(newState)
             }
     })

@@ -9,10 +9,22 @@ import {useLayoutEffect } from 'react';
 export default function SignIn() {
     const navigate = useNavigate()
 
-    
     useLayoutEffect(() => {
-        if (auth.currentUser) return navigate('/home')
+        goToHomePage()
     })
+
+    async function goToHomePage() {
+        console.log('gotohomepage ran')
+        if (auth.currentUser) {
+            let userHasAccount  = await getUser(auth.currentUser)
+            if (userHasAccount) return navigate('/home')
+            else { 
+                await createDatabase(auth.currentUser)
+                goToHomePage()
+            } 
+        }
+    } 
+
 
 
     const signInWithEmail = (e: any) => {
@@ -22,8 +34,7 @@ export default function SignIn() {
         signIn_Option1(auth, e.target.email.value, e.target.password.value)
             .then((userInfo) => {
                 console.log('Signed In')
-
-                navigate('/home')
+                goToHomePage()
             })
             .catch((error) => {
                 if (error.code.split('/')[1] == 'wrong-password')
@@ -49,9 +60,8 @@ export default function SignIn() {
                     console.log('creating data base')
                     console.log(result.user)
                     
-                    let data = await getUser(result.user)
-                    if (data) navigate('/home')
-                    else createDatabase(result.user)
+                    goToHomePage() // if this failes then create database
+                    // createDatabase(result.user)
             })
             .catch((err) => {
                 console.log(err.code)
