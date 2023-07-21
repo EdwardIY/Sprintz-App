@@ -119,11 +119,15 @@ export default function Tasks({
                                 <span onClick={handleMountCreateSprint} className="EmptyCategory__AddOption  ">Create Sprint <br /> <Icon.PlusCircleFill/> </span>
                               </div>}
         <Icon.ChevronLeft onClick={() => setShowSidebar(!showSidebar)} style={{ display: showSidebar ? 'initial' : 'none' }} className='Main__Options__Close--toggle' />
-        <Icon.ChevronUp onClick={() => setShowSprints(!showSprints)} style={{ display: showSprints ? 'none' : 'initial' }} className='Sprint_OpenToggle' />
+        {showSprints ?
+          <Icon.ChevronDown onClick={() => setShowSprints(!showSprints)} className='Sprint_OpenToggle' /> :
+          <Icon.ChevronUp onClick={() => setShowSprints(!showSprints)} className='Sprint_OpenToggle' />
+         }
+        
         {tasksToday.length > 0 && tasksToday.map((task: any) => {
           console.log(task)
           return <div key={task.id} className={`Task Container--col ${task.category.type == 'group' ? 'Task--' + task.category.type : 'Task--reg'} `}>
-                                    <span className="TaskCategory">{task.category.type == 'group' ? 'From ' + task.category.type  + ' "' + task.category.title + '"' : ''  }</span>
+                                    <span className="TaskCategory">{task.category.type == 'group' ? '"' + task.category.title + '"' : ''  }</span>
                                     <span className="TaskDescription">{ task.category.type == 'group' ? `This ${task.category.type} contains ${task.list.length} tasks ` : task.description}</span>
                                     <div className="Container--col TaskInfo">
                                       <span className="TaskControls Container--row">

@@ -162,7 +162,10 @@ export default function Home({ user }: any) {
             completed={completed} />
 
           <div className="Container--row Header">
-            <Agenda />
+            <Agenda
+            tasksToday={tasksToday}
+            sprints={sprints}
+             />
             <Time
               DateCollection={DateCollection} />
           </div>

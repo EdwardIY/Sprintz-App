@@ -88,7 +88,7 @@ export default function Sprints({
   
     return (
         <div  className="Container--row Sprints">
-            <Icon.ChevronDown style={{ display: showSprints ? 'initial' : 'none' }} onClick={()=> setShowSprints(!showSprints)}  className='Sprint_CloseToggle' />
+            {/* <Icon.ChevronDown style={{ display: showSprints ? 'initial' : 'none' }} onClick={()=> setShowSprints(!showSprints)}  className='Sprint_CloseToggle' /> */}
             {!sprints.length ?
                 <div className="EmptyCategory__AddContainer EmptyCategory__AddContainer--Sprint Container--row">                               
                      <span onClick={handleMountCreateSprint} className="EmptyCategory__AddOption  ">Create Sprint <br /> <Icon.PlusCircleFill/> </span>

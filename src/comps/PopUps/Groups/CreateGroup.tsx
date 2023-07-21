@@ -198,7 +198,7 @@ export default function CreateGroup({
                     <div className="Search__Output"></div>
                 </div> */}
         </div>
-        {listDone && <Title type={'popup'} title={'Add Title'} confirm={handleDone} cancel={handleCancelTitle} /> }
+        {listDone && <Title length={50} type={'popup'} title={'Add Title'} confirm={handleDone} cancel={handleCancelTitle} /> }
 
     </> 
 }

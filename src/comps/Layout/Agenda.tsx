@@ -44,8 +44,16 @@ const motivationalQuotes = [
   { description: "You miss 100% of the shots you don't take.", author: "Wayne Gretzky" },
 ]
 
+interface Agenda_Inputs {
+  tasksToday: any[]
+  sprints: any[]
+}
 
-export default function Agenda() {
+
+export default function Agenda({
+  tasksToday,
+  sprints
+}:Agenda_Inputs) {
   const[quote,setQuote] = useState( Math.floor(Math.random() * 42))
 
     return (
@@ -53,7 +61,7 @@ export default function Agenda() {
         <h1 className='Agenda__Quote'> {motivationalQuotes[quote].description}
           <span className="Agenda__Quote__Author">- {motivationalQuotes[quote].author}</span>
         </h1>
-        <p className='Agenda__Tasks'> You have 3 task(s), 12 group task(s) and 4 sprint(z) remaining!</p>
+        <p className='Agenda__Tasks'>You have {tasksToday.filter((task:any)=> task.category.type == 'task').length} task(s), {tasksToday.filter((task:any)=> task.category.type == 'group').length} group(s) and {sprints.length} sprint(z) remaining!</p>
       </section>
     )
   }

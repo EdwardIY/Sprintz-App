@@ -5,17 +5,21 @@ interface AddTitle_Inputs {
     title: string
     confirm: Function
     cancel: Function
+    length: number
     defaultValue?: any
+
 }
 
-export default function Title({type,title,confirm, cancel,defaultValue}:AddTitle_Inputs ) {
+export default function Title({type,title,confirm, cancel,length,defaultValue}:AddTitle_Inputs ) {
     const titleValue = useRef<HTMLInputElement>(null)
 
     function handleDone(e:any) {
         e.preventDefault()
         if (titleValue.current) {
             if (titleValue.current.value) {
-                confirm(titleValue.current.value)
+                if (titleValue.current.value.length <= length) confirm(titleValue.current.value)
+                else return alert('Title must be under ' + (length + 1) + ' characters')
+
                 titleValue.current.value = ''
                 handleCancel()
                 }

@@ -198,6 +198,7 @@ export default function EditGroup({setTasksToday,tasksToday,taskPopUpState,setTa
                 </div> */}
         </div>
         {listDone && <Title
+            length={50}
             type={'popup'}
             defaultValue={groupPopUpState ? groupPopUpState.selectedItem?.category.title : ''}
             title={'Edit Title'}

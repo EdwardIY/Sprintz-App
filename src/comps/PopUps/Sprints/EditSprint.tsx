@@ -175,7 +175,7 @@ export default function EditSprint({ sprints,setSprints,sprintPopUpState, setSpr
                     </div>
                 </form>
             </div>
-            {listDone && <Title defaultValue={sprintPopUpState.selectedItem.category.title} type={'popup'} title={'Add Title'} confirm={handleDone} cancel={handleCancelTitle} />}
+            {listDone && <Title length={40} defaultValue={sprintPopUpState.selectedItem.category.title} type={'popup'} title={'Add Title'} confirm={handleDone} cancel={handleCancelTitle} />}
         
                 {/* <div className="PopUp__Search">
                     <div className="SearchBarContainer">

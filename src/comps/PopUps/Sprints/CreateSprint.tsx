@@ -159,7 +159,7 @@ export default function CreateSprint({ sprints,setSprints,sprintPopUpState, setS
                     </div>
                 </form>
             </div>
-            {listDone && <Title type={'popup'} title={'Add Title'} confirm={handleDone} cancel={handleCancelTitle} />}
+            {listDone && <Title length={40} type={'popup'} title={'Add Title'} confirm={handleDone} cancel={handleCancelTitle} />}
         
                 {/* <div className="PopUp__Search">
                     <div className="SearchBarContainer">

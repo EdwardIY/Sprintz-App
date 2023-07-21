@@ -275,7 +275,7 @@ justify-content: start;
 align-items: flex-start;
 
 flex-wrap: wrap;
-gap:1em 1em;
+gap:0em 1em;
 background: var(--colorA);
 box-shadow: inset -4px 1px 12px 8px rgba(0, 0, 0, 0.67);
 overflow-y: scroll;
@@ -387,6 +387,7 @@ transition: 1s;
 position: relative;
 margin-right: -615px;
 align-self: stretch;
+align-items: flex-start;
 /*  */
 justify-content: flex-start;
 
@@ -481,6 +482,8 @@ position: relative;
 /* border: 5px solid green; */
 align-self: stretch;
 transition: .5s;
+overflow-y: scroll;
+flex-wrap: wrap;
 /* overflow-y: scroll;
 flex-direction: column;
 align-items: center; */
@@ -620,8 +623,9 @@ top:5px;
         display: none !important;
     } */
     .Sprints{
-        flex-wrap: wrap;
+        /* flex-wrap: wrap; */
         overflow: scroll;
+        /* align-items: center; */
     } 
     /* .Sprints__Sprint {
         flex-direction: row;

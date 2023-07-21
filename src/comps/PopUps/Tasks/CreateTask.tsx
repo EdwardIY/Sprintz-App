@@ -77,6 +77,7 @@ export default function CreateTask({
         // We have both a date input and description input
         if (descriptionValue.current && dueDateValue.current) {  
             let dueObject = createDueDateObject(dueDateValue.current.value)
+            if(descriptionValue.current.value.length > 70) return alert('Task length must be under 70 characters')
             if (validateDate(dueDateValue.current.value)) {
               let task: Task_Interface = {
                 id: Math.round(Math.random() * 10000),
