@@ -28,8 +28,6 @@ export default function SignIn() {
 
     const signInWithEmail = (e: any) => {
         e.preventDefault()
-        console.log(e.target.email.value)
-        console.log(e.target.password.value)
         signIn_Option1(auth, e.target.email.value, e.target.password.value)
             .then((userInfo) => {
                 console.log('Signed In')
@@ -42,8 +40,6 @@ export default function SignIn() {
                     alert('To many failed attepmts try again later')
                 else if (error.code.split('/')[1] == 'user-not-found')
                     alert('Account not found')
-                console.log(error.code.split('/'))
-                console.log(error.message)
             });
     }
     const signInWithGoogle = () => {
@@ -56,11 +52,7 @@ export default function SignIn() {
             provider.setCustomParameters({ prompt: 'select_account' });
             signIn_Option2(auth, provider)
                 .then( async (result) => {
-                    console.log('creating data base')
-                    console.log(result.user)
-                    
-                    goToHomePage() // if this failes then create database
-                    // createDatabase(result.user)
+                    goToHomePage() 
             })
             .catch((err) => {
                 console.log(err.code)
