@@ -1,4 +1,4 @@
-
+import { useState } from 'react'
 const motivationalQuotes = [
   { description: "Difficulties strengthen the mind.", author: "Seneca" },
   { description: "Virtue leads to a tranquil mind.", author: "Seneca" },
@@ -46,7 +46,7 @@ const motivationalQuotes = [
 
 
 export default function Agenda() {
-  const quote = Math.floor(Math.random() * 42);
+  const[quote,setQuote] = useState( Math.floor(Math.random() * 42))
 
     return (
       <section className='Agenda'>

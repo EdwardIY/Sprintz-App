@@ -135,7 +135,12 @@ export default function Home({ user }: any) {
       console.log('updated database')
      })
     .catch((err)=> console.log(err))
-  },[tasksToday,sprints])
+  }, [tasksToday, sprints])
+  
+  // Update Sprintz rating
+  // useEffect(() => {
+  //   setSpri
+  // },[missed,completed])
   
   if (!user.email) return window.location.href = '/';
   return  <div className="Home">
@@ -152,7 +157,9 @@ export default function Home({ user }: any) {
             groupPopUpState={groupPopUpState}
             setGroupPopUpState={setGroupPopUpState}
             sprintPopUpState={sprintPopUpState}
-            setSprintPopUpState={setSprintPopUpState} />
+            setSprintPopUpState={setSprintPopUpState}
+            missed={missed}
+            completed={completed} />
 
           <div className="Container--row Header">
             <Agenda />
@@ -175,6 +182,7 @@ export default function Home({ user }: any) {
               setShowSidebar={setShowSidebar}
               showSprints={showSprints}
               setShowSprints={setShowSprints}
+              setMissed={setMissed}
             />
 
             <Options

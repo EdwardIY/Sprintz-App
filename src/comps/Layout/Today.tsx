@@ -13,7 +13,8 @@ interface Task_Intputs {
   showSidebar: boolean,
   setShowSidebar: Function
   showSprints: boolean,
-  setShowSprints: Function
+  setShowSprints: Function,
+  setMissed: Function
 
 }
 
@@ -31,7 +32,8 @@ export default function Tasks({
   showSidebar,
   setShowSidebar,
   showSprints,
-  setShowSprints
+  setShowSprints,
+  setMissed
 }: Task_Intputs) {
   
   
@@ -99,9 +101,12 @@ export default function Tasks({
     }
   }
 
-  function handleMissed() {
-    // Remove task/group
-    // Update missed(missed = missed + 1)
+  function handleMissed(task: any,type:string) {
+    if(type == 'task') setMissed((missed:number) => missed + 1)
+    else if (type == 'group') setMissed((missed: number) => task.list.length + missed)
+    
+
+    setTasksToday(tasksToday.filter((item) => item.id != task.id))
   }
 
 
@@ -128,10 +133,12 @@ export default function Tasks({
                                       </span>
                                       <span className='TaskTime'> Due: {task.due.dateString}</span>
                                     </div>
-                                    {/* <div className="Task_Msg Container--col">
-                                      <span className="Task_Msg_Note">{ task.category.type == 'group' ? 'Group ' : 'Task'} Missed</span>
-                                      <div onClick={handleMissed} className={`Task_Msg_Remove  ${task.category.type == 'group' ? 'group' : 'task'}`}>Remove</div>
-                                    </div> */}
+                                    {new Date().toLocaleDateString() > task.due.date && 
+                                      <div className="Task_Msg Container--col">
+                                        <span className="Task_Msg_Note">{ task.category.type == 'group' ? 'Group ' : 'Task'} Missed</span>
+                                        <div onClick={()=> handleMissed(task,task.category.type)} className={`Task_Msg_Remove  ${task.category.type == 'group' ? 'group' : 'task'}`}>Remove</div>
+                                    </div>}
+
                                   </div>
                           })}
       </div>

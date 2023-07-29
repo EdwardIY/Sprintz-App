@@ -16,8 +16,6 @@ interface ProgressCircle_Inputs {
     controls?:any
 }
 export function ProgressCircle({type,sprint,selected,controls,value,size, root_color,progress_color,value_color,fontSize,note}:ProgressCircle_Inputs) {
-    const [progressValue, setProgressValue] = useState<number>(typeof value == 'object' ? value[1] : value);
-    // const [progressValue, setProgressValue] = useState<number>(initialValue());
 
     // useEffect(() => {  // Increment animation
     //     console.log('useeffect ran')
@@ -61,10 +59,10 @@ export function ProgressCircle({type,sprint,selected,controls,value,size, root_c
     //     return 1
     // }
 
-
+console.log(typeof value == 'object' ? value[1] : value)
     
 
-
+console.log(value)
 
     return (
         <div className="ProgressCircle Container--col">
@@ -73,7 +71,7 @@ export function ProgressCircle({type,sprint,selected,controls,value,size, root_c
             <div
                 // onClick={()=> setSeeOptions(true)}
                 style={{
-                    background: `conic-gradient(${progress_color} ${progressValue}%, ${root_color} 0deg)`,
+                    background: `conic-gradient(${progress_color} ${typeof value == 'object' ? value[1] : value}%, ${root_color} 0deg)`,
                     width: `${size}px`,
                     height: `${size}px`,
                     borderRadius: '50%',
@@ -90,7 +88,7 @@ export function ProgressCircle({type,sprint,selected,controls,value,size, root_c
                     boxShadow: '0px 0px 56px 0px #a2a8d3',
                     fontStyle:'italic'
                 }} className="ProgressCircle__Value Container--col">
-                    {progressValue}%
+                    {typeof value == 'object' ? value[1] : value}%
                 </div>
             </div>
             <span style={{ fontSize: '16px' }}>{note && note}</span>

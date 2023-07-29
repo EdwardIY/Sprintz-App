@@ -13,6 +13,8 @@ interface NavBar__Inputs {
   setGroupPopUpState: Function
   sprintPopUpState:any
   setSprintPopUpState: Function
+  missed: number,
+  completed: number
 }
 export default function Navbar({
   setTaskPopUpState,
@@ -20,12 +22,16 @@ export default function Navbar({
   groupPopUpState,
   setGroupPopUpState,
   sprintPopUpState,
-  setSprintPopUpState
+  setSprintPopUpState,
+  completed,
+  missed
 }: NavBar__Inputs) {
 
   const [active, setActive] = useState<boolean>(false);
   const navigate = useNavigate()
 
+  console.log(completed,missed)
+  console.log(completed / (completed + missed) * 100)
   
   
   const signOut = () => {
@@ -45,7 +51,7 @@ export default function Navbar({
           {/* <li className="Navbar__Item"><Time/></li> */}
           <ProgressCircle
             type={'root'}
-            value={10}
+            value={ isNaN(completed/missed) ? 100 : +(completed / (completed + missed) * 100).toFixed(1)}
             size={100}
             root_color='#e3e3e3'
             progress_color='black'
