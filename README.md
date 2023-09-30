@@ -15,4 +15,4 @@ The goal of this app is to create a reliable one-stop hub to track and save all 
 - And many more..
 
 ## Technology used
-- React.js / Typescript / CSS / MongoDB / MongoDB Atlas
+- React.js / Typescript / CSS / Firebase Auth / Cloud Firetore
