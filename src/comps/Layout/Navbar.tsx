@@ -29,15 +29,12 @@ export default function Navbar({
 
   const [active, setActive] = useState<boolean>(false);
   const navigate = useNavigate()
-
-  console.log(completed,missed)
-  console.log(completed / (completed + missed) * 100)
   
   
   const signOut = () => {
     signOutUser(auth)
       .then(() => {
-        console.log('User has been signed out')
+        // console.log('User has been signed out')
         navigate('/')
     })
     .catch((err)=> console.log(err))
@@ -48,7 +45,6 @@ export default function Navbar({
         <Icon.List className='Navbar__OpenNav'  onClick={()=> setActive(!active)}/>
         <ul style={{right: active ? '0px' : '-255px' }} className="NavBar">
           <Icon.XLg  className='Navbar__CloseNav'  onClick={()=> setActive(!active)}/>
-          {/* <li className="Navbar__Item"><Time/></li> */}
           <ProgressCircle
             type={'root'}
             value={ isNaN(completed/missed) ? 100 : +(completed / (completed + missed) * 100).toFixed(1)}

@@ -22,7 +22,7 @@ import EditGroup from '../comps/PopUps/Groups/EditGroup';
 import CreateSprint from '../comps/PopUps/Sprints/CreateSprint';
 import EditSprint from '../comps/PopUps/Sprints/EditSprint';
 import UpdateSprint from '../comps/PopUps/Sprints/UpdateSprint';
-import { log } from 'console';
+import Loader from '../comps/Util/Loader';
 
 
 export const DateCollection = {
@@ -104,10 +104,6 @@ export default function Home({ user }: any) {
     (async function (){
       if (user) {
         let data: any = await getUser(user)
-        console.log('Setting up database')
-
-        console.log(user)
-        console.log(data)
 
         setUsername(user.displayName)
         setEmail(user.email)
@@ -132,23 +128,14 @@ export default function Home({ user }: any) {
       completed: completed,
       missed: missed,
     }).then(() => {
-      console.log('updated database')
      })
     .catch((err)=> console.log(err))
   }, [tasksToday, sprints])
   
-  // Update Sprintz rating
-  // useEffect(() => {
-  //   setSpri
-  // },[missed,completed])
   
   if (!user.email) return window.location.href = '/';
   return  <div className="Home">
-          <div className="loader">
-                        <div></div><div></div><div></div><div></div>
-            </div>          
-            <Welcome />
-
+          <Loader />          
           {/* Layout */}
           <Navbar
             // user={user}
@@ -207,8 +194,7 @@ export default function Home({ user }: any) {
             sprintPopUpState={sprintPopUpState}
             setSprintPopUpState={setSprintPopUpState}
             setSelectedItemState={setSelectedItemState}
-            showSprints={showSprints}
-            setShowSprints={setShowSprints}
+            setMissed={setMissed}
 
           />
 
@@ -325,15 +311,6 @@ export default function Home({ user }: any) {
               }
 
         </div> 
-}
-
-function Welcome() {
-  
-  return (
-    <div className="Container--col Header__Welcome">
-     
-    </div>
-  )
 }
 
 function createDueDateObject(dueDateValue:any) {

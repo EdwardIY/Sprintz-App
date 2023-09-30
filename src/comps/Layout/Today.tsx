@@ -125,7 +125,6 @@ export default function Tasks({
          }
         
         {tasksToday.length > 0 && tasksToday.map((task: any) => {
-          console.log(task)
           return <div key={task.id} className={`Task Container--col ${task.category.type == 'group' ? 'Task--' + task.category.type : 'Task--reg'} `}>
                                     <span className="TaskCategory">{task.category.type == 'group' ? '"' + task.category.title + '"' : ''  }</span>
                                     <span className="TaskDescription">{ task.category.type == 'group' ? `This ${task.category.type} contains ${task.list.length} tasks ` : task.description}</span>
@@ -137,7 +136,7 @@ export default function Tasks({
                                       </span>
                                       <span className='TaskTime'> Due: {task.due.dateString}</span>
                                     </div>
-                                    {new Date().toLocaleDateString() > task.due.date && 
+                                    {new Date(new Date().toLocaleDateString()) > new Date(task.due.date) && 
                                       <div className="Task_Msg Container--col">
                                         <span className="Task_Msg_Note">{ task.category.type == 'group' ? 'Group ' : 'Task'} Missed</span>
                                         <div onClick={()=> handleMissed(task,task.category.type)} className={`Task_Msg_Remove  ${task.category.type == 'group' ? 'group' : 'task'}`}>Remove</div>

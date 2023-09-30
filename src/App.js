@@ -1,5 +1,5 @@
-import { BrowserRouter,Route,Routes} from 'react-router-dom';
-import { useState, createContext,useEffect} from 'react'
+import {Route,Routes} from 'react-router-dom';
+import { useState, createContext} from 'react'
 import {auth,checkIfSignedIn} from './firebase.js'
 import './styles/global.css';
 import SignIn from './Pages/SignIn';
@@ -12,7 +12,6 @@ export default function App() {
 
     checkIfSignedIn(auth, (newState) => {
             if (auth.currentUser) {
-                console.log(newState)
                 setUser(newState)
             }
     })

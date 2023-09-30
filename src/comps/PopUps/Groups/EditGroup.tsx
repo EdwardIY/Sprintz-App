@@ -62,12 +62,6 @@ export default function EditGroup({setTasksToday,tasksToday,taskPopUpState,setTa
         if (tasks.length >= 1) { 
             setListDone(true)
         }
-        // else {
-        //     setMessage('Group must contain at least 2 tasks');
-
-        //     if (!tasks.length) setTimeout(() => setMessage('Empty Group'), 3000);
-        //     else setTimeout(() => setMessage(null), 3000);
-        // }
         
     }
     function handleCancelGroup() {
@@ -204,14 +198,5 @@ export default function EditGroup({setTasksToday,tasksToday,taskPopUpState,setTa
             title={'Edit Title'}
             confirm={handleDone}
             cancel={handleCancelTitle} />}
-
-        {/* <form onSubmit={handleDone} style={{display: listDone ? 'flex' : 'none'}} className="PopUp CreateTitle Container--col">
-            <h2>Edit Title</h2>
-            <input required value={groupPopUpState ? groupPopUpState.selectedItem?.category.title : '' } className="CreateTitle__Input" ref={title} type="text" />
-            <div className="PopUp__Buttons Container--row">
-                <button className="PopUp__Button">DONE</button> 
-                <div onClick={handleCancelTitle} className="PopUp__Button">CANCEL</div>
-            </div>
-        </form> */}
     </> 
 }

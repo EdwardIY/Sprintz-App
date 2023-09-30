@@ -17,47 +17,6 @@ interface ProgressCircle_Inputs {
 }
 export function ProgressCircle({type,sprint,selected,controls,value,size, root_color,progress_color,value_color,fontSize,note}:ProgressCircle_Inputs) {
 
-    // useEffect(() => {  // Increment animation
-    //     console.log('useeffect ran')
-    //     if (sprint && selected) {
-    //         if (sprint.id == selected && typeof value == 'object') {
-    //             console.log('Sprint ID: ' + sprint.id)
-    //             console.log('ID: ' + selected)
-    //             console.log(sprint.category.title + 'Made it through')
-    //             console.log(value,progressValue)
-    //             if (value[1] < progressValue) {
-    //                 console.log('dec progress value', value, progressValue)
-    //                 for (let i = progressValue; i >= value[1]; i--){
-    //                     setTimeout(() => {
-    //                         setProgressValue(i)
-    //                     },i * 10 * i / 10)
-    //                 }
-    //             }
-    //             else if (value[1] > progressValue) {
-    //                 console.log('dec progress value', value, progressValue)
-    //                 for (let i = progressValue; i <= value[1]; i++){
-    //                     setTimeout(() => {
-    //                         setProgressValue(i)
-    //                     },i * 10 * i / 10)
-    //                 }
-    //             }
-    //         }
-    //     }
-       
-    //     // return clearInterval(step)
-
-    // }, [value])
-    // function initialValue():number {
-    //     if (typeof value == 'object' && selected && sprint) {
-    //         if (selected == sprint.id) {
-    //             return value[0]
-    //          }
-    //         else return value[1]
-    //      }
-    //     else if (typeof value == 'number') return value
-
-    //     return 1
-    // }
 
 console.log(typeof value == 'object' ? value[1] : value)
     
@@ -69,7 +28,6 @@ console.log(value)
 
 
             <div
-                // onClick={()=> setSeeOptions(true)}
                 style={{
                     background: `conic-gradient(${progress_color} ${typeof value == 'object' ? value[1] : value}%, ${root_color} 0deg)`,
                     width: `${size}px`,
@@ -92,12 +50,6 @@ console.log(value)
                 </div>
             </div>
             <span style={{ fontSize: '16px' }}>{note && note}</span>
-            {/* {(seeOptions && type == 'sprint') &&  <div style={{opacity: seeOptions ? '1' : '0', pointerEvents: seeOptions ? 'initial' : 'none'}}  className='ProgressCircle_Message Container--col'>
-                <Icon.XLg className='ProgressCircle_Message_Close' onClick={()=> setSeeOptions(false)} />
-                <span onClick={handleEdit} className='ProgressCircle_Message_Option Container--row'>Edit <Icon.Pencil onClick={()=> true } /> </span>
-                <span onClick={handleUpdate} className='ProgressCircle_Message_Option Container--row'>Update <Icon.Check2 onClick={()=> true }/> </span>
-                <span onClick={handleDelete} className='ProgressCircle_Message_Option Container--row'>Delete <Icon.XLg /></span>
-            </div> } */}
         </div>
     )
 }

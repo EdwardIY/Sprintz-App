@@ -1,5 +1,4 @@
 import { useState,useRef } from "react"
-import * as Icon from 'react-bootstrap-icons';
 import Title from "../Title";
 import CreateTask from "../Tasks/CreateTask";
 interface CreateGroup__Inputs {
@@ -43,8 +42,6 @@ export default function CreateGroup({
     setTaskPopUpState,
     groupPopUpState,
     setGroupPopUpState,
-    setHistory,
-    history,
     createDueDateObject,
     validateDate,
     confirm,

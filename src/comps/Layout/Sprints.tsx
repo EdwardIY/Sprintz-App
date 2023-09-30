@@ -8,8 +8,7 @@ interface Sprints_Inputs {
     sprintPopUpState:any
     setSprintPopUpState: Function
     setSelectedItemState: Function
-    showSprints: boolean,
-    setShowSprints: Function
+    setMissed:Function
 
 }
 
@@ -20,8 +19,7 @@ export default function Sprints({
     sprintPopUpState,
     setSprintPopUpState,
     setSelectedItemState,
-    showSprints,
-    setShowSprints
+    setMissed
 }: Sprints_Inputs) {
 
     const [selected, setSelected] = useState(Infinity);
@@ -59,14 +57,6 @@ export default function Sprints({
             list: sprints,
             updateList: setSprints
         })
-        // setSelectedItemState({
-        //     selectedItem: sprint,
-        //     viewCompleted: false,
-        //     viewDelete: false,
-        //     viewEdit: true,
-        //     selectedCategoryList: sprints,
-        //     updateSelectedCategory:setSprints
-        // })
       }
     const handleMountUpdate = (sprint: any) => {
         setViewOptions(null)
@@ -81,14 +71,18 @@ export default function Sprints({
         })
     }
     
-    const handleMissed = () => {
-        // remove sprint
-        // update missed
+    const handleMissed = (sprint: any) => {
+        let missedSprintTasks = 0;
+        sprint.list.forEach((group: any) => missedSprintTasks+= group.list.length)
+        console.log(missedSprintTasks)
+
+        setMissed((missed: number) => missed + missedSprintTasks)
+        setSprints(sprints.filter((item:any) => item.id != sprint.id))
+    
     }
   
     return (
         <div  className="Container--row Sprints">
-            {/* <Icon.ChevronDown style={{ display: showSprints ? 'initial' : 'none' }} onClick={()=> setShowSprints(!showSprints)}  className='Sprint_CloseToggle' /> */}
             {!sprints.length ?
                 <div className="EmptyCategory__AddContainer EmptyCategory__AddContainer--Sprint Container--row">                               
                      <span onClick={handleMountCreateSprint} className="EmptyCategory__AddOption  ">Create Sprint <br /> <Icon.PlusCircleFill/> </span>
@@ -102,7 +96,6 @@ export default function Sprints({
                                 type={'sprint'}
                                 sprint={sprint}
                                 selected={selected}
-                                // controls={{delete:handleMountDelete, edit:handleMountEdit, update:handleMountUpdate}}
                                 value={sprint.progress}
                                 size={90}
                                 root_color='#e3e3e3'
@@ -120,10 +113,10 @@ export default function Sprints({
                             <span onClick={()=>handleMountUpdate(sprint)} className='SprintOptions_Option Container--row'>Update <Icon.Check2 onClick={()=> true }/> </span>
                             <span onClick={()=>handleMountDelete(sprint)} className='SprintOptions_Option Container--row'>Delete <Icon.XLg /></span>
                         </div>}
-                        {/* <div className="Sprint_Msg Container--col">
+                        { new Date(new Date().toLocaleDateString()) > new Date(sprint.due.date) && <div className="Sprint_Msg Container--col">
                                 <span className='Sprint_Msg_Note'>Sprint Missed</span>
-                                <span onClick={handleMissed} className='Sprint_Msg_Remove sprint'>Remove</span>
-                        </div> */}
+                                <span onClick={ () =>  handleMissed(sprint)} className='Sprint_Msg_Remove sprint'>Remove</span>
+                        </div> }
                     </div>
                 })
                  }

@@ -14,7 +14,6 @@ export default function SignIn() {
     })
 
     async function goToHomePage() {
-        console.log('gotohomepage ran')
         if (auth.currentUser) {
             let userHasAccount  = await getUser(auth.currentUser)
             if (userHasAccount) return navigate('/home')

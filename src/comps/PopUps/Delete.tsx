@@ -5,7 +5,6 @@ interface DeleteTask__Inputs {
 
 
 export default function DeleteTask({ setSelectedItemState,selectedItemState}: DeleteTask__Inputs) {
-    // const description = tasksToday.map((task) => task.id == taskID && task.description)
         let title,description
         if(selectedItemState.selectedItem){
             if (selectedItemState.selectedItem.category.type == 'group') {

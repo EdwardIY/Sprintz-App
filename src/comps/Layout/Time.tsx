@@ -16,7 +16,6 @@ export default function Time({DateCollection} : any) {
     },[])
 
     function update() {
-        console.log(new Date().toLocaleTimeString())
         
         let clockstring = new Date().toLocaleTimeString().split(' ')
             .map((string, index) => {

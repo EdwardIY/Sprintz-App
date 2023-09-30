@@ -19,15 +19,15 @@ export default function Options({showSidebar, setShowSidebar,taskPopUpState,setT
         <Icon.ChevronRight onClick={()=> setShowSidebar(!showSidebar)}  className='Main__Options__Close--toggle' />
         <div onClick={() => setTaskPopUpState({ ...taskPopUpState, viewCreateItem: true })} className="Main__Options__Option Container--col">
           <h2 className="Options__Option__Title">Create Task</h2>
-          <span className="Options__Option__Description">A task set to be due at a specified date</span>
+          <span className="Options__Option__Description">A task set to be due at a specified date(short term)</span>
         </div>
         <div onClick={() => setGroupPopUpState({...groupPopUpState, viewCreateItem: true})} className="Main__Options__Option Container--col">
           <h2 className="Options__Option__Title">Create Group</h2>
-          <span className="Options__Option__Description">A set of two or more tasks set to be due at a specified date</span>
+          <span className="Options__Option__Description">A set of two or more tasks set to be due at a specified date(short-medium term)</span>
         </div>
         <div onClick={() => setSprintPopUpState({...sprintPopUpState, viewCreateItem: true})} className="Main__Options__Option Container--col">
           <h2 className="Options__Option__Title">Create Sprint</h2>
-          <span className="Options__Option__Description">A set of two or more groups set to be due at a specified date</span>
+          <span className="Options__Option__Description">A set of two or more groups set to be due at a specified date(long-term)</span>
         </div>
       </div>
     )

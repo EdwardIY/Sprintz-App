@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth,onAuthStateChanged,createUserWithEmailAndPassword,updateProfile,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup,signInWithRedirect,signOut} from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { collection, addDoc,getDocs,setDoc,doc } from "firebase/firestore"; 
+import { collection,getDocs,setDoc,doc } from "firebase/firestore"; 
 
 
 const firebaseConfig = {
@@ -46,7 +46,6 @@ export async function createDatabase(user) {
       missed: 0,
     
   });
-    console.log('Database created')
   } catch (e) {
     console.error("Error adding document: ", e);
   }
@@ -63,7 +62,6 @@ export async function createDatabase(user) {
   })
 
 
-  console.log(user)
   return user
  }
 

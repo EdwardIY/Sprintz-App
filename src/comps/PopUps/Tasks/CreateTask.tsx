@@ -1,7 +1,4 @@
 import { useRef } from 'react'
-// import { doc } from "firebase/firestore"; 
-
-// import { db,writeToDatabase } from '../../../firebase'
 
 interface CreateTask_Inputs {
   type:string
@@ -91,27 +88,6 @@ export default function CreateTask({
                   dateString: dueObject.dateStringDraft
                 }
               }
-              // if (username && email && history) {
-              //   writeToDatabase(doc(db, "Users", email), {
-              //     username: username,
-              //     todaysTasks: [...tasks,task],
-              //     sprints: sprints,
-              //     history: [...history,task],
-              //     completed: completed,
-              //     missed: missed,
-              //   }).then(() => {
-              //     console.log('task was successfully added to database')
-              //     // setTasks([...tasks, task])
-              //     // setTaskPopUpState({ ...taskPopUpState, viewCreateItem: false })
-              //     // if (descriptionValue.current && dueDateValue.current) {
-              //     //   descriptionValue.current.value = '';
-              //     //   dueDateValue.current.value = ''
-              //     // }
-              //   })
-              //   .catch((err) => {
-              //     console.log(err)
-              //   })
-              // }
  
                 if(history && setHistory)
                 setHistory([...history,task])

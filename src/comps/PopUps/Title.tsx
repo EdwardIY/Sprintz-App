@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useRef } from "react"
 
 interface AddTitle_Inputs {
     type: string

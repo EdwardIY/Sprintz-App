@@ -8,12 +8,10 @@ interface UpdateSprint__Inputs {
     setSprintPopUpState: Function
     setGroupPopUpState: Function
 
-    // setSelectedItemState: Function
 }
 
 export default function UpdateSprint({setSprints,sprints,sprintPopUpState, setSprintPopUpState, setGroupPopUpState}: UpdateSprint__Inputs) {
     const [groups, setGroups] = useState<any>(null)
-    // const [message, setMessage] = useState<null | string>(null)
 
     useEffect(() => { // Handle Sprint Completion
         if (groups) {
@@ -22,10 +20,6 @@ export default function UpdateSprint({setSprints,sprints,sprintPopUpState, setSp
                 setTimeout(() => {
                     alert(`Sprint "${sprintPopUpState.selectedItem.category.title}" has been completed!`)
                 }, 1)
-                 // setMessage('Sprint Completed')
-                // setTimeout(() => {
-                //     setMessage(null)
-                // },5000)
             }
         }
     }, [groups])
@@ -43,7 +37,6 @@ export default function UpdateSprint({setSprints,sprints,sprintPopUpState, setSp
             setSprints(sprints.map((sprint) => {
                 if (sprint.id === sprintPopUpState.selectedItem.id) {
                     sprint.list = groups
-                    // sprint.progress = Math.ceil((sprint.totalTasks - groups.reduce((a:any,b:any)=> a + b.list.length,0)) / sprint.totalTasks * 100)
                     sprint.progress = [sprintPopUpState.selectedItem.progress[1],Math.ceil((sprint.totalTasks - groups.reduce((a:any,b:any)=> a + b.list.length,0)) / sprint.totalTasks * 100)]
                 }
                 return sprint
@@ -79,13 +72,6 @@ export default function UpdateSprint({setSprints,sprints,sprintPopUpState, setSp
             updateList: setGroups,
             date:false
         })
-        // setSelectedItemState({
-        //     selectedItem: task,
-        //     viewCompleted: true,
-        //     viewDelete: false,
-        //     selectedCategoryList: groups,
-        //     updateSelectedCategory: setGroups
-        // })
     }
     return <>
         <div className='Background'></div>

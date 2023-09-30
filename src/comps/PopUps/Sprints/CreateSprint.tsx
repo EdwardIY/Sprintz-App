@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef} from 'react';
 import CreateGroup from '../Groups/CreateGroup';
 import Title from '../Title';
 
@@ -37,22 +37,9 @@ interface Sprint {
 
 export default function CreateSprint({ sprints,setSprints,sprintPopUpState, setSprintPopUpState, taskPopUpState, setTaskPopUpState, groupPopUpState, setGroupPopUpState,createDueDateObject,validateDate }: CreateSprint_Inputs) {
     const [groups, setGroups] = useState<any[]>([]);
-    // const [numberOfTasks, setNumberOfTasks] = useState(0);
-    // const [progress, setProgress] = useState(0)
     const dueDateValue = useRef<HTMLInputElement>(null)
     const [listDone, setListDone] = useState(false)
     const [message,setMessage] = useState('Empty Sprint')
-
-
-    // Progress is always going to be set to 0 on creation this logic needs to be in edit/update
-    // useEffect(() => { // update progress on task completion / removal
-
-    //     if(groups.length && numberOfTasks)
-    //     setProgress(
-    //        ( numberOfTasks - groups.reduce((a, b) => a.list.length + b.list.length, 0)) / numberOfTasks * 100
-    //     )
-
-    // },[groups,numberOfTasks])
 
 
     const handleAddGroup = (group:any) => {
@@ -84,9 +71,6 @@ export default function CreateSprint({ sprints,setSprints,sprintPopUpState, setS
         }
     }
     const handleDone = (titleValue:string) => {
-        // groups.forEach((group) => { // Set initial number of tasks within this sprint
-        //     setNumberOfTasks(numberOfTasks + group.list.length )
-        // })
 
         if (dueDateValue.current) {
             if (validateDate(dueDateValue.current.value)) {
@@ -103,7 +87,6 @@ export default function CreateSprint({ sprints,setSprints,sprintPopUpState, setS
                         dateString: dueObject.dateStringDraft
                     },
                     totalTasks: groups.reduce((a, b) => a + b.list.length, 0),
-                    // progress: 0
                     progress: [0,0]
                 }
                 console.log('Sprints updated')
@@ -137,8 +120,6 @@ export default function CreateSprint({ sprints,setSprints,sprintPopUpState, setS
                     type='layout'
                 />
                 <form onSubmit={sprintCompleted} className="TaskList--group  Container--col">
-                {/* <h2 className="PopUp__Title">Sprint</h2> */}
-                    {/* <input required placeholder="ENTER TITLE" className="TaskList--group__Title" type="text" /> */}
                     <ul className="TaskList--group__List ">
                         {message && <span className="TaskList--group__List__Message Container--col">{message}</span>}
                         {groups.length > 0 && (groups.map((group:any) => {

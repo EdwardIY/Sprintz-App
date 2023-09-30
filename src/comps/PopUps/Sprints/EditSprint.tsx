@@ -93,9 +93,6 @@ export default function EditSprint({ sprints,setSprints,sprintPopUpState, setSpr
         }
     }
     const handleDone = (titleValue:string) => {
-        // groups.forEach((group) => { // Set initial number of tasks within this sprint
-        //     setNumberOfTasks(numberOfTasks + group.list.length )
-        // })
 
         if (dueDateValue.current) {
             if (validateDate(dueDateValue.current.value)) {
@@ -115,11 +112,9 @@ export default function EditSprint({ sprints,setSprints,sprintPopUpState, setSpr
                         dateString: dueObject.dateStringDraft
                     },
                     totalTasks: numberOfTotalTasks ,
-                    // progress: Math.ceil((numberOfTotalTasks - newAmountOfTasks) / numberOfTotalTasks   * 100)
                     progress: [sprintPopUpState.selectedItem.progress[1],Math.ceil((numberOfTotalTasks - newAmountOfTasks) / numberOfTotalTasks   * 100)]
 
                 }
-                console.log(newSprint.progress)
                 sprintPopUpState.updateList(sprintPopUpState.list.map((sprint:Sprint) => {
                     if (sprint.id == sprintPopUpState.selectedItem.id)
                         return newSprint
